@@ -381,35 +381,47 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
+    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
+    
+    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
+    
+    # Initialize counters and response lists
     count = 0
-    errors = list()
-    success = list()
+    errors = []
+    success = []
+    
+    # Return error if no users are found
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
+    
+    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)
+            message = _delete_user(user)  # Call your deletion function
             count += 1
         except Exception as ex:
-            log.error(ex)
-            errors.append({'type': "danger", 'message': str(ex)})
-
+            log.error(f"Error deleting user {user.id}: {ex}")
+            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
+    
+    # Prepare success messages based on count
     if count == 1:
-        log.info("User {} deleted".format(user_ids))
+        log.info(f"User {user_ids} deleted")
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info("Users {} deleted".format(user_ids))
+        log.info(f"Users {user_ids} deleted")
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    success.extend(errors)
-    return Response(json.dumps(success), mimetype='application/json')
+    
+    # Combine success and error messages for response
+    response_data = success + errors
+    return Response(json.dumps(response_data), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
