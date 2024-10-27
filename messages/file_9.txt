@@ -1,38 +1,39 @@
 msgid "Please wait one minute before next login"
-msgstr ""
+msgstr "அடுத்த உள்நுழைவுக்கு முன் ஒரு நிமிடம் காத்திருக்கவும்"
 
 msgid "you are now logged in as: '%(nickname)s'"
-msgstr ""
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s"
 
 msgid ""
 msgstr ""
 
 msgid "Could not login: %(message)s"
-msgstr ""
+msgstr "உள்நுழைய முடியவில்லை: %(message)s"
+
 
 msgid "Wrong Username or Password"
-msgstr ""
+msgstr "தவறான பயனர்பெயர் அல்லது கடவுச்சொல்"
 
 msgid "New Password was sent to your email address"
-msgstr ""
+msgstr "உங்கள் மின்னஞ்சல் முகவரிக்கு புதிய கடவுச்சொல் அனுப்பப்பட்டது"
 
 msgid "An unknown error occurred. Please try again later."
-msgstr ""
+msgstr"அறியப்படாத பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்."
 
 msgid "Please enter valid username to reset password"
-msgstr ""
+msgstr "கடவுச்சொல்லை மீட்டமைக்க சரியான பயனர்பெயரை உள்ளிடவும்""
 
 msgid "You are now logged in as: '%(nickname)s'"
-msgstr ""
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s."
 
 msgid "%(name)s's Profile"
-msgstr ""
+msgstr "பெயர்) இன் சுயவிவரம்"
 
 msgid "Success! Profile Updated"
-msgstr ""
+msgstr "வெற்றி! சுயவிவரம் புதுப்பிக்கப்பட்டது"
 
 msgid "Oops! An account already exists for this Email."
-msgstr ""
+msgstr "அச்சச்சோ! இந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது.""
 
 msgid "Found no valid gmail.json file with OAuth information"
 msgstr ""
