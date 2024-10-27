@@ -1,40 +1,40 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 
 msgid "Statistics"
-msgstr ""
+msgstr "புள்ளிவிவரங்கள்"
 
 msgid "Server restarted, please reload page."
-msgstr ""
+msgstr "சேவையகம் மறுதொடக்கம் செய்யப்பட்டது பக்கத்தை ஏற்றவும்"
 
 msgid "Performing Server shutdown, please close window."
-msgstr ""
+msgstr "சேவையகம் பணிநிறுத்தம் செய்யப்படுகிறது சாளரத்தை மூடு"
 
 msgid "Success! Database Reconnected"
-msgstr ""
+msgstr "வெற்றி!,தரவுத்தளம் மீண்டும் இணைக்கப்பட்டது"
 
 msgid "Unknown command"
-msgstr ""
+msgstr "தெரியாத கருத்து"
 
 msgid "Success! Books queued for Metadata Backup, please check Tasks for result"
-msgstr ""
+msgstr "வெற்றி , மெட்டாடேட்டா காப்புப்பிரதிக்காக புத்தகம் வரிசைப்படுத்தப்பட்டுள்ளது, முடிவுக்கான பணியைச் சரிபார்க்கவும்"
 
 msgid "Unknown"
-msgstr ""
+msgstr "தெரியவில்லை"
 
 msgid "Admin page"
-msgstr ""
+msgstr "நிர்வாக பக்கம்"
 
 msgid "Basic Configuration"
-msgstr ""
+msgstr "அடிப்படை கட்டமைப்பு"
 
 msgid "UI Configuration"
-msgstr ""
+msgstr "பயனர் இடைமுக கட்டமைப்பு"
 
 msgid "Edit Users"
-msgstr ""
+msgstr " "
 
-msgid "All"
+msgid ""
 msgstr ""
 
 msgid "User not found"
