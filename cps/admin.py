@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
+#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)  
 #    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
@@ -1134,27 +1134,53 @@ def _configuration_gdrive_helper(to_save):
         gdriveutils.deleteDatabaseOnChange()
     return gdrive_error
 
-
+#This function input paramters is to_save object 
+#This function will return bollean type.
 def _configuration_oauth_helper(to_save):
+    # Initialize counters and flags
     active_oauths = 0
     reboot_required = False
+    
+    # Helper function to construct the keys for accessing the configuration
+    def get_key(provider_id, suffix):
+        return f"config_{provider_id}_{suffix}"
+
+    # Iterate through each OAuth provider blueprint
     for element in oauthblueprints:
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] != element['oauth_client_id'] \
-          or to_save["config_" + str(element['id']) + "_oauth_client_secret"] != element['oauth_client_secret']:
-            reboot_required = True
-            element['oauth_client_id'] = to_save["config_" + str(element['id']) + "_oauth_client_id"]
-            element['oauth_client_secret'] = to_save["config_" + str(element['id']) + "_oauth_client_secret"]
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] \
-          and to_save["config_" + str(element['id']) + "_oauth_client_secret"]:
-            active_oauths += 1
-            element["active"] = 1
+        # Construct keys for client ID and secret
+        client_id_key = get_key(element['id'], "oauth_client_id")
+        client_secret_key = get_key(element['id'], "oauth_client_secret")
+
+        # Retrieve the current client ID and secret from to_save
+        current_client_id = to_save.get(client_id_key)
+        current_client_secret = to_save.get(client_secret_key)
+
+        # Check if there's a change in the client ID or secret
+        if current_client_id != element['oauth_client_id'] or current_client_secret != element['oauth_client_secret']:
+            reboot_required = True  # Mark reboot as required if changes were made
+            # Update the element with the new client ID and secret
+            element['oauth_client_id'] = current_client_id
+            element['oauth_client_secret'] = current_client_secret
+
+        # Determine if the current provider is active
+        if current_client_id and current_client_secret:
+            active_oauths += 1  # Increment active OAuth counter
+            element["active"] = 1  # Set provider as active
         else:
-            element["active"] = 0
+            element["active"] = 0  # Set provider as inactive
+
+        # Update the database with the new values
         ub.session.query(ub.OAuthProvider).filter(ub.OAuthProvider.id == element['id']).update(
-            {"oauth_client_id": to_save["config_" + str(element['id']) + "_oauth_client_id"],
-             "oauth_client_secret": to_save["config_" + str(element['id']) + "_oauth_client_secret"],
-             "active": element["active"]})
+            {
+                "oauth_client_id": current_client_id,
+                "oauth_client_secret": current_client_secret,
+                "active": element["active"]
+            }
+        )
+
+    # Return whether a reboot is required
     return reboot_required
+
 
 
 def _configuration_logfile_helper(to_save):
