@@ -29,37 +29,37 @@ msgid "Email Service"
 msgstr ""
 
 msgid "Gmail via Oauth2"
-msgstr ""
+msgstr "Oauth2 வழியாக Gmail"
 
 msgid "Configuration"
-msgstr ""
+msgstr "கட்டமைப்பு"
 
 msgid "Calibre Database Directory"
-msgstr ""
+msgstr "காலிபர் டேட்டாபேஸ் டைரக்டரி"
 
 msgid "Log Level"
-msgstr ""
+msgstr "பதிவு நிலை"
 
 msgid "Port"
-msgstr ""
+msgstr "துறைமுகம்"
 
 msgid "External Port"
-msgstr ""
+msgstr "வெளி துறைமுகம்"
 
 msgid "Books per Page"
-msgstr ""
+msgstr "ஒரு பக்கத்திற்கு புத்தகங்கள்"
 
 msgid "Uploads"
-msgstr ""
+msgstr "பதிவேற்றங்கள்"
 
 msgid "Anonymous Browsing"
-msgstr ""
+msgstr "அநாமதேய உலாவல்"
 
 msgid "Public Registration"
-msgstr ""
+msgstr "பொதுப் பதிவு"
 
 msgid "Magic Link Remote Login"
-msgstr ""
+msgstr "மேஜிக் லிங்க் ரிமோட் உள்நுழைவு "
 
 msgid "Reverse Proxy Login"
 msgstr ""
