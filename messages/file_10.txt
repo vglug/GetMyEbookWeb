@@ -1,32 +1,32 @@
 msgid "Delete"
-msgstr ""
+msgstr "நீக்கவும்"
 
 msgid "Public Shelf"
-msgstr ""
+msgstr "பொது அலமாரி"
 
 msgid "Import LDAP Users"
-msgstr ""
+msgstr "LDAP பயனர்களை இறக்குமதி செய்யவும்"
 
 msgid "Email Server Settings"
-msgstr ""
+msgstr  "மின்னஞ்சல் சேவையக அமைப்புகள்"
 
 msgid "SMTP Hostname"
-msgstr ""
+msgstr "SMTP ஹோஸ்ட்பெயர்"
 
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP போர்ட்"
 
 msgid "Encryption"
-msgstr ""
+msgstr "குறியாக்கம்"
 
 msgid "SMTP Login"
-msgstr ""
+msgstr "SMTP உள்நுழைவு"
 
 msgid "From Email"
-msgstr ""
+msgstr "மின்னஞ்சலில் இருந்து"
 
 msgid "Email Service"
-msgstr ""
+msgstr "மின்னஞ்சலில் இருந்து"
 
 msgid "Gmail via Oauth2"
 msgstr ""
