@@ -1,0 +1,111 @@
+msgid "Please wait one minute before next login"
+msgstr "அடுத்த உள்நுழைவுக்கு முன் ஒரு நிமிடம் காத்திருக்கவும்"
+
+msgid "you are now logged in as: '%(nickname)s'"msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s"
+
+msgid ""
+msgstr ""
+
+msgid "Could not login: %(message)s"
+msgstr "உள்நுழைய முடியவில்லை: %(message)s"
+
+
+msgid "Wrong Username or Password"
+msgstr "தவறான பயனர்பெயர் அல்லது கடவுச்சொல்"
+
+msgid "New Password was sent to your email address"
+msgstr "உங்கள் மின்னஞ்சல் முகவரிக்கு புதிய கடவுச்சொல் அனுப்பப்பட்டது"
+
+msgid "An unknown error occurred. Please try again later."
+msgstr"அறியப்படாத பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்."
+
+msgid "Please enter valid username to reset password"
+msgstr "கடவுச்சொல்லை மீட்டமைக்க சரியான பயனர்பெயரை உள்ளிடவும்""
+
+msgid "You are now logged in as: '%(nickname)s'"
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s."
+
+msgid "%(name)s's Profile"
+msgstr "பெயர்) இன் சுயவிவரம்"
+
+msgid "Success! Profile Updated"
+msgstr "வெற்றி! சுயவிவரம் புதுப்பிக்கப்பட்டது"
+
+msgid "Oops! An account already exists for this Email."
+msgstr "அச்சச்சோ! இந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது.""
+
+msgid "Found no valid gmail.json file with OAuth information"
+msgstr ""
+
+msgid "Delete temp folder contents"
+msgstr "தற்காலிக கோப்புறை உள்ளடக்கங்களை தமிழ் நீக்கவும்"
+
+msgid "%(book)s send to E-Reader"
+msgstr "புத்தகங்கள் ஈ-ரீடர் தமிழுக்கு அனுப்பவும்"
+
+msgid "Calibre ebook-convert %(tool)s not found"
+msgstr ""
+
+msgid "%(format)s format not found on disk"
+msgstr "format)s வடிவம் வட்டில் காணப"
+
+msgid "Kepubify-converter failed: %(error)s"
+msgstr "Kepubify-converter தோல்வியடைந்தது: %(error)s"
+
+msgid "Converted file not found or more than one file in folder %(folder)s"
+msgstr "மாற்றப்பட்ட கோப்பு கிடைக்கவில்லை அல்லது %(கோப்புறை)s கோப்புறையில் ஒன்றுக்கும் மேற்பட்ட கோப்புகள்"
+
+msgid "Calibre failed with error: %(error)s"
+msgstr "பிழையுடன் காலிபர் தோல்வியடைந்தது: %(பிழை)கள்"
+
+msgid "Reconnecting Calibre database"
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கிறது"
+
+msgid "E-mail"
+msgstr "மின்னஞ்சல்"
+
+msgid "Backing up Metadata"
+msgstr "மெட்டாடேட்டாவை காப்புப் பிரதி எடுக்கிறது"
+
+msgid "Generated %(count)s cover thumbnails"
+msgstr ""
+
+msgid "Cover Thumbnails"
+msgstr ""
+
+msgid "Generated {0} series thumbnails"
+msgstr ""
+
+msgid "Clearing cover thumbnail cache"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Send to eReader Email"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "View Books"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
