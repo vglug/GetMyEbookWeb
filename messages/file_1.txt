@@ -23,7 +23,7 @@ msgid "Unknown"
 msgstr "தெரியவில்லை"
 
 msgid "Admin page"
-msgstr "நிர்வாக பக்கம்"
+msgstr "நிர்வாக பக்கம்" 
 
 msgid "Basic Configuration"
 msgstr "அடிப்படை கட்டமைப்பு"
@@ -32,34 +32,34 @@ msgid "UI Configuration"
 msgstr "பயனர் இடைமுக கட்டமைப்பு"
 
 msgid "Edit Users"
-msgstr " "
+msgstr "பயனர் திருத்தம்"
 
-msgid ""
-msgstr ""
+msgid "All"
+msgstr "அனைத்தும்"
 
 msgid "User not found"
-msgstr ""
+msgstr "பயனர் கிடைக்கவில்லை"
 
 msgid "{} users deleted successfully"
-msgstr ""
+msgstr "பயனர்கள் நீக்கப்பட்டனர்"
 
 msgid "Show All"
-msgstr ""
+msgstr "அனைத்தையும் காட்டு"
 
 msgid "Malformed request"
-msgstr ""
+msgstr "தவறான கோரிக்கை"
 
 msgid "Guest Name can't be changed"
-msgstr ""
+msgstr "விருந்தினர் பெயரை மாற்ற முடியாது"
 
 msgid "Guest can't have this role"
-msgstr ""
+msgstr "விருந்தினருக்கு இந்தப் பங்கு இருக்க முடியாது"
 
 msgid "No admin user remaining, can't remove admin role"
-msgstr ""
+msgstr "நிர்வாகிப் பயனர் எவரும் இல்லை, நிர்வாகிப் பொறுப்பை அகற்ற முடியாது"
 
 msgid "Value has to be true or false"
-msgstr ""
+msgstr "மதிப்பு உண்மையாகவோ அல்லது பொய்யாகவோ இருக்க வேண்டும் "
 
 msgid "Invalid role"
 msgstr ""
