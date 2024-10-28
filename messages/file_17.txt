@@ -1,29 +1,31 @@
-msgid "Logout User"
-msgstr "வெளியேறு பயனர்"
+msgid "Popular publications from this catalog based on Downloads."
+msgstr "பதிவிறக்கங்களின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
 
-msgid "Sort ascending according to download count"
-msgstr "பதிவிறக்க எண்ணிக்கையின்படி ஏறுவரிசையில் வரிசைப்படுத்தவும்"
+msgid "Popular publications from this catalog based on Rating."
+msgstr "மதிப்பீட்டின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
 
-msgid "Sort descending according to download count"
-msgstr "பதிவிறக்க எண்ணிக்கையின்படி இறங்குவரிசையை வரிசைப்படுத்தவும்"
+msgid "Recently added Books"
+msgstr "சமீபத்தில் சேர்க்கப்பட்ட புத்தகங்கள்"
 
-msgid "Sort authors in alphabetical order"
-msgstr "ஆசிரியர்களை அகர வரிசைப்படி வரிசைப்படுத்தவும்"
+msgid "The latest Books"
+msgstr "சமீபத்திய புத்தகங்கள்"
 
-msgid "Sort authors in reverse alphabetical order"
-msgstr "ஆசிரியர்களை தலைகீழ் அகரவரிசையில் வரிசைப்படுத்தவும்"
+msgid "Random Books"
+msgstr "சீரற்ற புத்தகங்கள்"
 
-msgid "Sort ascending according to series index"
-msgstr "தொடர் குறியீட்டின்படி ஏறுவரிசையில் வரிசைப்படுத்தவும்"
+msgid "Books ordered by Author"
+msgstr "ஆசிரியர் ஆர்டர் செய்த புத்தகங்கள்"
 
-msgid "Sort descending according to series index"
-msgstr "தொடர் குறியீட்டின்படி இறங்குமுறையை வரிசைப்படுத்தவும்"
+msgid "Books ordered by publisher"
+msgstr "வெளியீட்டாளரால் ஆர்டர் செய்யப்பட்ட புத்தகங்கள்"
 
-msgid "Start"
-msgstr "தொடங்கு"
+msgid "Books ordered by category"
+msgstr "வகை வாரியாக வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "Alphabetical Books"
-msgstr "அகரவரிசைப் புத்தகங்கள்"
+msgid "Books ordered by series"
+msgstr "புத்தகங்கள் வரிசையில் வரிசைப்படுத்தப்பட்டுள்ளன"
 
-msgid "Books sorted alphabetically"
-msgstr "புத்தகங்கள் அகரவரிசைப்படி வரிசைப்படுத்தப்பட்டுள்ளன"
+msgid "Books ordered by Languages"
+msgstr "மொழிகளால் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
+
+
