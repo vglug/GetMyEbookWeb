@@ -83,28 +83,28 @@ msgid "Parameter not found"
 msgstr "அளவுரு காணப்படவில்லை"
 
 msgid "Invalid Read Column"
-msgstr ""
+msgstr "படிக்கும் நெடுவரிசை தவறானது"
 
 msgid "Invalid Restricted Column"
-msgstr ""
+msgstr "தவறான கட்டுப்படுத்தப்பட்ட நெடுவரிசை"
 
 msgid "Calibre-Web configuration updated"
-msgstr ""
+msgstr "திறன்-வலை கட்டமைப்பு புதுப்பிக்கப்பட்டது"
 
 msgid "Do you really want to delete the Kobo Token?"
-msgstr ""
+msgstr "நீங்கள் உண்மையில் கோபோ டோக்கனை நீக்க விரும்புகிறீர்களா? "
 
 msgid "Do you really want to delete this domain?"
-msgstr ""
+msgstr "இந்த டொமைனை உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
 msgid "Do you really want to delete this user?"
-msgstr ""
+msgstr "இந்த பயனரை உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
 msgid "Are you sure you want to delete this shelf?"
-msgstr ""
+msgstr "இந்த அலமாரியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
 
 msgid "Are you sure you want to change locales of selected user(s)?"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட பயனர்(களின்) இருப்பிடங்களை நிச்சயமாக மாற்ற விரும்புகிறீர்களா? "
 
 msgid ""
 msgstr ""
