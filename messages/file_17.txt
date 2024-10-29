@@ -1,120 +1,31 @@
-msgid "Logout User"
-msgstr ""
-
-msgid "Sort ascending according to download count"
-msgstr ""
-
-msgid "Sort descending according to download count"
-msgstr ""
-
-msgid "Sort authors in alphabetical order"
-msgstr ""
-
-msgid "Sort authors in reverse alphabetical order"
-msgstr ""
-
-msgid "Sort ascending according to series index"
-msgstr ""
-
-msgid "Sort descending according to series index"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "Alphabetical Books"
-msgstr ""
-
-msgid "Books sorted alphabetically"
-msgstr ""
-
 msgid "Popular publications from this catalog based on Downloads."
-msgstr ""
+msgstr "பதிவிறக்கங்களின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
 
 msgid "Popular publications from this catalog based on Rating."
-msgstr ""
+msgstr "மதிப்பீட்டின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
 
 msgid "Recently added Books"
-msgstr ""
+msgstr "சமீபத்தில் சேர்க்கப்பட்ட புத்தகங்கள்"
 
 msgid "The latest Books"
-msgstr ""
+msgstr "சமீபத்திய புத்தகங்கள்"
 
 msgid "Random Books"
-msgstr ""
+msgstr "சீரற்ற புத்தகங்கள்"
 
 msgid "Books ordered by Author"
-msgstr ""
+msgstr "ஆசிரியர் ஆர்டர் செய்த புத்தகங்கள்"
 
 msgid "Books ordered by publisher"
-msgstr ""
+msgstr "வெளியீட்டாளரால் ஆர்டர் செய்யப்பட்ட புத்தகங்கள்"
 
 msgid "Books ordered by category"
-msgstr ""
+msgstr "வகை வாரியாக வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
 msgid "Books ordered by series"
-msgstr ""
+msgstr "புத்தகங்கள் வரிசையில் வரிசைப்படுத்தப்பட்டுள்ளன"
 
 msgid "Books ordered by Languages"
-msgstr ""
+msgstr "மொழிகளால் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "Books ordered by Rating"
-msgstr ""
-
-msgid "Books ordered by file formats"
-msgstr ""
-
-msgid "Shelves"
-msgstr ""
-
-msgid "Books organized in shelves"
-msgstr ""
-
-msgid "Home"
-msgstr ""
-
-msgid "Toggle Navigation"
-msgstr ""
-
-msgid "Search Library"
-msgstr ""
-
-msgid "Account"
-msgstr ""
-
-msgid "Logout"
-msgstr ""
-
-msgid "Settings"
-msgstr ""
-
-msgid "Please do not refresh the page"
-msgstr ""
-
-msgid "Browse"
-msgstr ""
-
-msgid "About"
-msgstr ""
-
-msgid "Previous"
-msgstr ""
-
-msgid "Book Details"
-msgstr ""
-
-msgid "Grid"
-msgstr ""
-
-msgid "Archived"
-msgstr ""
-
-msgid "Remember Me"
-msgstr ""
-
-msgid "Forgot Password?"
-msgstr ""
-
-msgid "Log in with Magic Link"
-msgstr ""
 
