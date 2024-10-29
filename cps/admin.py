@@ -381,35 +381,47 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
+    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
+    
+    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
+    
+    # Initialize counters and response lists
     count = 0
-    errors = list()
-    success = list()
+    errors = []
+    success = []
+    
+    # Return error if no users are found
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
+    
+    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)
+            message = _delete_user(user)  # Call your deletion function
             count += 1
         except Exception as ex:
-            log.error(ex)
-            errors.append({'type': "danger", 'message': str(ex)})
-
+            log.error(f"Error deleting user {user.id}: {ex}")
+            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
+    
+    # Prepare success messages based on count
     if count == 1:
-        log.info("User {} deleted".format(user_ids))
+        log.info(f"User {user_ids} deleted")
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info("Users {} deleted".format(user_ids))
+        log.info(f"Users {user_ids} deleted")
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    success.extend(errors)
-    return Response(json.dumps(success), mimetype='application/json')
+    
+    # Combine success and error messages for response
+    response_data = success + errors
+    return Response(json.dumps(response_data), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
@@ -436,28 +448,37 @@ def table_get_default_lang():
     return json.dumps(ret)
 
 
+# Define a route that accepts POST requests with a parameter 'param'.
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
-@user_login_required
-@admin_required
+@user_login_required       # Ensures the user is logged in before accessing this route.
+@admin_required            # Ensures only admins can access this route.
+# Define the function that handles user editing.
 def edit_list_user(param):
-    vals = request.form.to_dict(flat=False)
-    all_user = ub.session.query(ub.User)
+    vals = request.form.to_dict(flat=False)  # Parse the form data into a dictionary.
+    all_user = ub.session.query(ub.User)  # Query all users from the database.
+
+    # If anonymous browsing is disabled, filter out anonymous users.
     if not config.config_anonbrowse:
         all_user = all_user.filter(ub.User.role.op('&')(constants.ROLE_ANONYMOUS) != constants.ROLE_ANONYMOUS)
-    # only one user is posted
+
+    # Check if only one user is posted by 'pk' or a list of users via 'pk[]'.
     if "pk" in vals:
-        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]
+        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]  # Filter and fetch one user by 'pk'.
     else:
-        if "pk[]" in vals:
+        if "pk[]" in vals:  # If 'pk[]' is present, fetch users by the list of ids.
             users = all_user.filter(ub.User.id.in_(vals['pk[]'])).all()
         else:
-            return _("Malformed request"), 400
+            return _("Malformed request"), 400  # Return error if no valid 'pk' is found.
+
+    # Ensure 'field_index' and 'value' are single values instead of lists.
     if 'field_index' in vals:
         vals['field_index'] = vals['field_index'][0]
     if 'value' in vals:
         vals['value'] = vals['value'][0]
     elif not ('value[]' in vals):
-        return _("Malformed request"), 400
+        return _("Malformed request"), 400  # Return error if 'value' is missing.
+
+    # Iterate through the list of users and modify each one based on 'param'.
     for user in users:
         try:
             if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
@@ -1006,63 +1027,72 @@ def get_drives(current):
 
 
 def pathchooser():
+    # Define the type of browsing (folder or file)
     browse_for = "folder"
+    # Check if only folders should be returned
     folder_only = request.args.get('folder', False) == "true"
+    # Get the file filter and normalize the path
     file_filter = request.args.get('filter', "")
     path = os.path.normpath(request.args.get('path', ""))
 
-    if os.path.isfile(path):
-        old_file = path
-        path = os.path.dirname(path)
+    if os.path.isfile(path): # If the provided path is a file, get its directory
+        old_file = path       # Store the old file path
+        path = os.path.dirname(path)  # Get the directory of the file
     else:
-        old_file = ""
+        old_file = ""    # No old file if the path is not a file
 
-    absolute = False
+    absolute = False      # Flag to check if the path is absolute
 
-    if os.path.isdir(path):
-        cwd = os.path.realpath(path)
-        absolute = True
+    if os.path.isdir(path):    # Check if the given path is a directory
+        cwd = os.path.realpath(path)   # Get the absolute path
+        absolute = True              # Set the absolute flag
     else:
-        cwd = os.getcwd()
-
+        cwd = os.getcwd()           # Use the current working directory if not a valid path
+    # Normalize and resolve the current working directory
     cwd = os.path.normpath(os.path.realpath(cwd))
     parent_dir = os.path.dirname(cwd)
+    # Adjust cwd and parent_dir for relative paths
     if not absolute:
         if os.path.realpath(cwd) == os.path.realpath("/"):
-            cwd = os.path.relpath(cwd)
-        else:
-            cwd = os.path.relpath(cwd) + os.path.sep
-        parent_dir = os.path.relpath(parent_dir) + os.path.sep
+            cwd = os.path.relpath(cwd)     # Convert to relative path if at root
 
-    files = []
+        else:
+            cwd = os.path.relpath(cwd) + os.path.sep   # Append separator
+        parent_dir = os.path.relpath(parent_dir) + os.path.sep # Append separator
+
+    files = []       # Initialize list to store files and directories
+ # Check if we're at the root directory
     if os.path.realpath(cwd) == os.path.realpath("/") \
             or (sys.platform == "win32" and os.path.realpath(cwd)[1:] == os.path.realpath("/")[1:]):
         # we are in root
-        parent_dir = ""
+        parent_dir = ""    # No parent directory at root
         if sys.platform == "win32":
-            files = get_drives(cwd)
+            files = get_drives(cwd)           # Get available drives on Windows
 
+         # Attempt to list directories and files in the current working directory
     try:
         folders = os.listdir(cwd)
     except Exception:
-        folders = []
+        folders = []       # Handle exception gracefully
 
     for f in folders:
         try:
-            sanitized_f = str(Markup.escape(f))
+            sanitized_f = str(Markup.escape(f))      # Sanitize filename for safe HTML
             data = {"name": sanitized_f, "fullpath": os.path.join(cwd, sanitized_f)}
             data["sort"] = data["fullpath"].lower()
         except Exception:
-            continue
+            continue                 # Skip if an error occurs
+
+        # Check if the item is a file
 
         if os.path.isfile(os.path.join(cwd, f)):
             if folder_only:
-                continue
+                continue       # Skip files if only folders are requested
             if file_filter != "" and file_filter != f:
-                continue
-            data["type"] = "file"
+                continue       # Skip if file doesn't match the filter
+            data["type"] = "file"    # Set type to file
             data["size"] = os.path.getsize(os.path.join(cwd, f))
-
+               # Format file size for readability
             power = 0
             while (data["size"] >> 10) > 0.3:
                 power += 1
@@ -1070,33 +1100,72 @@ def pathchooser():
             units = ("", "K", "M", "G", "T")
             data["size"] = str(data["size"]) + " " + units[power] + "Byte"
         else:
-            data["type"] = "dir"
-            data["size"] = ""
+            data["type"] = "dir"        # Set type to directory
+            data["size"] = ""       # No size for directories
 
-        files.append(data)
-
+        files.append(data)    # Add item to the list
+     # Sort files and directories by type and name
     files = sorted(files, key=operator.itemgetter("type", "sort"))
-
+     # Prepare the context for JSON response
     context = {
-        "cwd": cwd,
-        "files": files,
-        "parentdir": parent_dir,
-        "type": browse_for,
-        "oldfile": old_file,
-        "absolute": absolute,
+        "cwd": cwd,            # Current working directory
+        "files": files,         # List of files and directories
+        "parentdir": parent_dir,  # Parent directory
+        "type": browse_for,       # Type of browsing
+        "oldfile": old_file,         # Previously selected file (if any)
+        "absolute": absolute,       # Flag indicating if the path is absolute
     }
-    return json.dumps(context)
+    return json.dumps(context)  # Return the context as a JSON response
 
 
 def _config_int(to_save, x, func=int):
+     """
+    Save an integer configuration value.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+    - func: A function to convert the value (default is int).
+
+    Returns:
+    - Result of setting the value in the configuration.
+    """
+    
+    # Use the provided function (default is int) to convert the value
+    # and save it in the configuration dictionary.
     return config.set_from_dictionary(to_save, x, func)
 
 
 def _config_checkbox(to_save, x):
+    """
+    Save a checkbox configuration value as a boolean.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the boolean value.
+
+    Returns:
+    - Result of setting the boolean value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to a boolean based on the string "on"
+    
     return config.set_from_dictionary(to_save, x, lambda y: y == "on", False)
 
 
 def _config_checkbox_int(to_save, x):
+     """
+    Save a checkbox configuration value as an integer (0 or 1).
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+
+    Returns:
+    - Result of setting the integer value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to an integer: 1 if "on", otherwise 0
     return config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
 
