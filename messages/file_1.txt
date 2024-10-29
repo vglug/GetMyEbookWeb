@@ -62,25 +62,25 @@ msgid "Value has to be true or false"
 msgstr "மதிப்பு உண்மையாகவோ அல்லது பொய்யாகவோ இருக்க வேண்டும் "
 
 msgid "Invalid role"
-msgstr ""
+msgstr "தவறான பங்கு"
 
 msgid "Guest can't have this view"
-msgstr ""
+msgstr "விருந்தினர் இந்தக் காட்சியைப் பார்க்க முடியாது"
 
 msgid "Invalid view"
-msgstr ""
+msgstr "தவறான பார்வை"
 
 msgid "Guest's Locale is determined automatically and can't be set"
-msgstr ""
+msgstr "விருந்தினரின் இருப்பிடம் தானாக தீர்மானிக்கப்பட்டு அமைக்க முடியாது"
 
 msgid "No Valid Locale Given"
-msgstr ""
+msgstr "சரியான உள்ளூர் கொடுக்கப்படவில்லை"
 
 msgid "No Valid Book Language Given"
-msgstr ""
+msgstr "சரியான புத்தக மொழி கொடுக்கப்படவில்லை"
 
 msgid "Parameter not found"
-msgstr ""
+msgstr "அளவுரு காணப்படவில்லை"
 
 msgid "Invalid Read Column"
 msgstr ""
