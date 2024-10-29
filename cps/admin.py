@@ -1246,36 +1246,50 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
-    if config.config_ldap_group_object_filter:
-        if config.config_ldap_group_object_filter.count("%s") != 1:
-            return reboot_required, \
-                   _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
-        if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
-            return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
-
-    if config.config_ldap_user_object.count("%s") != 1:
+    # Validate LDAP Group Object Filter configuration
+if config.config_ldap_group_object_filter:
+    # Check for exactly one "%s" format identifier in the filter
+    if config.config_ldap_group_object_filter.count("%s") != 1:
         return reboot_required, \
-               _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
-    if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
-        return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
+               _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
+    
+    # Ensure parentheses are balanced in the filter
+    if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
+        return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
 
-    if to_save.get("ldap_import_user_filter") == '0':
-        config.config_ldap_member_user_object = ""
-    else:
-        if config.config_ldap_member_user_object.count("%s") != 1:
-            return reboot_required, \
-                   _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
-        if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
-            return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
+# Validate LDAP User Object Filter configuration
+if config.config_ldap_user_object.count("%s") != 1:
+    return reboot_required, \
+           _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
+# Ensure parentheses are balanced in the user filter
+if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
+    return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
 
-    if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
-        if not (os.path.isfile(config.config_ldap_cacert_path) and
-                os.path.isfile(config.config_ldap_cert_path) and
-                os.path.isfile(config.config_ldap_key_path)):
-            return reboot_required, \
-                   _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
-                                           'Please Enter Correct Path'))
-    return reboot_required, None
+# Check if LDAP Member User Object Filter should be set based on user input
+if to_save.get("ldap_import_user_filter") == '0':
+    config.config_ldap_member_user_object = ""
+else:
+    # Validate LDAP Member User Object Filter configuration
+    if config.config_ldap_member_user_object.count("%s") != 1:
+        return reboot_required, \
+               _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
+    
+    # Ensure parentheses are balanced in the member user filter
+    if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
+        return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
+
+# Validate certificate paths if any are provided
+if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
+    # Check if specified certificate files exist
+    if not (os.path.isfile(config.config_ldap_cacert_path) and
+            os.path.isfile(config.config_ldap_cert_path) and
+            os.path.isfile(config.config_ldap_key_path)):
+        return reboot_required, \
+               _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
+                                       'Please Enter Correct Path'))
+
+# All validations passed, return success
+return reboot_required, None
 
 
 @admi.route("/ajax/simulatedbchange", methods=['POST'])
