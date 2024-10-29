@@ -1,30 +1,31 @@
-msgid "Please do not refresh the page"
-msgstr "தயவுசெய்து பக்கத்தைப் புதுப்பிக்க வேண்டாம்"
+msgid "Books ordered by Rating"
+msgstr "மதிப்பீட்டின்படி வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "Browse"
-msgstr "உலாவவும்"
+msgid "Books ordered by file formats"
+msgstr "கோப்பு வடிவங்கள் மூலம் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "About"
-msgstr "பற்றி"
+msgid "Shelves"
+msgstr "அலமாரிகள்"
 
-msgid "Previous"
-msgstr "முந்தைய"
+msgid "Books organized in shelves"
+msgstr "புத்தகங்கள் அலமாரிகளில் ஏற்பாடு செய்யப்பட்டுள்ளன"
 
-msgid "Book Details"
-msgstr "புத்தக விவரங்கள்"
+msgid "Home"
+msgstr "முகப்பு"
 
-msgid "Grid"
-msgstr "கட்டம்"
+msgid "Toggle Navigation"
+msgstr "வழிசெலுத்தலை மாற்று"
 
-msgid "Archived"
-msgstr "காப்பகப்படுத்தப்பட்டது"
+msgid "Search Library"
+msgstr "தேடல் நூலகம்"
 
-msgid "Remember Me"
-msgstr "என்னை நினைவு செய்யுங்கள்"
+msgid "Account"
+msgstr "கணக்கு"
 
-msgid "Forgot Password?"
-msgstr "கடவுச்சொல் மறந்துவிட்டதா?"
+msgid "Logout"
+msgstr "வெளியேறு"
 
-msgid "Log in with Magic Link"
-msgstr "மேஜிக் லிங்க் மூலம் உள்நுழையவும்"
+msgid "Settings"
+msgstr "அமைப்புகள்"
+
 
