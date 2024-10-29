@@ -1198,9 +1198,13 @@ def _configuration_logfile_helper(to_save):
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
     return reboot_required, None
 
-
+#This function using ldap is a protocal
+#This function input Parameter is to_save object
 def _configuration_ldap_helper(to_save):
+    # Initialize a flag to track if a reboot is required
     reboot_required = False
+
+    # Check and update LDAP configuration values
     reboot_required |= _config_int(to_save, "config_ldap_port")
     reboot_required |= _config_int(to_save, "config_ldap_authentication")
     reboot_required |= _config_string(to_save, "config_ldap_dn")
@@ -1214,17 +1218,19 @@ def _configuration_ldap_helper(to_save):
     reboot_required |= _config_string(to_save, "config_ldap_cacert_path")
     reboot_required |= _config_string(to_save, "config_ldap_cert_path")
     reboot_required |= _config_string(to_save, "config_ldap_key_path")
-    _config_string(to_save, "config_ldap_group_name")
 
+    # Parse and validate the LDAP provider URL
     address = urlparse(to_save.get("config_ldap_provider_url", ""))
     to_save["config_ldap_provider_url"] = (address.hostname or address.path).strip("/")
     reboot_required |= _config_string(to_save, "config_ldap_provider_url")
 
+    # Check if the LDAP service password is provided and set it
     if to_save.get("config_ldap_serv_password_e", "") != "":
         reboot_required |= 1
         config.set_from_dictionary(to_save, "config_ldap_serv_password_e")
     config.save()
 
+    # Validate essential LDAP configuration fields
     if not config.config_ldap_provider_url \
       or not config.config_ldap_port \
       or not config.config_ldap_dn \
@@ -1232,6 +1238,7 @@ def _configuration_ldap_helper(to_save):
         return reboot_required, _configuration_result(_('Please Enter a LDAP Provider, '
                                                         'Port, DN and User Object Identifier'))
 
+    # Validate service account credentials based on authentication type
     if config.config_ldap_authentication > constants.LDAP_AUTH_ANONYMOUS:
         if config.config_ldap_authentication > constants.LDAP_AUTH_UNAUTHENTICATE:
             if not config.config_ldap_serv_username or not bool(config.config_ldap_serv_password_e):
@@ -1239,7 +1246,6 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
-
     if config.config_ldap_group_object_filter:
         if config.config_ldap_group_object_filter.count("%s") != 1:
             return reboot_required, \
