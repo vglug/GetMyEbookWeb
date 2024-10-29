@@ -381,47 +381,35 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
-    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
-    
-    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
-    
-    # Initialize counters and response lists
     count = 0
-    errors = []
-    success = []
-    
-    # Return error if no users are found
+    errors = list()
+    success = list()
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
-    
-    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)  # Call your deletion function
+            message = _delete_user(user)
             count += 1
         except Exception as ex:
-            log.error(f"Error deleting user {user.id}: {ex}")
-            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
-    
-    # Prepare success messages based on count
+            log.error(ex)
+            errors.append({'type': "danger", 'message': str(ex)})
+
     if count == 1:
-        log.info(f"User {user_ids} deleted")
+        log.info("User {} deleted".format(user_ids))
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info(f"Users {user_ids} deleted")
+        log.info("Users {} deleted".format(user_ids))
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    
-    # Combine success and error messages for response
-    response_data = success + errors
-    return Response(json.dumps(response_data), mimetype='application/json')
+    success.extend(errors)
+    return Response(json.dumps(success), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
@@ -446,7 +434,6 @@ def table_get_default_lang():
     for lang in languages:
         ret.append({'value': lang.lang_code, 'text': lang.name})
     return json.dumps(ret)
-
 
 # Define a route that accepts POST requests with a parameter 'param'.
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
@@ -481,70 +468,71 @@ def edit_list_user(param):
     # Iterate through the list of users and modify each one based on 'param'.
     for user in users:
         try:
-            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
-                if 'value[]' in vals:
+            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:  # Check if the 'param' deals with tags.
+                if 'value[]' in vals:  # If multiple values are passed, prepare tags accordingly.
                     setattr(user, param, prepare_tags(user, vals['action'][0], param, vals['value[]']))
                 else:
-                    setattr(user, param, strip_whitespaces(vals['value']))
+                    setattr(user, param, strip_whitespaces(vals['value']))  # Set a single value for the parameter.
             else:
-                vals['value'] = strip_whitespaces(vals['value'])
+                vals['value'] = strip_whitespaces(vals['value'])  # Remove any extra whitespaces from the value.
                 if param == 'name':
-                    if user.name == "Guest":
+                    if user.name == "Guest":  # Prevent changing the name of the 'Guest' user.
                         raise Exception(_("Guest Name can't be changed"))
-                    user.name = check_username(vals['value'])
+                    user.name = check_username(vals['value'])  # Set the new username after validation.
                 elif param == 'email':
-                    user.email = check_email(vals['value'])
+                    user.email = check_email(vals['value'])  # Set the new email after validation.
                 elif param == 'kobo_only_shelves_sync':
-                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')
+                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')  # Set sync preferences for Kobo.
                 elif param == 'kindle_mail':
-                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""
+                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""  # Validate Kindle mail if present.
                 elif param.endswith('role'):
-                    value = int(vals['field_index'])
-                    if user.name == "Guest" and value in \
-                      [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
-                        raise Exception(_("Guest can't have this role"))
-                    # check for valid value, last on checks for power of 2 value
-
+                    value = int(vals['field_index'])  # Get the role index for the user.
+                    if user.name == "Guest" and value in [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
+                        raise Exception(_("Guest can't have this role"))  # Prevent assigning certain roles to 'Guest'.
                     
+                    # Ensure the role is valid and a power of 2.
                     if value > 0 and value <= constants.ROLE_VIEWER and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.role |= value
+                            user.role |= value  # Add the role if 'true'.
                         elif vals['value'] == 'false':
+                            # Prevent removing the last admin role.
                             if value == constants.ROLE_ADMIN:
-                                if not ub.session.query(ub.User). \
-                                    filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
-                                           ub.User.id != user.id).count():
+                                if not ub.session.query(ub.User).filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
+                                                                         ub.User.id != user.id).count():
                                     return Response(
                                         json.dumps([{'type': "danger",
                                                      'message': _("No admin user remaining, can't remove admin role",
                                                                   nick=user.name)}]), mimetype='application/json')
-                            user.role &= ~value
+                            user.role &= ~value  # Remove the role if 'false'.
+                         user.role &= ~value  # Remove the role if 'false'.
                         else:
-                            raise Exception(_("Value has to be true or false"))
+                            raise Exception(_("Value has to be true or false"))  # Raise an error if an invalid value is passed.
                     else:
-                        raise Exception(_("Invalid role"))
+                        raise Exception(_("Invalid role"))  # Raise an error for invalid role values.
                 elif param.startswith('sidebar'):
-                    value = int(vals['field_index'])
+                    value = int(vals['field_index'])  # Get the sidebar view index.
                     if user.name == "Guest" and value == constants.SIDEBAR_READ_AND_UNREAD:
-                        raise Exception(_("Guest can't have this view"))
-                    # check for valid value, last on checks for power of 2 value
+                        raise Exception(_("Guest can't have this view"))  # Prevent certain views for 'Guest'.
+                    
+                    # Ensure the sidebar view is valid and a power of 2.
                     if value > 0 and value <= constants.SIDEBAR_LIST and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.sidebar_view |= value
+                            user.sidebar_view |= value  # Add the sidebar view if 'true'.
                         elif vals['value'] == 'false':
-                            user.sidebar_view &= ~value
+                            user.sidebar_view &= ~value  # Remove the sidebar view if 'false'.
                         else:
-                            raise Exception(_("Value has to be true or false"))
+                            raise Exception(_("Value has to be true or false"))  # Raise an error for invalid value.
                     else:
-                        raise Exception(_("Invalid view"))
+                        raise Exception(_("Invalid view"))  # Raise an error for invalid view values.
                 elif param == 'locale':
                     if user.name == "Guest":
-                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))
+                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))  # Prevent setting locale for 'Guest'.
                     if vals['value'] in get_available_translations():
-                        user.locale = vals['value']
+                        user.locale = vals['value']  # Set the locale if it's valid.
                     else:
-                        raise Exception(_("No Valid Locale Given"))
+                        raise Exception(_("No Valid Locale Given"))  # Raise an error for invalid locale.
                 elif param == 'default_language':
+                    # Fetch valid languages and ensure the provided language is valid.
                     languages = calibre_db.session.query(db.Languages) \
                         .join(db.books_languages_link) \
                         .join(db.Books) \
@@ -552,17 +540,19 @@ def edit_list_user(param):
                         .group_by(text('books_languages_link.lang_code')).all()
                     lang_codes = [lang.lang_code for lang in languages] + ["all"]
                     if vals['value'] in lang_codes:
-                        user.default_language = vals['value']
+                        user.default_language = vals['value']  # Set the default language if valid.
                     else:
-                        raise Exception(_("No Valid Book Language Given"))
+                        raise Exception(_("No Valid Book Language Given"))  # Raise an error for invalid language.
                 else:
-                    return _("Parameter not found"), 400
+                    return _("Parameter not found"), 400  # Return error if the parameter is not recognized.
+
+        # Catch and log any exceptions that occur during the process.
         except Exception as ex:
             log.error_or_exception(ex)
-            return str(ex), 400
-    ub.session_commit()
-    return ""
+            return str(ex), 400  # Return the error message.
 
+    ub.session_commit()  # Commit the changes to the database.
+    return ""  # Return an empty response upon success.
 
 @admi.route("/ajax/user_table_settings", methods=['POST'])
 @user_login_required
