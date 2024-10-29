@@ -1184,19 +1184,34 @@ def _configuration_oauth_helper(to_save):
 
 
 def _configuration_logfile_helper(to_save):
+    # Initialize a flag to track if a reboot is required
     reboot_required = False
+    
+    # Check and update the log level configuration; reboot may be required
     reboot_required |= _config_int(to_save, "config_log_level")
+    
+    # Check and update the logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_logfile")
+    
+    # Validate the specified logfile path
     if not logger.is_valid_logfile(config.config_logfile):
         return reboot_required, \
                _configuration_result(_('Logfile Location is not Valid, Please Enter Correct Path'))
 
+    # Check and update the access log configuration; reboot may be required
     reboot_required |= _config_checkbox_int(to_save, "config_access_log")
+    
+    # Check and update the access logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_access_logfile")
+    
+    # Validate the specified access logfile path
     if not logger.is_valid_logfile(config.config_access_logfile):
         return reboot_required, \
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
+    
+    # All checks passed; return whether a reboot is required
     return reboot_required, None
+
 
 #This function using ldap is a protocal
 #This function input Parameter is to_save object
