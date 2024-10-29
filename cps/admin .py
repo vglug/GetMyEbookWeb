@@ -381,47 +381,35 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
-    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
-    
-    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
-    
-    # Initialize counters and response lists
     count = 0
-    errors = []
-    success = []
-    
-    # Return error if no users are found
+    errors = list()
+    success = list()
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
-    
-    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)  # Call your deletion function
+            message = _delete_user(user)
             count += 1
         except Exception as ex:
-            log.error(f"Error deleting user {user.id}: {ex}")
-            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
-    
-    # Prepare success messages based on count
+            log.error(ex)
+            errors.append({'type': "danger", 'message': str(ex)})
+
     if count == 1:
-        log.info(f"User {user_ids} deleted")
+        log.info("User {} deleted".format(user_ids))
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info(f"Users {user_ids} deleted")
+        log.info("Users {} deleted".format(user_ids))
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    
-    # Combine success and error messages for response
-    response_data = success + errors
-    return Response(json.dumps(response_data), mimetype='application/json')
+    success.extend(errors)
+    return Response(json.dumps(success), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
@@ -448,37 +436,28 @@ def table_get_default_lang():
     return json.dumps(ret)
 
 
-# Define a route that accepts POST requests with a parameter 'param'.
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
-@user_login_required       # Ensures the user is logged in before accessing this route.
-@admin_required            # Ensures only admins can access this route.
-# Define the function that handles user editing.
+@user_login_required
+@admin_required
 def edit_list_user(param):
-    vals = request.form.to_dict(flat=False)  # Parse the form data into a dictionary.
-    all_user = ub.session.query(ub.User)  # Query all users from the database.
-
-    # If anonymous browsing is disabled, filter out anonymous users.
+    vals = request.form.to_dict(flat=False)
+    all_user = ub.session.query(ub.User)
     if not config.config_anonbrowse:
         all_user = all_user.filter(ub.User.role.op('&')(constants.ROLE_ANONYMOUS) != constants.ROLE_ANONYMOUS)
-
-    # Check if only one user is posted by 'pk' or a list of users via 'pk[]'.
+    # only one user is posted
     if "pk" in vals:
-        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]  # Filter and fetch one user by 'pk'.
+        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]
     else:
-        if "pk[]" in vals:  # If 'pk[]' is present, fetch users by the list of ids.
+        if "pk[]" in vals:
             users = all_user.filter(ub.User.id.in_(vals['pk[]'])).all()
         else:
-            return _("Malformed request"), 400  # Return error if no valid 'pk' is found.
-
-    # Ensure 'field_index' and 'value' are single values instead of lists.
+            return _("Malformed request"), 400
     if 'field_index' in vals:
         vals['field_index'] = vals['field_index'][0]
     if 'value' in vals:
         vals['value'] = vals['value'][0]
     elif not ('value[]' in vals):
-        return _("Malformed request"), 400  # Return error if 'value' is missing.
-
-    # Iterate through the list of users and modify each one based on 'param'.
+        return _("Malformed request"), 400
     for user in users:
         try:
             if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
@@ -1027,72 +1006,63 @@ def get_drives(current):
 
 
 def pathchooser():
-    # Define the type of browsing (folder or file)
     browse_for = "folder"
-    # Check if only folders should be returned
     folder_only = request.args.get('folder', False) == "true"
-    # Get the file filter and normalize the path
     file_filter = request.args.get('filter', "")
     path = os.path.normpath(request.args.get('path', ""))
 
-    if os.path.isfile(path): # If the provided path is a file, get its directory
-        old_file = path       # Store the old file path
-        path = os.path.dirname(path)  # Get the directory of the file
+    if os.path.isfile(path):
+        old_file = path
+        path = os.path.dirname(path)
     else:
-        old_file = ""    # No old file if the path is not a file
+        old_file = ""
 
-    absolute = False      # Flag to check if the path is absolute
+    absolute = False
 
-    if os.path.isdir(path):    # Check if the given path is a directory
-        cwd = os.path.realpath(path)   # Get the absolute path
-        absolute = True              # Set the absolute flag
+    if os.path.isdir(path):
+        cwd = os.path.realpath(path)
+        absolute = True
     else:
-        cwd = os.getcwd()           # Use the current working directory if not a valid path
-    # Normalize and resolve the current working directory
+        cwd = os.getcwd()
+
     cwd = os.path.normpath(os.path.realpath(cwd))
     parent_dir = os.path.dirname(cwd)
-    # Adjust cwd and parent_dir for relative paths
     if not absolute:
         if os.path.realpath(cwd) == os.path.realpath("/"):
-            cwd = os.path.relpath(cwd)     # Convert to relative path if at root
-
+            cwd = os.path.relpath(cwd)
         else:
-            cwd = os.path.relpath(cwd) + os.path.sep   # Append separator
-        parent_dir = os.path.relpath(parent_dir) + os.path.sep # Append separator
+            cwd = os.path.relpath(cwd) + os.path.sep
+        parent_dir = os.path.relpath(parent_dir) + os.path.sep
 
-    files = []       # Initialize list to store files and directories
- # Check if we're at the root directory
+    files = []
     if os.path.realpath(cwd) == os.path.realpath("/") \
             or (sys.platform == "win32" and os.path.realpath(cwd)[1:] == os.path.realpath("/")[1:]):
         # we are in root
-        parent_dir = ""    # No parent directory at root
+        parent_dir = ""
         if sys.platform == "win32":
-            files = get_drives(cwd)           # Get available drives on Windows
+            files = get_drives(cwd)
 
-         # Attempt to list directories and files in the current working directory
     try:
         folders = os.listdir(cwd)
     except Exception:
-        folders = []       # Handle exception gracefully
+        folders = []
 
     for f in folders:
         try:
-            sanitized_f = str(Markup.escape(f))      # Sanitize filename for safe HTML
+            sanitized_f = str(Markup.escape(f))
             data = {"name": sanitized_f, "fullpath": os.path.join(cwd, sanitized_f)}
             data["sort"] = data["fullpath"].lower()
         except Exception:
-            continue                 # Skip if an error occurs
-
-        # Check if the item is a file
+            continue
 
         if os.path.isfile(os.path.join(cwd, f)):
             if folder_only:
-                continue       # Skip files if only folders are requested
+                continue
             if file_filter != "" and file_filter != f:
-                continue       # Skip if file doesn't match the filter
-            data["type"] = "file"    # Set type to file
+                continue
+            data["type"] = "file"
             data["size"] = os.path.getsize(os.path.join(cwd, f))
-               # Format file size for readability
+
             power = 0
             while (data["size"] >> 10) > 0.3:
                 power += 1
@@ -1100,72 +1070,33 @@ def pathchooser():
             units = ("", "K", "M", "G", "T")
             data["size"] = str(data["size"]) + " " + units[power] + "Byte"
         else:
-            data["type"] = "dir"        # Set type to directory
-            data["size"] = ""       # No size for directories
+            data["type"] = "dir"
+            data["size"] = ""
 
-        files.append(data)    # Add item to the list
-     # Sort files and directories by type and name
+        files.append(data)
+
     files = sorted(files, key=operator.itemgetter("type", "sort"))
-     # Prepare the context for JSON response
+
     context = {
-        "cwd": cwd,            # Current working directory
-        "files": files,         # List of files and directories
-        "parentdir": parent_dir,  # Parent directory
-        "type": browse_for,       # Type of browsing
-        "oldfile": old_file,         # Previously selected file (if any)
-        "absolute": absolute,       # Flag indicating if the path is absolute
+        "cwd": cwd,
+        "files": files,
+        "parentdir": parent_dir,
+        "type": browse_for,
+        "oldfile": old_file,
+        "absolute": absolute,
     }
-    return json.dumps(context)  # Return the context as a JSON response
+    return json.dumps(context)
 
 
 def _config_int(to_save, x, func=int):
-     """
-    Save an integer configuration value.
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the integer value.
-    - func: A function to convert the value (default is int).
-
-    Returns:
-    - Result of setting the value in the configuration.
-    """
-    
-    # Use the provided function (default is int) to convert the value
-    # and save it in the configuration dictionary.
     return config.set_from_dictionary(to_save, x, func)
 
 
 def _config_checkbox(to_save, x):
-    """
-    Save a checkbox configuration value as a boolean.
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the boolean value.
-
-    Returns:
-    - Result of setting the boolean value in the configuration.
-    """
-    
-    # Convert the value from the dictionary to a boolean based on the string "on"
-    
     return config.set_from_dictionary(to_save, x, lambda y: y == "on", False)
 
 
 def _config_checkbox_int(to_save, x):
-     """
-    Save a checkbox configuration value as an integer (0 or 1).
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the integer value.
-
-    Returns:
-    - Result of setting the integer value in the configuration.
-    """
-    
-    # Convert the value from the dictionary to an integer: 1 if "on", otherwise 0
     return config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
 
@@ -1251,29 +1182,41 @@ def _configuration_oauth_helper(to_save):
     return reboot_required
 
 
-
+# This function input parameter is to save object
+# This function config are used built a customized
 def _configuration_logfile_helper(to_save):
+    # Initialize a flag to track if a reboot is required
     reboot_required = False
+    
+    # Check and update the log level configuration
     reboot_required |= _config_int(to_save, "config_log_level")
+    
+    # Check and update the main logfile configuration
     reboot_required |= _config_string(to_save, "config_logfile")
+    
+    # Validate the main logfile path
     if not logger.is_valid_logfile(config.config_logfile):
         return reboot_required, \
                _configuration_result(_('Logfile Location is not Valid, Please Enter Correct Path'))
 
+    # Check and update the access log checkbox configuration
     reboot_required |= _config_checkbox_int(to_save, "config_access_log")
+    
+    # Check and update the access logfile configuration
     reboot_required |= _config_string(to_save, "config_access_logfile")
+    
+    # Validate the access logfile path
     if not logger.is_valid_logfile(config.config_access_logfile):
         return reboot_required, \
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
+
+    # Return the reboot status and no error message
     return reboot_required, None
 
-#This function using ldap is a protocal
-#This function input Parameter is to_save object
-def _configuration_ldap_helper(to_save):
-    # Initialize a flag to track if a reboot is required
-    reboot_required = False
 
-    # Check and update LDAP configuration values
+
+def _configuration_ldap_helper(to_save):
+    reboot_required = False
     reboot_required |= _config_int(to_save, "config_ldap_port")
     reboot_required |= _config_int(to_save, "config_ldap_authentication")
     reboot_required |= _config_string(to_save, "config_ldap_dn")
@@ -1287,19 +1230,17 @@ def _configuration_ldap_helper(to_save):
     reboot_required |= _config_string(to_save, "config_ldap_cacert_path")
     reboot_required |= _config_string(to_save, "config_ldap_cert_path")
     reboot_required |= _config_string(to_save, "config_ldap_key_path")
+    _config_string(to_save, "config_ldap_group_name")
 
-    # Parse and validate the LDAP provider URL
     address = urlparse(to_save.get("config_ldap_provider_url", ""))
     to_save["config_ldap_provider_url"] = (address.hostname or address.path).strip("/")
     reboot_required |= _config_string(to_save, "config_ldap_provider_url")
 
-    # Check if the LDAP service password is provided and set it
     if to_save.get("config_ldap_serv_password_e", "") != "":
         reboot_required |= 1
         config.set_from_dictionary(to_save, "config_ldap_serv_password_e")
     config.save()
 
-    # Validate essential LDAP configuration fields
     if not config.config_ldap_provider_url \
       or not config.config_ldap_port \
       or not config.config_ldap_dn \
@@ -1307,7 +1248,6 @@ def _configuration_ldap_helper(to_save):
         return reboot_required, _configuration_result(_('Please Enter a LDAP Provider, '
                                                         'Port, DN and User Object Identifier'))
 
-    # Validate service account credentials based on authentication type
     if config.config_ldap_authentication > constants.LDAP_AUTH_ANONYMOUS:
         if config.config_ldap_authentication > constants.LDAP_AUTH_UNAUTHENTICATE:
             if not config.config_ldap_serv_username or not bool(config.config_ldap_serv_password_e):
@@ -1315,6 +1255,7 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+
     if config.config_ldap_group_object_filter:
         if config.config_ldap_group_object_filter.count("%s") != 1:
             return reboot_required, \
