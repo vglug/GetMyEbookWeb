@@ -1,6 +1,6 @@
-# Calibre-Web
+Get MyEbooks Web
 
-Calibre-Web is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com) database.
+Calibre-Web is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid Get MyEbooks web(https://calibre-ebook.com) database.
 
 [![License](https://img.shields.io/github/license/janeczku/calibre-web?style=flat-square)](https://github.com/janeczku/calibre-web/blob/master/LICENSE)
 ![Commit Activity](https://img.shields.io/github/commit-activity/w/janeczku/calibre-web?logo=github&style=flat-square&label=commits)
@@ -84,7 +84,7 @@ Refer to the Wiki for additional installation examples: [manual installation](ht
 
 - Python 3.7+
 - [Imagemagick](https://imagemagick.org/script/download.php) for cover extraction from EPUBs (Windows users may need to install [Ghostscript](https://ghostscript.com/releases/gsdnld.html) for PDF cover extraction)
-- Windows users need to install [libmagic for 32bit python](https://gnuwin32.sourceforge.net/downlinks/file.php) or [libmagic for 64bit python](https://github.com/nscaife/file-windows/releases/tag/20170108), depending on the python version; The files need to be installed in path (e.g. script folder of your Calibre-Web venv, or in the root folder of Calibre-Web
+- Windows users need to install [libmagic for 32bit python](https://gnuwin32.sourceforge.net/downlinks/file.php) or [libmagic for 64bit python](https://github.com/nscaife/file-windows/releases/tag/20170108), depending on the python version; The files need to be installed in path (e.g. script folder of your Get MyEbooks Web venv, or in the root folder of Get MyEbooks Web
 - Optional: [Calibre desktop program](https://calibre-ebook.com/download) for on-the-fly conversion and metadata editing (set "calibre's converter tool" path on the setup page)
 - Optional: [Kepubify tool](https://github.com/pgaskin/kepubify/releases/latest) for Kobo device support (place the binary in `/opt/kepubify` on Linux or `C:\Program Files\kepubify` on Windows)
 
@@ -93,20 +93,20 @@ Refer to the Wiki for additional installation examples: [manual installation](ht
 Pre-built Docker images are available in the following Docker Hub repositories (maintained by the LinuxServer team):
 
 #### **LinuxServer - x64, aarch64**
-- [Docker Hub](https://hub.docker.com/r/linuxserver/calibre-web)
-- [GitHub](https://github.com/linuxserver/docker-calibre-web)
+- [Docker Hub](https://hub.docker.com/r/linuxserver/Get MyEbooks Web)
+- [GitHub](https://github.com/linuxserver/docker-Get MyEbooks web)
 - [GitHub - Optional Calibre layer](https://github.com/linuxserver/docker-mods/tree/universal-calibre)
 
   Include the environment variable `DOCKER_MODS=linuxserver/mods:universal-calibre` in your Docker run/compose file to add the Calibre `ebook-convert` binary (x64 only). Omit this variable for a lightweight image.
 
-  Both the Calibre-Web and Calibre-Mod images are automatically rebuilt on new releases and updates.
+  Both the Get MyEbooks Web and Calibre-Mod images are automatically rebuilt on new releases and updates.
 
   - Set "Path to Calibre Binaries" to `/usr/bin`
   - Set "Path to Unrar" to `/usr/bin/unrar`
 
 ## Contributor Recognition
 
-We would like to thank all the [contributors](https://github.com/janeczku/calibre-web/graphs/contributors) and maintainers of Calibre-Web for their valuable input and dedication to the project. Your contributions are greatly appreciated.
+We would like to thank all the [contributors](https://github.com/janeczku/Get MyEbooks Web/graphs/contributors) and maintainers of Get MyEbooks Web for their valuable input and dedication to the project. Your contributions are greatly appreciated.
 
 ## Contact
 
@@ -114,6 +114,6 @@ Join us on [Discord](https://discord.gg/h2VsJ2NEfB)
 
 For more information, How To's, and FAQs, please visit the [Wiki](https://github.com/janeczku/calibre-web/wiki)
 
-## Contributing to Calibre-Web
+## Contributing to Get MyEbooks Web
 
 Check out our [Contributing Guidelines](https://github.com/janeczku/calibre-web/blob/master/CONTRIBUTING.md)
