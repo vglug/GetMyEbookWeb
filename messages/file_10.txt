@@ -62,34 +62,34 @@ msgid "Magic Link Remote Login"
 msgstr ""
 
 msgid "Reverse Proxy Login"
-msgstr ""
+msgstr "ரிவர்ஸ் ப்ராக்ஸி உள்நுழைவு"
 
 msgid "Reverse Proxy Header Name"
-msgstr ""
+msgstr "தலைகீழ் பதிலாள் தலைப்பு பெயர்"
 
 msgid "Edit Calibre Database Configuration"
-msgstr ""
+msgstr "காலிபர் தரவுத்தள உள்ளமைவைத் திருத்தவும்"
 
 msgid "Edit Basic Configuration"
-msgstr ""
+msgstr "அடிப்படை உள்ளமைவைத் திருத்தவும்"
 
 msgid "Edit UI Configuration"
-msgstr ""
+msgstr "UI உள்ளமைவைத் திருத்து"
 
 msgid "Scheduled Tasks"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பணிகள்"
 
 msgid "Start Time"
-msgstr ""
+msgstr "தொடக்க நேரம்"
 
 msgid "Maximum Duration"
-msgstr ""
+msgstr "அதிகபட்ச காலம்"
 
 msgid "Generate Thumbnails"
-msgstr ""
+msgstr "சிறுபடங்களை உருவாக்கவும்"
 
 msgid "Generate series cover thumbnails"
-msgstr ""
+msgstr "தொடர் அட்டை சிறுபடங்களை உருவாக்கவும்"
 
 msgid "Reconnect Calibre Database"
 msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கவும்"
