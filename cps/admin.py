@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)  
+#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
 #    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
@@ -504,6 +504,8 @@ def edit_list_user(param):
                       [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
                         raise Exception(_("Guest can't have this role"))
                     # check for valid value, last on checks for power of 2 value
+
+                    
                     if value > 0 and value <= constants.ROLE_VIEWER and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
                             user.role |= value
@@ -1027,72 +1029,63 @@ def get_drives(current):
 
 
 def pathchooser():
-    # Define the type of browsing (folder or file)
     browse_for = "folder"
-    # Check if only folders should be returned
     folder_only = request.args.get('folder', False) == "true"
-    # Get the file filter and normalize the path
     file_filter = request.args.get('filter', "")
     path = os.path.normpath(request.args.get('path', ""))
 
-    if os.path.isfile(path): # If the provided path is a file, get its directory
-        old_file = path       # Store the old file path
-        path = os.path.dirname(path)  # Get the directory of the file
+    if os.path.isfile(path):
+        old_file = path
+        path = os.path.dirname(path)
     else:
-        old_file = ""    # No old file if the path is not a file
+        old_file = ""
 
-    absolute = False      # Flag to check if the path is absolute
+    absolute = False
 
-    if os.path.isdir(path):    # Check if the given path is a directory
-        cwd = os.path.realpath(path)   # Get the absolute path
-        absolute = True              # Set the absolute flag
+    if os.path.isdir(path):
+        cwd = os.path.realpath(path)
+        absolute = True
     else:
-        cwd = os.getcwd()           # Use the current working directory if not a valid path
-    # Normalize and resolve the current working directory
+        cwd = os.getcwd()
+
     cwd = os.path.normpath(os.path.realpath(cwd))
     parent_dir = os.path.dirname(cwd)
-    # Adjust cwd and parent_dir for relative paths
     if not absolute:
         if os.path.realpath(cwd) == os.path.realpath("/"):
-            cwd = os.path.relpath(cwd)     # Convert to relative path if at root
-
+            cwd = os.path.relpath(cwd)
         else:
-            cwd = os.path.relpath(cwd) + os.path.sep   # Append separator
-        parent_dir = os.path.relpath(parent_dir) + os.path.sep # Append separator
+            cwd = os.path.relpath(cwd) + os.path.sep
+        parent_dir = os.path.relpath(parent_dir) + os.path.sep
 
-    files = []       # Initialize list to store files and directories
- # Check if we're at the root directory
+    files = []
     if os.path.realpath(cwd) == os.path.realpath("/") \
             or (sys.platform == "win32" and os.path.realpath(cwd)[1:] == os.path.realpath("/")[1:]):
         # we are in root
-        parent_dir = ""    # No parent directory at root
+        parent_dir = ""
         if sys.platform == "win32":
-            files = get_drives(cwd)           # Get available drives on Windows
+            files = get_drives(cwd)
 
-         # Attempt to list directories and files in the current working directory
     try:
         folders = os.listdir(cwd)
     except Exception:
-        folders = []       # Handle exception gracefully
+        folders = []
 
     for f in folders:
         try:
-            sanitized_f = str(Markup.escape(f))      # Sanitize filename for safe HTML
+            sanitized_f = str(Markup.escape(f))
             data = {"name": sanitized_f, "fullpath": os.path.join(cwd, sanitized_f)}
             data["sort"] = data["fullpath"].lower()
         except Exception:
-            continue                 # Skip if an error occurs
-
-        # Check if the item is a file
+            continue
 
         if os.path.isfile(os.path.join(cwd, f)):
             if folder_only:
-                continue       # Skip files if only folders are requested
+                continue
             if file_filter != "" and file_filter != f:
-                continue       # Skip if file doesn't match the filter
-            data["type"] = "file"    # Set type to file
+                continue
+            data["type"] = "file"
             data["size"] = os.path.getsize(os.path.join(cwd, f))
-               # Format file size for readability
+
             power = 0
             while (data["size"] >> 10) > 0.3:
                 power += 1
@@ -1100,72 +1093,33 @@ def pathchooser():
             units = ("", "K", "M", "G", "T")
             data["size"] = str(data["size"]) + " " + units[power] + "Byte"
         else:
-            data["type"] = "dir"        # Set type to directory
-            data["size"] = ""       # No size for directories
+            data["type"] = "dir"
+            data["size"] = ""
 
-        files.append(data)    # Add item to the list
-     # Sort files and directories by type and name
+        files.append(data)
+
     files = sorted(files, key=operator.itemgetter("type", "sort"))
-     # Prepare the context for JSON response
+
     context = {
-        "cwd": cwd,            # Current working directory
-        "files": files,         # List of files and directories
-        "parentdir": parent_dir,  # Parent directory
-        "type": browse_for,       # Type of browsing
-        "oldfile": old_file,         # Previously selected file (if any)
-        "absolute": absolute,       # Flag indicating if the path is absolute
+        "cwd": cwd,
+        "files": files,
+        "parentdir": parent_dir,
+        "type": browse_for,
+        "oldfile": old_file,
+        "absolute": absolute,
     }
-    return json.dumps(context)  # Return the context as a JSON response
+    return json.dumps(context)
 
 
 def _config_int(to_save, x, func=int):
-     """
-    Save an integer configuration value.
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the integer value.
-    - func: A function to convert the value (default is int).
-
-    Returns:
-    - Result of setting the value in the configuration.
-    """
-    
-    # Use the provided function (default is int) to convert the value
-    # and save it in the configuration dictionary.
     return config.set_from_dictionary(to_save, x, func)
 
 
 def _config_checkbox(to_save, x):
-    """
-    Save a checkbox configuration value as a boolean.
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the boolean value.
-
-    Returns:
-    - Result of setting the boolean value in the configuration.
-    """
-    
-    # Convert the value from the dictionary to a boolean based on the string "on"
-    
     return config.set_from_dictionary(to_save, x, lambda y: y == "on", False)
 
 
 def _config_checkbox_int(to_save, x):
-     """
-    Save a checkbox configuration value as an integer (0 or 1).
-
-    Parameters:
-    - to_save: The configuration dictionary where the value will be saved.
-    - x: The key or path in the dictionary to store the integer value.
-
-    Returns:
-    - Result of setting the integer value in the configuration.
-    """
-    
-    # Convert the value from the dictionary to an integer: 1 if "on", otherwise 0
     return config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
 
@@ -1203,53 +1157,27 @@ def _configuration_gdrive_helper(to_save):
         gdriveutils.deleteDatabaseOnChange()
     return gdrive_error
 
-#This function input paramters is to_save object 
-#This function will return bollean type.
+
 def _configuration_oauth_helper(to_save):
-    # Initialize counters and flags
     active_oauths = 0
     reboot_required = False
-    
-    # Helper function to construct the keys for accessing the configuration
-    def get_key(provider_id, suffix):
-        return f"config_{provider_id}_{suffix}"
-
-    # Iterate through each OAuth provider blueprint
     for element in oauthblueprints:
-        # Construct keys for client ID and secret
-        client_id_key = get_key(element['id'], "oauth_client_id")
-        client_secret_key = get_key(element['id'], "oauth_client_secret")
-
-        # Retrieve the current client ID and secret from to_save
-        current_client_id = to_save.get(client_id_key)
-        current_client_secret = to_save.get(client_secret_key)
-
-        # Check if there's a change in the client ID or secret
-        if current_client_id != element['oauth_client_id'] or current_client_secret != element['oauth_client_secret']:
-            reboot_required = True  # Mark reboot as required if changes were made
-            # Update the element with the new client ID and secret
-            element['oauth_client_id'] = current_client_id
-            element['oauth_client_secret'] = current_client_secret
-
-        # Determine if the current provider is active
-        if current_client_id and current_client_secret:
-            active_oauths += 1  # Increment active OAuth counter
-            element["active"] = 1  # Set provider as active
+        if to_save["config_" + str(element['id']) + "_oauth_client_id"] != element['oauth_client_id'] \
+          or to_save["config_" + str(element['id']) + "_oauth_client_secret"] != element['oauth_client_secret']:
+            reboot_required = True
+            element['oauth_client_id'] = to_save["config_" + str(element['id']) + "_oauth_client_id"]
+            element['oauth_client_secret'] = to_save["config_" + str(element['id']) + "_oauth_client_secret"]
+        if to_save["config_" + str(element['id']) + "_oauth_client_id"] \
+          and to_save["config_" + str(element['id']) + "_oauth_client_secret"]:
+            active_oauths += 1
+            element["active"] = 1
         else:
-            element["active"] = 0  # Set provider as inactive
-
-        # Update the database with the new values
+            element["active"] = 0
         ub.session.query(ub.OAuthProvider).filter(ub.OAuthProvider.id == element['id']).update(
-            {
-                "oauth_client_id": current_client_id,
-                "oauth_client_secret": current_client_secret,
-                "active": element["active"]
-            }
-        )
-
-    # Return whether a reboot is required
+            {"oauth_client_id": to_save["config_" + str(element['id']) + "_oauth_client_id"],
+             "oauth_client_secret": to_save["config_" + str(element['id']) + "_oauth_client_secret"],
+             "active": element["active"]})
     return reboot_required
-
 
 
 def _configuration_logfile_helper(to_save):
@@ -1267,13 +1195,9 @@ def _configuration_logfile_helper(to_save):
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
     return reboot_required, None
 
-#This function using ldap is a protocal
-#This function input Parameter is to_save object
-def _configuration_ldap_helper(to_save):
-    # Initialize a flag to track if a reboot is required
-    reboot_required = False
 
-    # Check and update LDAP configuration values
+def _configuration_ldap_helper(to_save):
+    reboot_required = False
     reboot_required |= _config_int(to_save, "config_ldap_port")
     reboot_required |= _config_int(to_save, "config_ldap_authentication")
     reboot_required |= _config_string(to_save, "config_ldap_dn")
@@ -1287,19 +1211,17 @@ def _configuration_ldap_helper(to_save):
     reboot_required |= _config_string(to_save, "config_ldap_cacert_path")
     reboot_required |= _config_string(to_save, "config_ldap_cert_path")
     reboot_required |= _config_string(to_save, "config_ldap_key_path")
+    _config_string(to_save, "config_ldap_group_name")
 
-    # Parse and validate the LDAP provider URL
     address = urlparse(to_save.get("config_ldap_provider_url", ""))
     to_save["config_ldap_provider_url"] = (address.hostname or address.path).strip("/")
     reboot_required |= _config_string(to_save, "config_ldap_provider_url")
 
-    # Check if the LDAP service password is provided and set it
     if to_save.get("config_ldap_serv_password_e", "") != "":
         reboot_required |= 1
         config.set_from_dictionary(to_save, "config_ldap_serv_password_e")
     config.save()
 
-    # Validate essential LDAP configuration fields
     if not config.config_ldap_provider_url \
       or not config.config_ldap_port \
       or not config.config_ldap_dn \
@@ -1307,7 +1229,6 @@ def _configuration_ldap_helper(to_save):
         return reboot_required, _configuration_result(_('Please Enter a LDAP Provider, '
                                                         'Port, DN and User Object Identifier'))
 
-    # Validate service account credentials based on authentication type
     if config.config_ldap_authentication > constants.LDAP_AUTH_ANONYMOUS:
         if config.config_ldap_authentication > constants.LDAP_AUTH_UNAUTHENTICATE:
             if not config.config_ldap_serv_username or not bool(config.config_ldap_serv_password_e):
@@ -1315,6 +1236,7 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+
     if config.config_ldap_group_object_filter:
         if config.config_ldap_group_object_filter.count("%s") != 1:
             return reboot_required, \
