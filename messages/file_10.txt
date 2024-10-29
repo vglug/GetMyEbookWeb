@@ -92,29 +92,29 @@ msgid "Generate series cover thumbnails"
 msgstr ""
 
 msgid "Reconnect Calibre Database"
-msgstr ""
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கவும்"
 
 msgid "Generate Metadata Backup Files"
-msgstr ""
+msgstr மெட்டாடேட்டா காப்பு கோப்புகளை உருவாக்கவும்""
 
 msgid "Refresh Thumbnail Cache"
-msgstr ""
+msgstr "சிறுபடம் தற்காலிக சேமிப்பைப் புதுப்பிக்கவும்"
 
 msgid "Administration"
-msgstr ""
+msgstr "நிர்வாகம்"
 
 msgid "Download Debug Package"
-msgstr ""
+msgstr "பிழைத்திருத்த தொகுப்பைப் பதிவிறக்கவும்"
 
 msgid "View Logs"
-msgstr ""
+msgstr "பதிவுகளைப் பார்க்கவும்"
 
 msgid "Restart"
-msgstr ""
+msgstr "மறுதொடக்கம்"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "பணிநிறுத்தம்"
 
 msgid "Version Information"
-msgstr ""
+msgstr "பதிப்பு தகவல்"
 
