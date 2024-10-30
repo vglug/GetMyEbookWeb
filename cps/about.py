@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
-#    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
+#    ...Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
 #                            ruben-herold, marblepebble, JackED42, SiphonSquirrel,
@@ -49,8 +49,11 @@ except Exception:
 modules['SQLite'] = sqlite3.sqlite_version
 sorted_modules = OrderedDict((sorted(modules.items(), key=lambda x: x[0].casefold())))
 
-
+#This function is used to collect the stats information
+#This function will return ther version object 
 def collect_stats():
+    # If zeroth index values of Nightly_version variable is equals to "$Format:%H$" value then replace b into Beta in Stable version object
+    # else 
     if constants.NIGHTLY_VERSION[0] == "$Format:%H$":
         calibre_web_version = constants.STABLE_VERSION['version'].replace("b", " Beta")
     else:

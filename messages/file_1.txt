@@ -1,0 +1,120 @@
+﻿msgid ""
+msgstr ""
+
+msgid "Statistics"
+msgstr "புள்ளிவிவரங்கள்"
+
+msgid "Server restarted, please reload page."
+msgstr "சேவையகம் மறுதொடக்கம் செய்யப்பட்டது பக்கத்தை ஏற்றவும்"
+
+msgid "Performing Server shutdown, please close window."
+msgstr "சேவையகம் பணிநிறுத்தம் செய்யப்படுகிறது சாளரத்தை மூடு"
+
+msgid "Success! Database Reconnected"
+msgstr "வெற்றி!,தரவுத்தளம் மீண்டும் இணைக்கப்பட்டது"
+
+msgid "Unknown command"
+msgstr "தெரியாத கருத்து"
+
+msgid "Success! Books queued for Metadata Backup, please check Tasks for result"
+msgstr "வெற்றி , மெட்டாடேட்டா காப்புப்பிரதிக்காக புத்தகம் வரிசைப்படுத்தப்பட்டுள்ளது, முடிவுக்கான பணியைச் சரிபார்க்கவும்"
+
+msgid "Unknown"
+msgstr "தெரியவில்லை"
+
+msgid "Admin page"
+msgstr "நிர்வாக பக்கம்" 
+
+msgid "Basic Configuration"
+msgstr "அடிப்படை கட்டமைப்பு"
+
+msgid "UI Configuration"
+msgstr "பயனர் இடைமுக கட்டமைப்பு"
+
+msgid "Edit Users"
+msgstr "பயனர் திருத்தம்"
+
+msgid "All"
+msgstr "அனைத்தும்"
+
+msgid "User not found"
+msgstr "பயனர் கிடைக்கவில்லை"
+
+msgid "{} users deleted successfully"
+msgstr "பயனர்கள் நீக்கப்பட்டனர்"
+
+msgid "Show All"
+msgstr "அனைத்தையும் காட்டு"
+
+msgid "Malformed request"
+msgstr "தவறான கோரிக்கை"
+
+msgid "Guest Name can't be changed"
+msgstr "விருந்தினர் பெயரை மாற்ற முடியாது"
+
+msgid "Guest can't have this role"
+msgstr "விருந்தினருக்கு இந்தப் பங்கு இருக்க முடியாது"
+
+msgid "No admin user remaining, can't remove admin role"
+msgstr "நிர்வாகிப் பயனர் எவரும் இல்லை, நிர்வாகிப் பொறுப்பை அகற்ற முடியாது"
+
+msgid "Value has to be true or false"
+msgstr "மதிப்பு உண்மையாகவோ அல்லது பொய்யாகவோ இருக்க வேண்டும் "
+
+msgid "Invalid role"
+msgstr "தவறான பங்கு"
+
+msgid "Guest can't have this view"
+msgstr "விருந்தினர் இந்தக் காட்சியைப் பார்க்க முடியாது"
+
+msgid "Invalid view"
+msgstr "தவறான பார்வை"
+
+msgid "Guest's Locale is determined automatically and can't be set"
+msgstr "விருந்தினரின் இருப்பிடம் தானாக தீர்மானிக்கப்பட்டு அமைக்க முடியாது"
+
+msgid "No Valid Locale Given"
+msgstr "சரியான உள்ளூர் கொடுக்கப்படவில்லை"
+
+msgid "No Valid Book Language Given"
+msgstr "சரியான புத்தக மொழி கொடுக்கப்படவில்லை"
+
+msgid "Parameter not found"
+msgstr "அளவுரு காணப்படவில்லை"
+
+msgid "Invalid Read Column"
+msgstr "படிக்கும் நெடுவரிசை தவறானது"
+
+msgid "Invalid Restricted Column"
+msgstr "தவறான கட்டுப்படுத்தப்பட்ட நெடுவரிசை"
+
+msgid "Calibre-Web configuration updated"
+msgstr "திறன்-வலை கட்டமைப்பு புதுப்பிக்கப்பட்டது"
+
+msgid "Do you really want to delete the Kobo Token?"
+msgstr "நீங்கள் உண்மையில் கோபோ டோக்கனை நீக்க விரும்புகிறீர்களா? "
+
+msgid "Do you really want to delete this domain?"
+msgstr "இந்த டொமைனை உண்மையில் நீக்க விரும்புகிறீர்களா?"
+
+msgid "Do you really want to delete this user?"
+msgstr "இந்த பயனரை உண்மையில் நீக்க விரும்புகிறீர்களா?"
+
+msgid "Are you sure you want to delete this shelf?"
+msgstr "இந்த அலமாரியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
+
+msgid "Are you sure you want to change locales of selected user(s)?"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பயனர்(களின்) இருப்பிடங்களை நிச்சயமாக மாற்ற விரும்புகிறீர்களா? "
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
