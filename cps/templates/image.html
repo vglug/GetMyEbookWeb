@@ -3,6 +3,7 @@
     {%- set image_alt = alt if alt else image_title -%}
     {% set srcset = book|get_cover_srcset %}
     <img
+        class="book-image"
         srcset="{{ srcset }}"
         src="{{ url_for('web.get_cover', book_id=book.id, resolution='og', c=book|last_modified) }}"
         alt="{{ image_alt }}"
@@ -15,6 +16,6 @@
     <img
         srcset="{{ srcset }}"
         src="{{ url_for('web.get_series_cover', series_id=series.id, resolution='og', c='day'|cache_timestamp) }}"
-        alt="{{ title }}"
+        alt="{{ book_title }}"
     />
 {%- endmacro %}

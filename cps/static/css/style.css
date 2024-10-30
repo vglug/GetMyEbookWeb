@@ -30,7 +30,6 @@ html.http-error {
 
 body {
   background: #f2f2f2;
-  margin-bottom: 40px;
 }
 
 .http-error body {
@@ -409,7 +408,7 @@ input.pill:not(:checked) + label .glyphicon { display: none; }
 }
 
 .editable-submit { margin-bottom: 0 !important; }
-.filterheader { margin-bottom: 20px; }
+/* .filterheader { margin-bottom: 20px; } commented by me*/
 .errorlink { margin-top: 20px; }
 .emailconfig { margin-top: 10px; }
 
