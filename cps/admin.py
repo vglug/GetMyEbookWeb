@@ -503,8 +503,7 @@ def edit_list_user(param):
                                         json.dumps([{'type': "danger",
                                                      'message': _("No admin user remaining, can't remove admin role",
                                                                   nick=user.name)}]), mimetype='application/json')
-                            user.role &= ~value  # Remove the role if 'false'.
-                         user.role &= ~value  # Remove the role if 'false'.
+                            user.role &= ~value  # Remove the role if 'false'
                         else:
                             raise Exception(_("Value has to be true or false"))  # Raise an error if an invalid value is passed.
                     else:
