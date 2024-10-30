@@ -503,33 +503,35 @@ def edit_list_user(param):
                                         json.dumps([{'type': "danger",
                                                      'message': _("No admin user remaining, can't remove admin role",
                                                                   nick=user.name)}]), mimetype='application/json')
-                            user.role &= ~value  # Remove the role if 'false'.
+                            user.role &= ~value  # Remove the role if 'false'
                         else:
-                            raise Exception(_("Value has to be true or false"))
+                            raise Exception(_("Value has to be true or false"))  # Raise an error if an invalid value is passed.
                     else:
-                        raise Exception(_("Invalid role"))
+                        raise Exception(_("Invalid role"))  # Raise an error for invalid role values.
                 elif param.startswith('sidebar'):
-                    value = int(vals['field_index'])
+                    value = int(vals['field_index'])  # Get the sidebar view index.
                     if user.name == "Guest" and value == constants.SIDEBAR_READ_AND_UNREAD:
-                        raise Exception(_("Guest can't have this view"))
-                    # check for valid value, last on checks for power of 2 value
+                        raise Exception(_("Guest can't have this view"))  # Prevent certain views for 'Guest'.
+                    
+                    # Ensure the sidebar view is valid and a power of 2.
                     if value > 0 and value <= constants.SIDEBAR_LIST and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.sidebar_view |= value
+                            user.sidebar_view |= value  # Add the sidebar view if 'true'.
                         elif vals['value'] == 'false':
-                            user.sidebar_view &= ~value
+                            user.sidebar_view &= ~value  # Remove the sidebar view if 'false'.
                         else:
-                            raise Exception(_("Value has to be true or false"))
+                            raise Exception(_("Value has to be true or false"))  # Raise an error for invalid value.
                     else:
-                        raise Exception(_("Invalid view"))
+                        raise Exception(_("Invalid view"))  # Raise an error for invalid view values.
                 elif param == 'locale':
                     if user.name == "Guest":
-                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))
+                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))  # Prevent setting locale for 'Guest'.
                     if vals['value'] in get_available_translations():
-                        user.locale = vals['value']
+                        user.locale = vals['value']  # Set the locale if it's valid.
                     else:
-                        raise Exception(_("No Valid Locale Given"))
+                        raise Exception(_("No Valid Locale Given"))  # Raise an error for invalid locale.
                 elif param == 'default_language':
+                    # Fetch valid languages and ensure the provided language is valid.
                     languages = calibre_db.session.query(db.Languages) \
                         .join(db.books_languages_link) \
                         .join(db.Books) \
@@ -537,17 +539,19 @@ def edit_list_user(param):
                         .group_by(text('books_languages_link.lang_code')).all()
                     lang_codes = [lang.lang_code for lang in languages] + ["all"]
                     if vals['value'] in lang_codes:
-                        user.default_language = vals['value']
+                        user.default_language = vals['value']  # Set the default language if valid.
                     else:
-                        raise Exception(_("No Valid Book Language Given"))
+                        raise Exception(_("No Valid Book Language Given"))  # Raise an error for invalid language.
                 else:
-                    return _("Parameter not found"), 400
+                    return _("Parameter not found"), 400  # Return error if the parameter is not recognized.
+
+        # Catch and log any exceptions that occur during the process.
         except Exception as ex:
             log.error_or_exception(ex)
-            return str(ex), 400
-    ub.session_commit()
-    return ""
+            return str(ex), 400  # Return the error message.
 
+    ub.session_commit()  # Commit the changes to the database.
+    return ""  # Return an empty response upon success.
 
 @admi.route("/ajax/user_table_settings", methods=['POST'])
 @user_login_required
@@ -565,27 +569,25 @@ def update_table_settings():
         return "Invalid request", 400
     return ""
 
-
 @admi.route("/admin/viewconfig", methods=["POST"])
-@user_login_required
-@admin_required
+@user_login_required  # Ensures the user is logged in
+@admin_required  # Ensures the user has admin privileges
+ # Function to update view configuration
 def update_view_configuration():
-    to_save = request.form.to_dict()
+    to_save = request.form.to_dict()  # Collects form data
 
-    _config_string(to_save, "config_calibre_web_title")
+    _config_string(to_save, "config_calibre_web_title")  # Updates Calibre web title
     _config_string(to_save, "config_columns_to_ignore")
     if _config_string(to_save, "config_title_regex"):
-        calibre_db.create_functions(config)
+        calibre_db.create_functions(config)  # Creates functions if title regex is set
 
-    if not check_valid_read_column(to_save.get("config_read_column", "0")):
+    if not check_valid_read_column(to_save.get("config_read_column", "0")):  # Validates read column
         flash(_("Invalid Read Column"), category="error")
-        log.debug("Invalid Read column")
         return view_configuration()
     _config_int(to_save, "config_read_column")
 
-    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):
+    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):  # Validates restricted column
         flash(_("Invalid Restricted Column"), category="error")
-        log.debug("Invalid Restricted Column")
         return view_configuration()
     _config_int(to_save, "config_restricted_column")
 
@@ -883,41 +885,60 @@ def delete_restriction(res_type, user_id):
 @admi.route("/ajax/listrestriction/<int:res_type>/<int:user_id>")
 @user_login_required
 @admin_required
+#This is used to collect the list_restriction function
 def list_restriction(res_type, user_id):
-    if res_type == 0:  # Tags as template
+    # This function generates a JSON response based on restrictions and allowed elements.
+    # It takes two parameters: 
+    # - res_type: Determines the type of restriction (e.g., tags, columns).
+    # - user_id: The ID of the user to retrieve the data (used for user-specific restrictions).
+
+    
+    if res_type == 0:   # Tags as template
+        # If the resource type is 0, list denied and allowed tags globally from the config.
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_tags()) if x != '']
-        json_dumps = restrict + allow
+        json_dumps = restrict + allow # Combine allowed and denied tags into a single list
+        
+        
     elif res_type == 1:  # CustomC as template
+        # If resource type is 1, list denied and allowed custom column values.
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
+        
+        
     elif res_type == 2:  # Tags per user
+        # If resource type is 2, list denied and allowed tags specific to the user.
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() # Query user by ID.
         else:
-            usr = current_user
+            usr = current_user # If no user_id, get the current logged-in user.
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_tags()) if x != '']
         json_dumps = restrict + allow
-    elif res_type == 3:  # CustomC per user
+        
+        
+    elif res_type == 3:  
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() 
         else:
-            usr = current_user
+            usr = current_user  
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
+
+
+        
     else:
-        json_dumps = ""
+        json_dumps = "" 
     js = json.dumps(json_dumps)
     response = make_response(js)
     response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -929,7 +950,6 @@ def list_restriction(res_type, user_id):
 def ajax_self_fullsync():
     return do_full_kobo_sync(current_user.id)
 
-
 @admi.route("/ajax/fullsync/<int:userid>", methods=["POST"])
 @user_login_required
 @admin_required
@@ -939,7 +959,7 @@ def ajax_fullsync(userid):
 
 @admi.route("/ajax/pathchooser/")
 @user_login_required
-@admin_required
+@admin_required 
 def ajax_pathchooser():
     return pathchooser()
 
