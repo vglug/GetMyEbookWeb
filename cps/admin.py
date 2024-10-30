@@ -840,6 +840,8 @@ def add_restriction(res_type, user_id):
 @user_login_required
 @admin_required
 def delete_user_0_restriction(res_type):
+    # Wrapper function to delete a restriction for the default user ID (0).
+    # Calls `delete_restriction` with `res_type` and default user ID 0.
     return delete_restriction(res_type, 0)
 
 
