@@ -849,47 +849,64 @@ def delete_user_0_restriction(res_type):
 @user_login_required
 @admin_required
 def delete_restriction(res_type, user_id):
-    element = request.form.to_dict()
-    if res_type == 0:  # Tags as template
-        if element['id'].startswith('a'):
+    # Main function to delete specific types of restrictions for a given user ID
+    # `res_type` specifies the type of restriction to delete, and `user_id` targets a specific user.
+
+    element = request.form.to_dict()  # Collects form data from the request
+
+    if res_type == 0:  # If restriction type is "Tags as template"
+        if element['id'].startswith('a'):  # Checks if the ID corresponds to allowed tags
+            # Deletes allowed tags and saves the configuration
             config.config_allowed_tags = restriction_deletion(element, config.list_allowed_tags)
             config.save()
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if the ID corresponds to denied tags
+            # Deletes denied tags and saves the configuration
             config.config_denied_tags = restriction_deletion(element, config.list_denied_tags)
             config.save()
-    elif res_type == 1:  # CustomC as template
-        if element['id'].startswith('a'):
+
+    elif res_type == 1:  # If restriction type is "Custom as template"
+        if element['id'].startswith('a'):  # Checks if the ID corresponds to allowed column values
+            # Deletes allowed column values and saves the configuration
             config.config_allowed_column_value = restriction_deletion(element, config.list_allowed_column_values)
             config.save()
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if the ID corresponds to denied column values
+            # Deletes denied column values and saves the configuration
             config.config_denied_column_value = restriction_deletion(element, config.list_denied_column_values)
             config.save()
-    elif res_type == 2:  # Tags per user
+
+    elif res_type == 2:  # If restriction type is "Tags per user"
+        # Checks for a valid user ID; if invalid, assigns current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if element['id'].startswith('a'):
+
+        if element['id'].startswith('a'):  # Checks if ID corresponds to allowed tags for the user
+            # Deletes allowed tags for the user and commits to the session
             usr.allowed_tags = restriction_deletion(element, usr.list_allowed_tags)
             ub.session_commit("Deleted allowed tags of user {}: {}".format(usr.name, element['Element']))
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if ID corresponds to denied tags for the user
+            # Deletes denied tags for the user and commits to the session
             usr.denied_tags = restriction_deletion(element, usr.list_denied_tags)
             ub.session_commit("Deleted denied tag of user {}: {}".format(usr.name, element['Element']))
-    elif res_type == 3:  # Columns per user
+
+    elif res_type == 3:  # If restriction type is "Columns per user"
+        # Checks for a valid user ID; if invalid, assigns current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if element['id'].startswith('a'):
-            usr.allowed_column_value = restriction_deletion(element, usr.list_allowed_column_values)
-            ub.session_commit("Deleted allowed columns of user {}: {}".format(usr.name,
-                                                                              usr.list_allowed_column_values()))
 
-        elif element['id'].startswith('d'):
+        if element['id'].startswith('a'):  # Checks if ID corresponds to allowed columns for the user
+            # Deletes allowed columns for the user and commits to the session
+            usr.allowed_column_value = restriction_deletion(element, usr.list_allowed_column_values)
+            ub.session_commit("Deleted allowed columns of user {}: {}".format(usr.name, usr.list_allowed_column_values()))
+        elif element['id'].startswith('d'):  # Checks if ID corresponds to denied columns for the user
+            # Deletes denied columns for the user and commits to the session
             usr.denied_column_value = restriction_deletion(element, usr.list_denied_column_values)
-            ub.session_commit("Deleted denied columns of user {}: {}".format(usr.name,
-                                                                             usr.list_denied_column_values()))
-    return ""
+            ub.session_commit("Deleted denied columns of user {}: {}".format(usr.name, usr.list_denied_column_values()))
+
+    return ""  # Return an empty response after deletion
 
 
 @admi.route("/ajax/listrestriction/<int:res_type>", defaults={"user_id": 0})
