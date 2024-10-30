@@ -198,35 +198,44 @@ def update_thumbnails():
         helper.update_thumbnail_cache()
     return ""
 
-
+# Define a route for the admin view page that requires user login and admin access
 @admi.route("/admin/view")
 @user_login_required
 @admin_required
 def admin():
+    # Get the current version information from the updater thread
     version = updater_thread.get_current_version_info()
+    # If no version information is available, set the commit as 'Unknown'
     if version is False:
         commit = _('Unknown')
     else:
+        # If version has 'datetime' key, we process it
         if 'datetime' in version:
             commit = version['datetime']
 
             tz = timedelta(seconds=time.timezone if (time.localtime().tm_isdst == 0) else time.altzone)
             form_date = datetime.strptime(commit[:19], "%Y-%m-%dT%H:%M:%S")
+            # Check if the datetime string contains timezone information
             if len(commit) > 19:  # check if string has timezone
+            # If timezone is positive, subtract the offset from the time
                 if commit[19] == '+':
                     form_date -= timedelta(hours=int(commit[20:22]), minutes=int(commit[23:]))
+                # If timezone is negative, add the offset to the time
                 elif commit[19] == '-':
                     form_date += timedelta(hours=int(commit[20:22]), minutes=int(commit[23:]))
+            # Adjust the datetime object with the calculated timezone offset and format it
             commit = format_datetime(form_date - tz, format='short')
         else:
+         # If no 'datetime' is present, use the version information and replace "b" with "Beta"
             commit = version['version'].replace("b", " Beta")
-
+# Query all users from the database
     all_user = ub.session.query(ub.User).all()
     # email_settings = mail_config.get_mail_settings()
     schedule_time = format_time(datetime_time(hour=config.schedule_start_time), format="short")
+    # Calculate the schedule duration based on the configured duration in hours and minutes
     t = timedelta(hours=config.schedule_duration // 60, minutes=config.schedule_duration % 60)
     schedule_duration = format_timedelta(t, threshold=.99)
-
+# Render the admin template with various context variables including users, config, commit, etc
     return render_title_template("admin.html", allUser=all_user, config=config, commit=commit,
                                  feature_support=feature_support, schedule_time=schedule_time,
                                  schedule_duration=schedule_duration,
@@ -241,16 +250,21 @@ def db_configuration():
         return _db_configuration_update_helper()
     return _db_configuration_result()
 
-
+# Define a route for the admin basic configuration page
 @admi.route("/admin/config", methods=["GET"])
 @user_login_required
 @admin_required
 def configuration():
+    # Render the configuration template, passing in relevant configuration and feature support data
     return render_title_template("config_edit.html",
                                  config=config,
+                                 # OAuth providers
                                  provider=oauthblueprints,
+                                 # Supported features
                                  feature_support=feature_support,
                                  title=_("Basic Configuration"), page="config")
+
+
 
 
 @admi.route("/admin/ajaxconfig", methods=["POST"])
@@ -435,104 +449,93 @@ def table_get_default_lang():
         ret.append({'value': lang.lang_code, 'text': lang.name})
     return json.dumps(ret)
 
-# Define a route that accepts POST requests with a parameter 'param'.
-@admi.route("/ajax/editlistusers/<param>", methods=['POST'])
-@user_login_required       # Ensures the user is logged in before accessing this route.
-@admin_required            # Ensures only admins can access this route.
-# Define the function that handles user editing.
-def edit_list_user(param):
-    vals = request.form.to_dict(flat=False)  # Parse the form data into a dictionary.
-    all_user = ub.session.query(ub.User)  # Query all users from the database.
 
-    # If anonymous browsing is disabled, filter out anonymous users.
+@admi.route("/ajax/editlistusers/<param>", methods=['POST'])
+@user_login_required
+@admin_required
+def edit_list_user(param):
+    vals = request.form.to_dict(flat=False)
+    all_user = ub.session.query(ub.User)
     if not config.config_anonbrowse:
         all_user = all_user.filter(ub.User.role.op('&')(constants.ROLE_ANONYMOUS) != constants.ROLE_ANONYMOUS)
-
-    # Check if only one user is posted by 'pk' or a list of users via 'pk[]'.
+    # only one user is posted
     if "pk" in vals:
-        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]  # Filter and fetch one user by 'pk'.
+        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]
     else:
-        if "pk[]" in vals:  # If 'pk[]' is present, fetch users by the list of ids.
+        if "pk[]" in vals:
             users = all_user.filter(ub.User.id.in_(vals['pk[]'])).all()
         else:
-            return _("Malformed request"), 400  # Return error if no valid 'pk' is found.
-
-    # Ensure 'field_index' and 'value' are single values instead of lists.
+            return _("Malformed request"), 400
     if 'field_index' in vals:
         vals['field_index'] = vals['field_index'][0]
     if 'value' in vals:
         vals['value'] = vals['value'][0]
     elif not ('value[]' in vals):
-        return _("Malformed request"), 400  # Return error if 'value' is missing.
-
-    # Iterate through the list of users and modify each one based on 'param'.
+        return _("Malformed request"), 400
     for user in users:
         try:
-            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:  # Check if the 'param' deals with tags.
-                if 'value[]' in vals:  # If multiple values are passed, prepare tags accordingly.
+            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
+                if 'value[]' in vals:
                     setattr(user, param, prepare_tags(user, vals['action'][0], param, vals['value[]']))
                 else:
-                    setattr(user, param, strip_whitespaces(vals['value']))  # Set a single value for the parameter.
+                    setattr(user, param, strip_whitespaces(vals['value']))
             else:
-                vals['value'] = strip_whitespaces(vals['value'])  # Remove any extra whitespaces from the value.
+                vals['value'] = strip_whitespaces(vals['value'])
                 if param == 'name':
-                    if user.name == "Guest":  # Prevent changing the name of the 'Guest' user.
+                    if user.name == "Guest":
                         raise Exception(_("Guest Name can't be changed"))
-                    user.name = check_username(vals['value'])  # Set the new username after validation.
+                    user.name = check_username(vals['value'])
                 elif param == 'email':
-                    user.email = check_email(vals['value'])  # Set the new email after validation.
+                    user.email = check_email(vals['value'])
                 elif param == 'kobo_only_shelves_sync':
-                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')  # Set sync preferences for Kobo.
+                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')
                 elif param == 'kindle_mail':
-                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""  # Validate Kindle mail if present.
+                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""
                 elif param.endswith('role'):
-                    value = int(vals['field_index'])  # Get the role index for the user.
-                    if user.name == "Guest" and value in [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
-                        raise Exception(_("Guest can't have this role"))  # Prevent assigning certain roles to 'Guest'.
-                    
-                    # Ensure the role is valid and a power of 2.
+                    value = int(vals['field_index'])
+                    if user.name == "Guest" and value in \
+                      [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
+                        raise Exception(_("Guest can't have this role"))
+                    # check for valid value, last on checks for power of 2 value
                     if value > 0 and value <= constants.ROLE_VIEWER and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.role |= value  # Add the role if 'true'.
+                            user.role |= value
                         elif vals['value'] == 'false':
-                            # Prevent removing the last admin role.
                             if value == constants.ROLE_ADMIN:
-                                if not ub.session.query(ub.User).filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
-                                                                         ub.User.id != user.id).count():
+                                if not ub.session.query(ub.User). \
+                                    filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
+                                           ub.User.id != user.id).count():
                                     return Response(
                                         json.dumps([{'type': "danger",
                                                      'message': _("No admin user remaining, can't remove admin role",
                                                                   nick=user.name)}]), mimetype='application/json')
-
-                            user.role &= ~value  # Remove the role if 'false'
+                            user.role &= ~value
                         else:
-                            raise Exception(_("Value has to be true or false"))  # Raise an error if an invalid value is passed.
+                            raise Exception(_("Value has to be true or false"))
                     else:
-                        raise Exception(_("Invalid role"))  # Raise an error for invalid role values.
+                        raise Exception(_("Invalid role"))
                 elif param.startswith('sidebar'):
-                    value = int(vals['field_index'])  # Get the sidebar view index.
+                    value = int(vals['field_index'])
                     if user.name == "Guest" and value == constants.SIDEBAR_READ_AND_UNREAD:
-                        raise Exception(_("Guest can't have this view"))  # Prevent certain views for 'Guest'.
-                    
-                    # Ensure the sidebar view is valid and a power of 2.
+                        raise Exception(_("Guest can't have this view"))
+                    # check for valid value, last on checks for power of 2 value
                     if value > 0 and value <= constants.SIDEBAR_LIST and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.sidebar_view |= value  # Add the sidebar view if 'true'.
+                            user.sidebar_view |= value
                         elif vals['value'] == 'false':
-                            user.sidebar_view &= ~value  # Remove the sidebar view if 'false'.
+                            user.sidebar_view &= ~value
                         else:
-                            raise Exception(_("Value has to be true or false"))  # Raise an error for invalid value.
+                            raise Exception(_("Value has to be true or false"))
                     else:
-                        raise Exception(_("Invalid view"))  # Raise an error for invalid view values.
+                        raise Exception(_("Invalid view"))
                 elif param == 'locale':
                     if user.name == "Guest":
-                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))  # Prevent setting locale for 'Guest'.
+                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))
                     if vals['value'] in get_available_translations():
-                        user.locale = vals['value']  # Set the locale if it's valid.
+                        user.locale = vals['value']
                     else:
-                        raise Exception(_("No Valid Locale Given"))  # Raise an error for invalid locale.
+                        raise Exception(_("No Valid Locale Given"))
                 elif param == 'default_language':
-                    # Fetch valid languages and ensure the provided language is valid.
                     languages = calibre_db.session.query(db.Languages) \
                         .join(db.books_languages_link) \
                         .join(db.Books) \
@@ -540,19 +543,17 @@ def edit_list_user(param):
                         .group_by(text('books_languages_link.lang_code')).all()
                     lang_codes = [lang.lang_code for lang in languages] + ["all"]
                     if vals['value'] in lang_codes:
-                        user.default_language = vals['value']  # Set the default language if valid.
+                        user.default_language = vals['value']
                     else:
-                        raise Exception(_("No Valid Book Language Given"))  # Raise an error for invalid language.
+                        raise Exception(_("No Valid Book Language Given"))
                 else:
-                    return _("Parameter not found"), 400  # Return error if the parameter is not recognized.
-
-        # Catch and log any exceptions that occur during the process.
+                    return _("Parameter not found"), 400
         except Exception as ex:
             log.error_or_exception(ex)
-            return str(ex), 400  # Return the error message.
+            return str(ex), 400
+    ub.session_commit()
+    return ""
 
-    ub.session_commit()  # Commit the changes to the database.
-    return ""  # Return an empty response upon success.
 
 @admi.route("/ajax/user_table_settings", methods=['POST'])
 @user_login_required
@@ -570,25 +571,27 @@ def update_table_settings():
         return "Invalid request", 400
     return ""
 
-@admi.route("/admin/viewconfig", methods=["POST"])
-@user_login_required  # Ensures the user is logged in
-@admin_required  # Ensures the user has admin privileges
- # Function to update view configuration
-def update_view_configuration():
-    to_save = request.form.to_dict()  # Collects form data
 
-    _config_string(to_save, "config_calibre_web_title")  # Updates Calibre web title
+@admi.route("/admin/viewconfig", methods=["POST"])
+@user_login_required
+@admin_required
+def update_view_configuration():
+    to_save = request.form.to_dict()
+
+    _config_string(to_save, "config_calibre_web_title")
     _config_string(to_save, "config_columns_to_ignore")
     if _config_string(to_save, "config_title_regex"):
-        calibre_db.create_functions(config)  # Creates functions if title regex is set
+        calibre_db.create_functions(config)
 
-    if not check_valid_read_column(to_save.get("config_read_column", "0")):  # Validates read column
+    if not check_valid_read_column(to_save.get("config_read_column", "0")):
         flash(_("Invalid Read Column"), category="error")
+        log.debug("Invalid Read column")
         return view_configuration()
     _config_int(to_save, "config_read_column")
 
-    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):  # Validates restricted column
+    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):
         flash(_("Invalid Restricted Column"), category="error")
+        log.debug("Invalid Restricted Column")
         return view_configuration()
     _config_int(to_save, "config_restricted_column")
 
@@ -886,60 +889,41 @@ def delete_restriction(res_type, user_id):
 @admi.route("/ajax/listrestriction/<int:res_type>/<int:user_id>")
 @user_login_required
 @admin_required
-#This is used to collect the list_restriction function
 def list_restriction(res_type, user_id):
-    # This function generates a JSON response based on restrictions and allowed elements.
-    # It takes two parameters: 
-    # - res_type: Determines the type of restriction (e.g., tags, columns).
-    # - user_id: The ID of the user to retrieve the data (used for user-specific restrictions).
-
-    
-    if res_type == 0:   # Tags as template
-        # If the resource type is 0, list denied and allowed tags globally from the config.
+    if res_type == 0:  # Tags as template
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_tags()) if x != '']
-        json_dumps = restrict + allow # Combine allowed and denied tags into a single list
-        
-        
+        json_dumps = restrict + allow
     elif res_type == 1:  # CustomC as template
-        # If resource type is 1, list denied and allowed custom column values.
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
-        
-        
     elif res_type == 2:  # Tags per user
-        # If resource type is 2, list denied and allowed tags specific to the user.
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() # Query user by ID.
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
         else:
-            usr = current_user # If no user_id, get the current logged-in user.
+            usr = current_user
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_tags()) if x != '']
         json_dumps = restrict + allow
-        
-        
-    elif res_type == 3:  
+    elif res_type == 3:  # CustomC per user
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() 
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
         else:
-            usr = current_user  
+            usr = current_user
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
-
-
-        
     else:
-        json_dumps = "" 
+        json_dumps = ""
     js = json.dumps(json_dumps)
     response = make_response(js)
     response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -951,6 +935,7 @@ def list_restriction(res_type, user_id):
 def ajax_self_fullsync():
     return do_full_kobo_sync(current_user.id)
 
+
 @admi.route("/ajax/fullsync/<int:userid>", methods=["POST"])
 @user_login_required
 @admin_required
@@ -960,7 +945,7 @@ def ajax_fullsync(userid):
 
 @admi.route("/ajax/pathchooser/")
 @user_login_required
-@admin_required 
+@admin_required
 def ajax_pathchooser():
     return pathchooser()
 
@@ -1187,38 +1172,21 @@ def _configuration_oauth_helper(to_save):
 
 
 def _configuration_logfile_helper(to_save):
-    # Initialize a flag to track if a reboot is required
     reboot_required = False
-    
-    # Check and update the log level configuration; reboot may be required
     reboot_required |= _config_int(to_save, "config_log_level")
-    
-    # Check and update the logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_logfile")
-    
-    # Validate the specified logfile path
     if not logger.is_valid_logfile(config.config_logfile):
         return reboot_required, \
                _configuration_result(_('Logfile Location is not Valid, Please Enter Correct Path'))
 
-    # Check and update the access log configuration; reboot may be required
     reboot_required |= _config_checkbox_int(to_save, "config_access_log")
-    
-    # Check and update the access logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_access_logfile")
-    
-    # Validate the specified access logfile path
     if not logger.is_valid_logfile(config.config_access_logfile):
         return reboot_required, \
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
-    
-    # All checks passed; return whether a reboot is required
     return reboot_required, None
 
 
-
-#This function using ldap is a protocal
-#This function input Parameter is to_save object
 def _configuration_ldap_helper(to_save):
     reboot_required = False
     reboot_required |= _config_int(to_save, "config_ldap_port")
@@ -1260,50 +1228,36 @@ def _configuration_ldap_helper(to_save):
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
 
-    # Validate LDAP Group Object Filter configuration
-if config.config_ldap_group_object_filter:
-    # Check for exactly one "%s" format identifier in the filter
-    if config.config_ldap_group_object_filter.count("%s") != 1:
+    if config.config_ldap_group_object_filter:
+        if config.config_ldap_group_object_filter.count("%s") != 1:
+            return reboot_required, \
+                   _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
+        if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
+            return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
+
+    if config.config_ldap_user_object.count("%s") != 1:
         return reboot_required, \
-               _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
-    
-    # Ensure parentheses are balanced in the filter
-    if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
-        return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
+               _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
+    if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
+        return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
 
-# Validate LDAP User Object Filter configuration
-if config.config_ldap_user_object.count("%s") != 1:
-    return reboot_required, \
-           _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
-# Ensure parentheses are balanced in the user filter
-if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
-    return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
+    if to_save.get("ldap_import_user_filter") == '0':
+        config.config_ldap_member_user_object = ""
+    else:
+        if config.config_ldap_member_user_object.count("%s") != 1:
+            return reboot_required, \
+                   _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
+        if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
+            return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
 
-# Check if LDAP Member User Object Filter should be set based on user input
-if to_save.get("ldap_import_user_filter") == '0':
-    config.config_ldap_member_user_object = ""
-else:
-    # Validate LDAP Member User Object Filter configuration
-    if config.config_ldap_member_user_object.count("%s") != 1:
-        return reboot_required, \
-               _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
-    
-    # Ensure parentheses are balanced in the member user filter
-    if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
-        return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
-
-# Validate certificate paths if any are provided
-if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
-    # Check if specified certificate files exist
-    if not (os.path.isfile(config.config_ldap_cacert_path) and
-            os.path.isfile(config.config_ldap_cert_path) and
-            os.path.isfile(config.config_ldap_key_path)):
-        return reboot_required, \
-               _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
-                                       'Please Enter Correct Path'))
-
-# All validations passed, return success
-return reboot_required, None
+    if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
+        if not (os.path.isfile(config.config_ldap_cacert_path) and
+                os.path.isfile(config.config_ldap_cert_path) and
+                os.path.isfile(config.config_ldap_key_path)):
+            return reboot_required, \
+                   _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
+                                           'Please Enter Correct Path'))
+    return reboot_required, None
 
 
 @admi.route("/ajax/simulatedbchange", methods=['POST'])
