@@ -768,8 +768,10 @@ def edit_restriction(res_type, user_id):
 @user_login_required
 @admin_required
 def add_user_0_restriction(res_type):
+    # This function is a wrapper for adding a restriction with a default user ID of 0.
+    # It uses the `add_restriction` function with a specified restriction type (`res_type`)
+    # and assigns it to the default user ID 0.
     return add_restriction(res_type, 0)
-
 
 @admi.route("/ajax/addrestriction/<int:res_type>/<int:user_id>", methods=['POST'])
 @user_login_required
