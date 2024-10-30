@@ -1,31 +1,31 @@
-msgid "Popular publications from this catalog based on Downloads."
-msgstr "பதிவிறக்கங்களின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
+msgid "Books ordered by Rating"
+msgstr "மதிப்பீட்டின்படி வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "Popular publications from this catalog based on Rating."
-msgstr "மதிப்பீட்டின் அடிப்படையில் இந்த பட்டியலிலிருந்து பிரபலமான வெளியீடுகள்."
+msgid "Books ordered by file formats"
+msgstr "கோப்பு வடிவங்கள் மூலம் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
 
-msgid "Recently added Books"
-msgstr "சமீபத்தில் சேர்க்கப்பட்ட புத்தகங்கள்"
+msgid "Shelves"
+msgstr "அலமாரிகள்"
 
-msgid "The latest Books"
-msgstr "சமீபத்திய புத்தகங்கள்"
+msgid "Books organized in shelves"
+msgstr "புத்தகங்கள் அலமாரிகளில் ஏற்பாடு செய்யப்பட்டுள்ளன"
 
-msgid "Random Books"
-msgstr "சீரற்ற புத்தகங்கள்"
+msgid "Home"
+msgstr "முகப்பு"
 
-msgid "Books ordered by Author"
-msgstr "ஆசிரியர் ஆர்டர் செய்த புத்தகங்கள்"
+msgid "Toggle Navigation"
+msgstr "வழிசெலுத்தலை மாற்று"
 
-msgid "Books ordered by publisher"
-msgstr "வெளியீட்டாளரால் ஆர்டர் செய்யப்பட்ட புத்தகங்கள்"
+msgid "Search Library"
+msgstr "தேடல் நூலகம்"
 
-msgid "Books ordered by category"
-msgstr "வகை வாரியாக வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
+msgid "Account"
+msgstr "கணக்கு"
 
-msgid "Books ordered by series"
-msgstr "புத்தகங்கள் வரிசையில் வரிசைப்படுத்தப்பட்டுள்ளன"
+msgid "Logout"
+msgstr "வெளியேறு"
 
-msgid "Books ordered by Languages"
-msgstr "மொழிகளால் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
+msgid "Settings"
+msgstr "அமைப்புகள்"
 
 
