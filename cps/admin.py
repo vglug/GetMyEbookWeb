@@ -777,47 +777,64 @@ def add_user_0_restriction(res_type):
 @user_login_required
 @admin_required
 def add_restriction(res_type, user_id):
-    element = request.form.to_dict()
-    if res_type == 0:  # Tags as template
-        if 'submit_allow' in element:
+    # Main function to add different types of restrictions to specified users or elements
+    # `res_type` determines the type of restriction to add, while `user_id` specifies the target user (0 for default)
+
+    element = request.form.to_dict()  # Collects form data from the request
+
+    if res_type == 0:  # If restriction type is "Tags as template"
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Add allowed tags and save configuration
             config.config_allowed_tags = restriction_addition(element, config.list_allowed_tags)
             config.save()
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Add denied tags and save configuration
             config.config_denied_tags = restriction_addition(element, config.list_denied_tags)
             config.save()
-    if res_type == 1:  # CCustom as template
-        if 'submit_allow' in element:
+
+    if res_type == 1:  # If restriction type is "Custom as template"
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Add allowed column values and save configuration
             config.config_allowed_column_value = restriction_addition(element, config.list_denied_column_values)
             config.save()
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Add denied column values and save configuration
             config.config_denied_column_value = restriction_addition(element, config.list_allowed_column_values)
             config.save()
-    if res_type == 2:  # Tags per user
+
+    if res_type == 2:  # If restriction type is "Tags per user"
+        # Check if user_id is valid; if not, use the current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if 'submit_allow' in element:
+
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Update allowed tags for the user and commit to session
             usr.allowed_tags = restriction_addition(element, usr.list_allowed_tags)
             ub.session_commit("Changed allowed tags of user {} to {}".format(usr.name, usr.list_allowed_tags()))
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Update denied tags for the user and commit to session
             usr.denied_tags = restriction_addition(element, usr.list_denied_tags)
             ub.session_commit("Changed denied tags of user {} to {}".format(usr.name, usr.list_denied_tags()))
-    if res_type == 3:  # CustomC per user
+
+    if res_type == 3:  # If restriction type is "Custom per user"
+        # Check if user_id is valid; if not, use the current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if 'submit_allow' in element:
-            usr.allowed_column_value = restriction_addition(element, usr.list_allowed_column_values)
-            ub.session_commit("Changed allowed columns of user {} to {}".format(usr.name,
-                                                                                usr.list_allowed_column_values()))
-        elif 'submit_deny' in element:
-            usr.denied_column_value = restriction_addition(element, usr.list_denied_column_values)
-            ub.session_commit("Changed denied columns of user {} to {}".format(usr.name,
-                                                                               usr.list_denied_column_values()))
-    return ""
 
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Update allowed column values for the user and commit to session
+            usr.allowed_column_value = restriction_addition(element, usr.list_allowed_column_values)
+            ub.session_commit("Changed allowed columns of user {} to {}".format(usr.name, usr.list_allowed_column_values()))
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Update denied column values for the user and commit to session
+            usr.denied_column_value = restriction_addition(element, usr.list_denied_column_values)
+            ub.session_commit("Changed denied columns of user {} to {}".format(usr.name, usr.list_denied_column_values()))
+
+    return ""  # Return an empty response after the restriction is added
 
 @admi.route("/ajax/deleterestriction/<int:res_type>", methods=['POST'])
 @user_login_required
