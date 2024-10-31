@@ -464,7 +464,10 @@ def table_get_default_lang():
 
 
 
+
+
 # Define a route that accepts POST requests with a parameter 'param'.
+
 
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
 @user_login_required
@@ -1317,8 +1320,11 @@ def _configuration_logfile_helper(to_save):
 
 
 
+
+
 #This function using ldap is a protocal
 #This function input Parameter is to_save object
+
 
 def _configuration_ldap_helper(to_save):
     # Initialize a flag to track if a reboot is required
@@ -1366,6 +1372,9 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+
+
+
 
 
 
