@@ -1351,7 +1351,9 @@ def update_mailsettings():
             else:
                 flash(_("There was an error sending the Test e-mail: %(res)s", res=result), category="error")
         else:
-            flash(_("Please configure your e-mail address first..."), category="error") 
+            flash(_("Please configure your e-mail address first..."), category="error")
+#else statement is using the func is flash and the category is success
+#The return tyep is edit mail settings 
 
     else:
         flash(_("Email Server Settings updated"), category="success")
@@ -1362,6 +1364,9 @@ def update_mailsettings():
 @admi.route("/admin/scheduledtasks")
 @user_login_required
 @admin_required
+#Edit scheduledtask using the range function is 24
+#The start val is5,step val is 65,step val is 5
+#The return type is render title template
 def edit_scheduledtasks():
     content = config.get_scheduled_task_settings()
     time_field = list()
@@ -1383,6 +1388,7 @@ def edit_scheduledtasks():
 @admi.route("/admin/scheduledtasks", methods=["POST"])
 @user_login_required
 @admin_required
+
 def update_scheduledtasks():
     error = False
     to_save = request.form.to_dict()
@@ -1402,6 +1408,7 @@ def update_scheduledtasks():
     _config_checkbox(to_save, "schedule_reconnect")
 
     if not error:
+ 
         try:
             config.save()
             flash(_("Scheduled tasks settings updated"), category="success")
