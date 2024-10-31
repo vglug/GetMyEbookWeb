@@ -1324,6 +1324,9 @@ def update_mailsettings():
         config.mail_server = strip_whitespaces(to_save.get('mail_server', ""))
         config.mail_from = strip_whitespaces(to_save.get('mail_from', ""))
         config.mail_login = strip_whitespaces(to_save.get('mail_login', "")) 
+#try block can be using the parameter is operational error and invalid request error as e
+#This function will be return the statement is edit mail setting
+#This try block using the exception as e
     try:
         config.save()
     except (OperationalError, InvalidRequestError) as e:
@@ -1334,6 +1337,10 @@ def update_mailsettings():
     except Exception as e:
         flash(_("Oops! Database Error: %(error)s.", error=e.orig), category="error")
         return edit_mailsettings()
+#if statement can be using the current_ user. mail
+#The statement is execute the result is equals to sent test mail(current_user.email, current_user.name)
+# if result is false it execute the statement is none(flash(_("Test e-mail queued for sending to %(email)s, please check Tasks for result",
+                        email=current_user.email), category="info")
 
     if to_save.get("test"):
         if current_user.email:
