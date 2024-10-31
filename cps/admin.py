@@ -198,35 +198,44 @@ def update_thumbnails():
         helper.update_thumbnail_cache()
     return ""
 
-
+# Define a route for the admin view page that requires user login and admin access
 @admi.route("/admin/view")
 @user_login_required
 @admin_required
 def admin():
+    # Get the current version information from the updater thread
     version = updater_thread.get_current_version_info()
+    # If no version information is available, set the commit as 'Unknown'
     if version is False:
         commit = _('Unknown')
     else:
+        # If version has 'datetime' key, we process it
         if 'datetime' in version:
             commit = version['datetime']
 
             tz = timedelta(seconds=time.timezone if (time.localtime().tm_isdst == 0) else time.altzone)
             form_date = datetime.strptime(commit[:19], "%Y-%m-%dT%H:%M:%S")
+            # Check if the datetime string contains timezone information
             if len(commit) > 19:  # check if string has timezone
+            # If timezone is positive, subtract the offset from the time
                 if commit[19] == '+':
                     form_date -= timedelta(hours=int(commit[20:22]), minutes=int(commit[23:]))
+                # If timezone is negative, add the offset to the time
                 elif commit[19] == '-':
                     form_date += timedelta(hours=int(commit[20:22]), minutes=int(commit[23:]))
+            # Adjust the datetime object with the calculated timezone offset and format it
             commit = format_datetime(form_date - tz, format='short')
         else:
+         # If no 'datetime' is present, use the version information and replace "b" with "Beta"
             commit = version['version'].replace("b", " Beta")
-
+# Query all users from the database
     all_user = ub.session.query(ub.User).all()
     # email_settings = mail_config.get_mail_settings()
     schedule_time = format_time(datetime_time(hour=config.schedule_start_time), format="short")
+    # Calculate the schedule duration based on the configured duration in hours and minutes
     t = timedelta(hours=config.schedule_duration // 60, minutes=config.schedule_duration % 60)
     schedule_duration = format_timedelta(t, threshold=.99)
-
+# Render the admin template with various context variables including users, config, commit, etc
     return render_title_template("admin.html", allUser=all_user, config=config, commit=commit,
                                  feature_support=feature_support, schedule_time=schedule_time,
                                  schedule_duration=schedule_duration,
@@ -241,16 +250,21 @@ def db_configuration():
         return _db_configuration_update_helper()
     return _db_configuration_result()
 
-
+# Define a route for the admin basic configuration page
 @admi.route("/admin/config", methods=["GET"])
 @user_login_required
 @admin_required
 def configuration():
+    # Render the configuration template, passing in relevant configuration and feature support data
     return render_title_template("config_edit.html",
                                  config=config,
+                                 # OAuth providers
                                  provider=oauthblueprints,
+                                 # Supported features
                                  feature_support=feature_support,
                                  title=_("Basic Configuration"), page="config")
+
+
 
 
 @admi.route("/admin/ajaxconfig", methods=["POST"])
@@ -448,37 +462,32 @@ def table_get_default_lang():
     return json.dumps(ret)
 
 
-# Define a route that accepts POST requests with a parameter 'param'.
-@admi.route("/ajax/editlistusers/<param>", methods=['POST'])
-@user_login_required       # Ensures the user is logged in before accessing this route.
-@admin_required            # Ensures only admins can access this route.
-# Define the function that handles user editing.
-def edit_list_user(param):
-    vals = request.form.to_dict(flat=False)  # Parse the form data into a dictionary.
-    all_user = ub.session.query(ub.User)  # Query all users from the database.
 
-    # If anonymous browsing is disabled, filter out anonymous users.
+
+# Define a route that accepts POST requests with a parameter 'param'.
+
+@admi.route("/ajax/editlistusers/<param>", methods=['POST'])
+@user_login_required
+@admin_required
+def edit_list_user(param):
+    vals = request.form.to_dict(flat=False)
+    all_user = ub.session.query(ub.User)
     if not config.config_anonbrowse:
         all_user = all_user.filter(ub.User.role.op('&')(constants.ROLE_ANONYMOUS) != constants.ROLE_ANONYMOUS)
-
-    # Check if only one user is posted by 'pk' or a list of users via 'pk[]'.
+    # only one user is posted
     if "pk" in vals:
-        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]  # Filter and fetch one user by 'pk'.
+        users = [all_user.filter(ub.User.id == vals['pk'][0]).one_or_none()]
     else:
-        if "pk[]" in vals:  # If 'pk[]' is present, fetch users by the list of ids.
+        if "pk[]" in vals:
             users = all_user.filter(ub.User.id.in_(vals['pk[]'])).all()
         else:
-            return _("Malformed request"), 400  # Return error if no valid 'pk' is found.
-
-    # Ensure 'field_index' and 'value' are single values instead of lists.
+            return _("Malformed request"), 400
     if 'field_index' in vals:
         vals['field_index'] = vals['field_index'][0]
     if 'value' in vals:
         vals['value'] = vals['value'][0]
     elif not ('value[]' in vals):
-        return _("Malformed request"), 400  # Return error if 'value' is missing.
-
-    # Iterate through the list of users and modify each one based on 'param'.
+        return _("Malformed request"), 400
     for user in users:
         try:
             if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
@@ -1305,8 +1314,12 @@ def _configuration_logfile_helper(to_save):
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
     return reboot_required, None
 
+
+
+
 #This function using ldap is a protocal
 #This function input Parameter is to_save object
+
 def _configuration_ldap_helper(to_save):
     # Initialize a flag to track if a reboot is required
     reboot_required = False
@@ -1353,6 +1366,10 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+
+
+
+
     if config.config_ldap_group_object_filter:
         if config.config_ldap_group_object_filter.count("%s") != 1:
             return reboot_required, \
