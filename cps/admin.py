@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
+#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)  
 #    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
@@ -381,35 +381,47 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
+    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
+    
+    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
+    
+    # Initialize counters and response lists
     count = 0
-    errors = list()
-    success = list()
+    errors = []
+    success = []
+    
+    # Return error if no users are found
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
+    
+    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)
+            message = _delete_user(user)  # Call your deletion function
             count += 1
         except Exception as ex:
-            log.error(ex)
-            errors.append({'type': "danger", 'message': str(ex)})
-
+            log.error(f"Error deleting user {user.id}: {ex}")
+            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
+    
+    # Prepare success messages based on count
     if count == 1:
-        log.info("User {} deleted".format(user_ids))
+        log.info(f"User {user_ids} deleted")
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info("Users {} deleted".format(user_ids))
+        log.info(f"Users {user_ids} deleted")
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    success.extend(errors)
-    return Response(json.dumps(success), mimetype='application/json')
+    
+    # Combine success and error messages for response
+    response_data = success + errors
+    return Response(json.dumps(response_data), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
@@ -434,6 +446,7 @@ def table_get_default_lang():
     for lang in languages:
         ret.append({'value': lang.lang_code, 'text': lang.name})
     return json.dumps(ret)
+
 
 # Define a route that accepts POST requests with a parameter 'param'.
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
@@ -468,71 +481,68 @@ def edit_list_user(param):
     # Iterate through the list of users and modify each one based on 'param'.
     for user in users:
         try:
-            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:  # Check if the 'param' deals with tags.
-                if 'value[]' in vals:  # If multiple values are passed, prepare tags accordingly.
+            if param in ['denied_tags', 'allowed_tags', 'allowed_column_value', 'denied_column_value']:
+                if 'value[]' in vals:
                     setattr(user, param, prepare_tags(user, vals['action'][0], param, vals['value[]']))
                 else:
-                    setattr(user, param, strip_whitespaces(vals['value']))  # Set a single value for the parameter.
+                    setattr(user, param, strip_whitespaces(vals['value']))
             else:
-                vals['value'] = strip_whitespaces(vals['value'])  # Remove any extra whitespaces from the value.
+                vals['value'] = strip_whitespaces(vals['value'])
                 if param == 'name':
-                    if user.name == "Guest":  # Prevent changing the name of the 'Guest' user.
+                    if user.name == "Guest":
                         raise Exception(_("Guest Name can't be changed"))
-                    user.name = check_username(vals['value'])  # Set the new username after validation.
+                    user.name = check_username(vals['value'])
                 elif param == 'email':
-                    user.email = check_email(vals['value'])  # Set the new email after validation.
+                    user.email = check_email(vals['value'])
                 elif param == 'kobo_only_shelves_sync':
-                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')  # Set sync preferences for Kobo.
+                    user.kobo_only_shelves_sync = int(vals['value'] == 'true')
                 elif param == 'kindle_mail':
-                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""  # Validate Kindle mail if present.
+                    user.kindle_mail = valid_email(vals['value']) if vals['value'] else ""
                 elif param.endswith('role'):
-                    value = int(vals['field_index'])  # Get the role index for the user.
-                    if user.name == "Guest" and value in [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
-                        raise Exception(_("Guest can't have this role"))  # Prevent assigning certain roles to 'Guest'.
-                    
-                    # Ensure the role is valid and a power of 2.
+                    value = int(vals['field_index'])
+                    if user.name == "Guest" and value in \
+                      [constants.ROLE_ADMIN, constants.ROLE_PASSWD, constants.ROLE_EDIT_SHELFS]:
+                        raise Exception(_("Guest can't have this role"))
+                    # check for valid value, last on checks for power of 2 value
                     if value > 0 and value <= constants.ROLE_VIEWER and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.role |= value  # Add the role if 'true'.
+                            user.role |= value
                         elif vals['value'] == 'false':
-                            # Prevent removing the last admin role.
                             if value == constants.ROLE_ADMIN:
-                                if not ub.session.query(ub.User).filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
-                                                                         ub.User.id != user.id).count():
+                                if not ub.session.query(ub.User). \
+                                    filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
+                                           ub.User.id != user.id).count():
                                     return Response(
                                         json.dumps([{'type': "danger",
                                                      'message': _("No admin user remaining, can't remove admin role",
                                                                   nick=user.name)}]), mimetype='application/json')
-
-                            user.role &= ~value  # Remove the role if 'false'
+                            user.role &= ~value
                         else:
-                            raise Exception(_("Value has to be true or false"))  # Raise an error if an invalid value is passed.
+                            raise Exception(_("Value has to be true or false"))
                     else:
-                        raise Exception(_("Invalid role"))  # Raise an error for invalid role values.
+                        raise Exception(_("Invalid role"))
                 elif param.startswith('sidebar'):
-                    value = int(vals['field_index'])  # Get the sidebar view index.
+                    value = int(vals['field_index'])
                     if user.name == "Guest" and value == constants.SIDEBAR_READ_AND_UNREAD:
-                        raise Exception(_("Guest can't have this view"))  # Prevent certain views for 'Guest'.
-                    
-                    # Ensure the sidebar view is valid and a power of 2.
+                        raise Exception(_("Guest can't have this view"))
+                    # check for valid value, last on checks for power of 2 value
                     if value > 0 and value <= constants.SIDEBAR_LIST and (value & value - 1 == 0 or value == 1):
                         if vals['value'] == 'true':
-                            user.sidebar_view |= value  # Add the sidebar view if 'true'.
+                            user.sidebar_view |= value
                         elif vals['value'] == 'false':
-                            user.sidebar_view &= ~value  # Remove the sidebar view if 'false'.
+                            user.sidebar_view &= ~value
                         else:
-                            raise Exception(_("Value has to be true or false"))  # Raise an error for invalid value.
+                            raise Exception(_("Value has to be true or false"))
                     else:
-                        raise Exception(_("Invalid view"))  # Raise an error for invalid view values.
+                        raise Exception(_("Invalid view"))
                 elif param == 'locale':
                     if user.name == "Guest":
-                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))  # Prevent setting locale for 'Guest'.
+                        raise Exception(_("Guest's Locale is determined automatically and can't be set"))
                     if vals['value'] in get_available_translations():
-                        user.locale = vals['value']  # Set the locale if it's valid.
+                        user.locale = vals['value']
                     else:
-                        raise Exception(_("No Valid Locale Given"))  # Raise an error for invalid locale.
+                        raise Exception(_("No Valid Locale Given"))
                 elif param == 'default_language':
-                    # Fetch valid languages and ensure the provided language is valid.
                     languages = calibre_db.session.query(db.Languages) \
                         .join(db.books_languages_link) \
                         .join(db.Books) \
@@ -540,19 +550,17 @@ def edit_list_user(param):
                         .group_by(text('books_languages_link.lang_code')).all()
                     lang_codes = [lang.lang_code for lang in languages] + ["all"]
                     if vals['value'] in lang_codes:
-                        user.default_language = vals['value']  # Set the default language if valid.
+                        user.default_language = vals['value']
                     else:
-                        raise Exception(_("No Valid Book Language Given"))  # Raise an error for invalid language.
+                        raise Exception(_("No Valid Book Language Given"))
                 else:
-                    return _("Parameter not found"), 400  # Return error if the parameter is not recognized.
-
-        # Catch and log any exceptions that occur during the process.
+                    return _("Parameter not found"), 400
         except Exception as ex:
             log.error_or_exception(ex)
-            return str(ex), 400  # Return the error message.
+            return str(ex), 400
+    ub.session_commit()
+    return ""
 
-    ub.session_commit()  # Commit the changes to the database.
-    return ""  # Return an empty response upon success.
 
 @admi.route("/ajax/user_table_settings", methods=['POST'])
 @user_login_required
@@ -570,25 +578,27 @@ def update_table_settings():
         return "Invalid request", 400
     return ""
 
-@admi.route("/admin/viewconfig", methods=["POST"])
-@user_login_required  # Ensures the user is logged in
-@admin_required  # Ensures the user has admin privileges
- # Function to update view configuration
-def update_view_configuration():
-    to_save = request.form.to_dict()  # Collects form data
 
-    _config_string(to_save, "config_calibre_web_title")  # Updates Calibre web title
+@admi.route("/admin/viewconfig", methods=["POST"])
+@user_login_required
+@admin_required
+def update_view_configuration():
+    to_save = request.form.to_dict()
+
+    _config_string(to_save, "config_calibre_web_title")
     _config_string(to_save, "config_columns_to_ignore")
     if _config_string(to_save, "config_title_regex"):
-        calibre_db.create_functions(config)  # Creates functions if title regex is set
+        calibre_db.create_functions(config)
 
-    if not check_valid_read_column(to_save.get("config_read_column", "0")):  # Validates read column
+    if not check_valid_read_column(to_save.get("config_read_column", "0")):
         flash(_("Invalid Read Column"), category="error")
+        log.debug("Invalid Read column")
         return view_configuration()
     _config_int(to_save, "config_read_column")
 
-    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):  # Validates restricted column
+    if not check_valid_restricted_column(to_save.get("config_restricted_column", "0")):
         flash(_("Invalid Restricted Column"), category="error")
+        log.debug("Invalid Restricted Column")
         return view_configuration()
     _config_int(to_save, "config_restricted_column")
 
@@ -886,60 +896,41 @@ def delete_restriction(res_type, user_id):
 @admi.route("/ajax/listrestriction/<int:res_type>/<int:user_id>")
 @user_login_required
 @admin_required
-#This is used to collect the list_restriction function
 def list_restriction(res_type, user_id):
-    # This function generates a JSON response based on restrictions and allowed elements.
-    # It takes two parameters: 
-    # - res_type: Determines the type of restriction (e.g., tags, columns).
-    # - user_id: The ID of the user to retrieve the data (used for user-specific restrictions).
-
-    
-    if res_type == 0:   # Tags as template
-        # If the resource type is 0, list denied and allowed tags globally from the config.
+    if res_type == 0:  # Tags as template
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_tags()) if x != '']
-        json_dumps = restrict + allow # Combine allowed and denied tags into a single list
-        
-        
+        json_dumps = restrict + allow
     elif res_type == 1:  # CustomC as template
-        # If resource type is 1, list denied and allowed custom column values.
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(config.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(config.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
-        
-        
     elif res_type == 2:  # Tags per user
-        # If resource type is 2, list denied and allowed tags specific to the user.
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() # Query user by ID.
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
         else:
-            usr = current_user # If no user_id, get the current logged-in user.
+            usr = current_user
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_tags()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_tags()) if x != '']
         json_dumps = restrict + allow
-        
-        
-    elif res_type == 3:  
+    elif res_type == 3:  # CustomC per user
         if isinstance(user_id, int):
-            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first() 
+            usr = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
         else:
-            usr = current_user  
+            usr = current_user
         restrict = [{'Element': x, 'type': _('Deny'), 'id': 'd' + str(i)}
                     for i, x in enumerate(usr.list_denied_column_values()) if x != '']
         allow = [{'Element': x, 'type': _('Allow'), 'id': 'a' + str(i)}
                  for i, x in enumerate(usr.list_allowed_column_values()) if x != '']
         json_dumps = restrict + allow
-
-
-        
     else:
-        json_dumps = "" 
+        json_dumps = ""
     js = json.dumps(json_dumps)
     response = make_response(js)
     response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -951,6 +942,7 @@ def list_restriction(res_type, user_id):
 def ajax_self_fullsync():
     return do_full_kobo_sync(current_user.id)
 
+
 @admi.route("/ajax/fullsync/<int:userid>", methods=["POST"])
 @user_login_required
 @admin_required
@@ -960,7 +952,7 @@ def ajax_fullsync(userid):
 
 @admi.route("/ajax/pathchooser/")
 @user_login_required
-@admin_required 
+@admin_required
 def ajax_pathchooser():
     return pathchooser()
 
@@ -1035,63 +1027,72 @@ def get_drives(current):
 
 
 def pathchooser():
+    # Define the type of browsing (folder or file)
     browse_for = "folder"
+    # Check if only folders should be returned
     folder_only = request.args.get('folder', False) == "true"
+    # Get the file filter and normalize the path
     file_filter = request.args.get('filter', "")
     path = os.path.normpath(request.args.get('path', ""))
 
-    if os.path.isfile(path):
-        old_file = path
-        path = os.path.dirname(path)
+    if os.path.isfile(path): # If the provided path is a file, get its directory
+        old_file = path       # Store the old file path
+        path = os.path.dirname(path)  # Get the directory of the file
     else:
-        old_file = ""
+        old_file = ""    # No old file if the path is not a file
 
-    absolute = False
+    absolute = False      # Flag to check if the path is absolute
 
-    if os.path.isdir(path):
-        cwd = os.path.realpath(path)
-        absolute = True
+    if os.path.isdir(path):    # Check if the given path is a directory
+        cwd = os.path.realpath(path)   # Get the absolute path
+        absolute = True              # Set the absolute flag
     else:
-        cwd = os.getcwd()
-
+        cwd = os.getcwd()           # Use the current working directory if not a valid path
+    # Normalize and resolve the current working directory
     cwd = os.path.normpath(os.path.realpath(cwd))
     parent_dir = os.path.dirname(cwd)
+    # Adjust cwd and parent_dir for relative paths
     if not absolute:
         if os.path.realpath(cwd) == os.path.realpath("/"):
-            cwd = os.path.relpath(cwd)
-        else:
-            cwd = os.path.relpath(cwd) + os.path.sep
-        parent_dir = os.path.relpath(parent_dir) + os.path.sep
+            cwd = os.path.relpath(cwd)     # Convert to relative path if at root
 
-    files = []
+        else:
+            cwd = os.path.relpath(cwd) + os.path.sep   # Append separator
+        parent_dir = os.path.relpath(parent_dir) + os.path.sep # Append separator
+
+    files = []       # Initialize list to store files and directories
+ # Check if we're at the root directory
     if os.path.realpath(cwd) == os.path.realpath("/") \
             or (sys.platform == "win32" and os.path.realpath(cwd)[1:] == os.path.realpath("/")[1:]):
         # we are in root
-        parent_dir = ""
+        parent_dir = ""    # No parent directory at root
         if sys.platform == "win32":
-            files = get_drives(cwd)
+            files = get_drives(cwd)           # Get available drives on Windows
 
+         # Attempt to list directories and files in the current working directory
     try:
         folders = os.listdir(cwd)
     except Exception:
-        folders = []
+        folders = []       # Handle exception gracefully
 
     for f in folders:
         try:
-            sanitized_f = str(Markup.escape(f))
+            sanitized_f = str(Markup.escape(f))      # Sanitize filename for safe HTML
             data = {"name": sanitized_f, "fullpath": os.path.join(cwd, sanitized_f)}
             data["sort"] = data["fullpath"].lower()
         except Exception:
-            continue
+            continue                 # Skip if an error occurs
+
+        # Check if the item is a file
 
         if os.path.isfile(os.path.join(cwd, f)):
             if folder_only:
-                continue
+                continue       # Skip files if only folders are requested
             if file_filter != "" and file_filter != f:
-                continue
-            data["type"] = "file"
+                continue       # Skip if file doesn't match the filter
+            data["type"] = "file"    # Set type to file
             data["size"] = os.path.getsize(os.path.join(cwd, f))
-
+               # Format file size for readability
             power = 0
             while (data["size"] >> 10) > 0.3:
                 power += 1
@@ -1099,33 +1100,72 @@ def pathchooser():
             units = ("", "K", "M", "G", "T")
             data["size"] = str(data["size"]) + " " + units[power] + "Byte"
         else:
-            data["type"] = "dir"
-            data["size"] = ""
+            data["type"] = "dir"        # Set type to directory
+            data["size"] = ""       # No size for directories
 
-        files.append(data)
-
+        files.append(data)    # Add item to the list
+     # Sort files and directories by type and name
     files = sorted(files, key=operator.itemgetter("type", "sort"))
-
+     # Prepare the context for JSON response
     context = {
-        "cwd": cwd,
-        "files": files,
-        "parentdir": parent_dir,
-        "type": browse_for,
-        "oldfile": old_file,
-        "absolute": absolute,
+        "cwd": cwd,            # Current working directory
+        "files": files,         # List of files and directories
+        "parentdir": parent_dir,  # Parent directory
+        "type": browse_for,       # Type of browsing
+        "oldfile": old_file,         # Previously selected file (if any)
+        "absolute": absolute,       # Flag indicating if the path is absolute
     }
-    return json.dumps(context)
+    return json.dumps(context)  # Return the context as a JSON response
 
 
 def _config_int(to_save, x, func=int):
+     """
+    Save an integer configuration value.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+    - func: A function to convert the value (default is int).
+
+    Returns:
+    - Result of setting the value in the configuration.
+    """
+    
+    # Use the provided function (default is int) to convert the value
+    # and save it in the configuration dictionary.
     return config.set_from_dictionary(to_save, x, func)
 
 
 def _config_checkbox(to_save, x):
+    """
+    Save a checkbox configuration value as a boolean.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the boolean value.
+
+    Returns:
+    - Result of setting the boolean value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to a boolean based on the string "on"
+    
     return config.set_from_dictionary(to_save, x, lambda y: y == "on", False)
 
 
 def _config_checkbox_int(to_save, x):
+     """
+    Save a checkbox configuration value as an integer (0 or 1).
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+
+    Returns:
+    - Result of setting the integer value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to an integer: 1 if "on", otherwise 0
     return config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
 
@@ -1163,64 +1203,77 @@ def _configuration_gdrive_helper(to_save):
         gdriveutils.deleteDatabaseOnChange()
     return gdrive_error
 
-
+#This function input paramters is to_save object 
+#This function will return bollean type.
 def _configuration_oauth_helper(to_save):
+    # Initialize counters and flags
     active_oauths = 0
     reboot_required = False
+    
+    # Helper function to construct the keys for accessing the configuration
+    def get_key(provider_id, suffix):
+        return f"config_{provider_id}_{suffix}"
+
+    # Iterate through each OAuth provider blueprint
     for element in oauthblueprints:
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] != element['oauth_client_id'] \
-          or to_save["config_" + str(element['id']) + "_oauth_client_secret"] != element['oauth_client_secret']:
-            reboot_required = True
-            element['oauth_client_id'] = to_save["config_" + str(element['id']) + "_oauth_client_id"]
-            element['oauth_client_secret'] = to_save["config_" + str(element['id']) + "_oauth_client_secret"]
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] \
-          and to_save["config_" + str(element['id']) + "_oauth_client_secret"]:
-            active_oauths += 1
-            element["active"] = 1
+        # Construct keys for client ID and secret
+        client_id_key = get_key(element['id'], "oauth_client_id")
+        client_secret_key = get_key(element['id'], "oauth_client_secret")
+
+        # Retrieve the current client ID and secret from to_save
+        current_client_id = to_save.get(client_id_key)
+        current_client_secret = to_save.get(client_secret_key)
+
+        # Check if there's a change in the client ID or secret
+        if current_client_id != element['oauth_client_id'] or current_client_secret != element['oauth_client_secret']:
+            reboot_required = True  # Mark reboot as required if changes were made
+            # Update the element with the new client ID and secret
+            element['oauth_client_id'] = current_client_id
+            element['oauth_client_secret'] = current_client_secret
+
+        # Determine if the current provider is active
+        if current_client_id and current_client_secret:
+            active_oauths += 1  # Increment active OAuth counter
+            element["active"] = 1  # Set provider as active
         else:
-            element["active"] = 0
+            element["active"] = 0  # Set provider as inactive
+
+        # Update the database with the new values
         ub.session.query(ub.OAuthProvider).filter(ub.OAuthProvider.id == element['id']).update(
-            {"oauth_client_id": to_save["config_" + str(element['id']) + "_oauth_client_id"],
-             "oauth_client_secret": to_save["config_" + str(element['id']) + "_oauth_client_secret"],
-             "active": element["active"]})
+            {
+                "oauth_client_id": current_client_id,
+                "oauth_client_secret": current_client_secret,
+                "active": element["active"]
+            }
+        )
+
+    # Return whether a reboot is required
     return reboot_required
 
 
+
 def _configuration_logfile_helper(to_save):
-    # Initialize a flag to track if a reboot is required
     reboot_required = False
-    
-    # Check and update the log level configuration; reboot may be required
     reboot_required |= _config_int(to_save, "config_log_level")
-    
-    # Check and update the logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_logfile")
-    
-    # Validate the specified logfile path
     if not logger.is_valid_logfile(config.config_logfile):
         return reboot_required, \
                _configuration_result(_('Logfile Location is not Valid, Please Enter Correct Path'))
 
-    # Check and update the access log configuration; reboot may be required
     reboot_required |= _config_checkbox_int(to_save, "config_access_log")
-    
-    # Check and update the access logfile configuration; reboot may be required
     reboot_required |= _config_string(to_save, "config_access_logfile")
-    
-    # Validate the specified access logfile path
     if not logger.is_valid_logfile(config.config_access_logfile):
         return reboot_required, \
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
-    
-    # All checks passed; return whether a reboot is required
     return reboot_required, None
-
-
 
 #This function using ldap is a protocal
 #This function input Parameter is to_save object
 def _configuration_ldap_helper(to_save):
+    # Initialize a flag to track if a reboot is required
     reboot_required = False
+
+    # Check and update LDAP configuration values
     reboot_required |= _config_int(to_save, "config_ldap_port")
     reboot_required |= _config_int(to_save, "config_ldap_authentication")
     reboot_required |= _config_string(to_save, "config_ldap_dn")
@@ -1234,17 +1287,19 @@ def _configuration_ldap_helper(to_save):
     reboot_required |= _config_string(to_save, "config_ldap_cacert_path")
     reboot_required |= _config_string(to_save, "config_ldap_cert_path")
     reboot_required |= _config_string(to_save, "config_ldap_key_path")
-    _config_string(to_save, "config_ldap_group_name")
 
+    # Parse and validate the LDAP provider URL
     address = urlparse(to_save.get("config_ldap_provider_url", ""))
     to_save["config_ldap_provider_url"] = (address.hostname or address.path).strip("/")
     reboot_required |= _config_string(to_save, "config_ldap_provider_url")
 
+    # Check if the LDAP service password is provided and set it
     if to_save.get("config_ldap_serv_password_e", "") != "":
         reboot_required |= 1
         config.set_from_dictionary(to_save, "config_ldap_serv_password_e")
     config.save()
 
+    # Validate essential LDAP configuration fields
     if not config.config_ldap_provider_url \
       or not config.config_ldap_port \
       or not config.config_ldap_dn \
@@ -1252,6 +1307,7 @@ def _configuration_ldap_helper(to_save):
         return reboot_required, _configuration_result(_('Please Enter a LDAP Provider, '
                                                         'Port, DN and User Object Identifier'))
 
+    # Validate service account credentials based on authentication type
     if config.config_ldap_authentication > constants.LDAP_AUTH_ANONYMOUS:
         if config.config_ldap_authentication > constants.LDAP_AUTH_UNAUTHENTICATE:
             if not config.config_ldap_serv_username or not bool(config.config_ldap_serv_password_e):
@@ -1259,51 +1315,36 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+    if config.config_ldap_group_object_filter:
+        if config.config_ldap_group_object_filter.count("%s") != 1:
+            return reboot_required, \
+                   _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
+        if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
+            return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
 
-    # Validate LDAP Group Object Filter configuration
-if config.config_ldap_group_object_filter:
-    # Check for exactly one "%s" format identifier in the filter
-    if config.config_ldap_group_object_filter.count("%s") != 1:
+    if config.config_ldap_user_object.count("%s") != 1:
         return reboot_required, \
-               _configuration_result(_('LDAP Group Object Filter Needs to Have One "%s" Format Identifier'))
-    
-    # Ensure parentheses are balanced in the filter
-    if config.config_ldap_group_object_filter.count("(") != config.config_ldap_group_object_filter.count(")"):
-        return reboot_required, _configuration_result(_('LDAP Group Object Filter Has Unmatched Parenthesis'))
+               _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
+    if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
+        return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
 
-# Validate LDAP User Object Filter configuration
-if config.config_ldap_user_object.count("%s") != 1:
-    return reboot_required, \
-           _configuration_result(_('LDAP User Object Filter needs to Have One "%s" Format Identifier'))
-# Ensure parentheses are balanced in the user filter
-if config.config_ldap_user_object.count("(") != config.config_ldap_user_object.count(")"):
-    return reboot_required, _configuration_result(_('LDAP User Object Filter Has Unmatched Parenthesis'))
+    if to_save.get("ldap_import_user_filter") == '0':
+        config.config_ldap_member_user_object = ""
+    else:
+        if config.config_ldap_member_user_object.count("%s") != 1:
+            return reboot_required, \
+                   _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
+        if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
+            return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
 
-# Check if LDAP Member User Object Filter should be set based on user input
-if to_save.get("ldap_import_user_filter") == '0':
-    config.config_ldap_member_user_object = ""
-else:
-    # Validate LDAP Member User Object Filter configuration
-    if config.config_ldap_member_user_object.count("%s") != 1:
-        return reboot_required, \
-               _configuration_result(_('LDAP Member User Filter needs to Have One "%s" Format Identifier'))
-    
-    # Ensure parentheses are balanced in the member user filter
-    if config.config_ldap_member_user_object.count("(") != config.config_ldap_member_user_object.count(")"):
-        return reboot_required, _configuration_result(_('LDAP Member User Filter Has Unmatched Parenthesis'))
-
-# Validate certificate paths if any are provided
-if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
-    # Check if specified certificate files exist
-    if not (os.path.isfile(config.config_ldap_cacert_path) and
-            os.path.isfile(config.config_ldap_cert_path) and
-            os.path.isfile(config.config_ldap_key_path)):
-        return reboot_required, \
-               _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
-                                       'Please Enter Correct Path'))
-
-# All validations passed, return success
-return reboot_required, None
+    if config.config_ldap_cacert_path or config.config_ldap_cert_path or config.config_ldap_key_path:
+        if not (os.path.isfile(config.config_ldap_cacert_path) and
+                os.path.isfile(config.config_ldap_cert_path) and
+                os.path.isfile(config.config_ldap_key_path)):
+            return reboot_required, \
+                   _configuration_result(_('LDAP CACertificate, Certificate or Key Location is not Valid, '
+                                           'Please Enter Correct Path'))
+    return reboot_required, None
 
 
 @admi.route("/ajax/simulatedbchange", methods=['POST'])
