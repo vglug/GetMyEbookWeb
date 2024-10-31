@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)  
+#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
 #    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
@@ -416,17 +416,12 @@ def delete_user():
 @user_login_required
 @admin_required
 def table_get_locale():
-    locale = get_available_locale()  # Retrieve available locales
-    ret = list()  # Initialize the return list
-    current_locale = get_locale()  # Get the current user's locale
-
-    for loc in locale:  # Loop through each locale
-        ret.append({  # Append a dictionary for each locale
-
-            'value': str(loc),  # Locale identifier as string
-            'text': loc.get_language_name(current_locale)})  # Name of the locale in the current language
-
-    return json.dumps(ret)  # Return the list as a JSON string
+    locale = get_available_locale()
+    ret = list()
+    current_locale = get_locale()
+    for loc in locale:
+        ret.append({'value': str(loc), 'text': loc.get_language_name(current_locale)})
+    return json.dumps(ret)
 
 
 @admi.route("/ajax/getdefaultlanguage")
@@ -1139,85 +1134,43 @@ def _configuration_gdrive_helper(to_save):
         gdriveutils.deleteDatabaseOnChange()
     return gdrive_error
 
-#This function input paramters is to_save object 
-#This function will return bollean type.
+
 def _configuration_oauth_helper(to_save):
-    # Initialize counters and flags
     active_oauths = 0
     reboot_required = False
-    
-    # Helper function to construct the keys for accessing the configuration
-    def get_key(provider_id, suffix):
-        return f"config_{provider_id}_{suffix}"
-
-    # Iterate through each OAuth provider blueprint
     for element in oauthblueprints:
-        # Construct keys for client ID and secret
-        client_id_key = get_key(element['id'], "oauth_client_id")
-        client_secret_key = get_key(element['id'], "oauth_client_secret")
-
-        # Retrieve the current client ID and secret from to_save
-        current_client_id = to_save.get(client_id_key)
-        current_client_secret = to_save.get(client_secret_key)
-
-        # Check if there's a change in the client ID or secret
-        if current_client_id != element['oauth_client_id'] or current_client_secret != element['oauth_client_secret']:
-            reboot_required = True  # Mark reboot as required if changes were made
-            # Update the element with the new client ID and secret
-            element['oauth_client_id'] = current_client_id
-            element['oauth_client_secret'] = current_client_secret
-
-        # Determine if the current provider is active
-        if current_client_id and current_client_secret:
-            active_oauths += 1  # Increment active OAuth counter
-            element["active"] = 1  # Set provider as active
+        if to_save["config_" + str(element['id']) + "_oauth_client_id"] != element['oauth_client_id'] \
+          or to_save["config_" + str(element['id']) + "_oauth_client_secret"] != element['oauth_client_secret']:
+            reboot_required = True
+            element['oauth_client_id'] = to_save["config_" + str(element['id']) + "_oauth_client_id"]
+            element['oauth_client_secret'] = to_save["config_" + str(element['id']) + "_oauth_client_secret"]
+        if to_save["config_" + str(element['id']) + "_oauth_client_id"] \
+          and to_save["config_" + str(element['id']) + "_oauth_client_secret"]:
+            active_oauths += 1
+            element["active"] = 1
         else:
-            element["active"] = 0  # Set provider as inactive
-
-        # Update the database with the new values
+            element["active"] = 0
         ub.session.query(ub.OAuthProvider).filter(ub.OAuthProvider.id == element['id']).update(
-            {
-                "oauth_client_id": current_client_id,
-                "oauth_client_secret": current_client_secret,
-                "active": element["active"]
-            }
-        )
-
-    # Return whether a reboot is required
+            {"oauth_client_id": to_save["config_" + str(element['id']) + "_oauth_client_id"],
+             "oauth_client_secret": to_save["config_" + str(element['id']) + "_oauth_client_secret"],
+             "active": element["active"]})
     return reboot_required
 
 
-# This function input parameter is to save object
-# This function config are used built a customized
 def _configuration_logfile_helper(to_save):
-    # Initialize a flag to track if a reboot is required
     reboot_required = False
-    
-    # Check and update the log level configuration
     reboot_required |= _config_int(to_save, "config_log_level")
-    
-    # Check and update the main logfile configuration
     reboot_required |= _config_string(to_save, "config_logfile")
-    
-    # Validate the main logfile path
     if not logger.is_valid_logfile(config.config_logfile):
         return reboot_required, \
                _configuration_result(_('Logfile Location is not Valid, Please Enter Correct Path'))
 
-    # Check and update the access log checkbox configuration
     reboot_required |= _config_checkbox_int(to_save, "config_access_log")
-    
-    # Check and update the access logfile configuration
     reboot_required |= _config_string(to_save, "config_access_logfile")
-    
-    # Validate the access logfile path
     if not logger.is_valid_logfile(config.config_access_logfile):
         return reboot_required, \
                _configuration_result(_('Access Logfile Location is not Valid, Please Enter Correct Path'))
-
-    # Return the reboot status and no error message
     return reboot_required, None
-
 
 
 def _configuration_ldap_helper(to_save):
@@ -1335,9 +1288,13 @@ def edit_mailsettings():
 @admi.route("/admin/mailsettings", methods=["POST"])
 @user_login_required
 @admin_required
+#The mail setting can be used to collect the mail information
+#The function will be return edit mail setting object
+#The mail will be config the mail
 def update_mailsettings():
     to_save = request.form.to_dict()
     _config_int(to_save, "mail_server_type")
+#If statements contains the parameter value is invaliate
     if to_save.get("invalidate"):
         config.mail_gmail_token = {}
         try:
@@ -1352,6 +1309,11 @@ def update_mailsettings():
             flash(str(ex), category="error")
             log.error(ex)
             return edit_mailsettings()
+#The else statements using the parameter is to save mail use port and mail use ssl
+#The mail server is config the mail server equal to strip whitespaces to_save.get('mail_server')
+#The mail from is config the mail is equal to strip whitespaces (to_save.get('mail_from', ""))
+#The mail login is config the mail is equal to strip whitespaces (to_save.get('mail_login', ""))
+# The if and else can return the value is edit mail setting
 
     else:
         _config_int(to_save, "mail_port")
@@ -1361,7 +1323,7 @@ def update_mailsettings():
         _config_int(to_save, "mail_size", lambda y: int(y) * 1024 * 1024)
         config.mail_server = strip_whitespaces(to_save.get('mail_server', ""))
         config.mail_from = strip_whitespaces(to_save.get('mail_from', ""))
-        config.mail_login = strip_whitespaces(to_save.get('mail_login', ""))
+        config.mail_login = strip_whitespaces(to_save.get('mail_login', "")) 
     try:
         config.save()
     except (OperationalError, InvalidRequestError) as e:
@@ -1382,7 +1344,8 @@ def update_mailsettings():
             else:
                 flash(_("There was an error sending the Test e-mail: %(res)s", res=result), category="error")
         else:
-            flash(_("Please configure your e-mail address first..."), category="error")
+            flash(_("Please configure your e-mail address first..."), category="error") 
+
     else:
         flash(_("Email Server Settings updated"), category="success")
 

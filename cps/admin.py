@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)
+#  This file is part of the Calibre-Web (https://github.com/janeczku/calibre-web)  
 #    Copyright (C) 2018-2019 OzzieIsaacs, cervinko, jkrehm, bodybybuddha, ok11,
 #                            andy29485, idalin, Kyosfonica, wuqi, Kennyl, lemmsh,
 #                            falgh1, grunjol, csitko, ytils, xybydy, trasba, vrabe,
@@ -395,35 +395,47 @@ def list_users():
 @user_login_required
 @admin_required
 def delete_user():
+    # Get user IDs from form data
     user_ids = request.form.to_dict(flat=False)
     users = None
     message = ""
+    
+    # Determine if multiple or single user ID(s) are provided
     if "userid[]" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id.in_(user_ids['userid[]'])).all()
     elif "userid" in user_ids:
         users = ub.session.query(ub.User).filter(ub.User.id == user_ids['userid'][0]).all()
+    
+    # Initialize counters and response lists
     count = 0
-    errors = list()
-    success = list()
+    errors = []
+    success = []
+    
+    # Return error if no users are found
     if not users:
         log.error("User not found")
         return Response(json.dumps({'type': "danger", 'message': _("User not found")}), mimetype='application/json')
+    
+    # Attempt to delete each user in the list
     for user in users:
         try:
-            message = _delete_user(user)
+            message = _delete_user(user)  # Call your deletion function
             count += 1
         except Exception as ex:
-            log.error(ex)
-            errors.append({'type': "danger", 'message': str(ex)})
-
+            log.error(f"Error deleting user {user.id}: {ex}")
+            errors.append({'type': "danger", 'message': f"Failed to delete user {user.id}: {str(ex)}"})
+    
+    # Prepare success messages based on count
     if count == 1:
-        log.info("User {} deleted".format(user_ids))
+        log.info(f"User {user_ids} deleted")
         success = [{'type': "success", 'message': message}]
     elif count > 1:
-        log.info("Users {} deleted".format(user_ids))
+        log.info(f"Users {user_ids} deleted")
         success = [{'type': "success", 'message': _("{} users deleted successfully").format(count)}]
-    success.extend(errors)
-    return Response(json.dumps(success), mimetype='application/json')
+    
+    # Combine success and error messages for response
+    response_data = success + errors
+    return Response(json.dumps(response_data), mimetype='application/json')
 
 
 @admi.route("/ajax/getlocale")
@@ -449,6 +461,10 @@ def table_get_default_lang():
         ret.append({'value': lang.lang_code, 'text': lang.name})
     return json.dumps(ret)
 
+
+
+
+# Define a route that accepts POST requests with a parameter 'param'.
 
 @admi.route("/ajax/editlistusers/<param>", methods=['POST'])
 @user_login_required
@@ -782,59 +798,80 @@ def edit_restriction(res_type, user_id):
 @user_login_required
 @admin_required
 def add_user_0_restriction(res_type):
+    # This function is a wrapper for adding a restriction with a default user ID of 0.
+    # It uses the `add_restriction` function with a specified restriction type (`res_type`)
+    # and assigns it to the default user ID 0.
     return add_restriction(res_type, 0)
-
 
 @admi.route("/ajax/addrestriction/<int:res_type>/<int:user_id>", methods=['POST'])
 @user_login_required
 @admin_required
 def add_restriction(res_type, user_id):
-    element = request.form.to_dict()
-    if res_type == 0:  # Tags as template
-        if 'submit_allow' in element:
+    # Main function to add different types of restrictions to specified users or elements
+    # `res_type` determines the type of restriction to add, while `user_id` specifies the target user (0 for default)
+
+    element = request.form.to_dict()  # Collects form data from the request
+
+    if res_type == 0:  # If restriction type is "Tags as template"
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Add allowed tags and save configuration
             config.config_allowed_tags = restriction_addition(element, config.list_allowed_tags)
             config.save()
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Add denied tags and save configuration
             config.config_denied_tags = restriction_addition(element, config.list_denied_tags)
             config.save()
-    if res_type == 1:  # CCustom as template
-        if 'submit_allow' in element:
+
+    if res_type == 1:  # If restriction type is "Custom as template"
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Add allowed column values and save configuration
             config.config_allowed_column_value = restriction_addition(element, config.list_denied_column_values)
             config.save()
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Add denied column values and save configuration
             config.config_denied_column_value = restriction_addition(element, config.list_allowed_column_values)
             config.save()
-    if res_type == 2:  # Tags per user
+
+    if res_type == 2:  # If restriction type is "Tags per user"
+        # Check if user_id is valid; if not, use the current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if 'submit_allow' in element:
+
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Update allowed tags for the user and commit to session
             usr.allowed_tags = restriction_addition(element, usr.list_allowed_tags)
             ub.session_commit("Changed allowed tags of user {} to {}".format(usr.name, usr.list_allowed_tags()))
-        elif 'submit_deny' in element:
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Update denied tags for the user and commit to session
             usr.denied_tags = restriction_addition(element, usr.list_denied_tags)
             ub.session_commit("Changed denied tags of user {} to {}".format(usr.name, usr.list_denied_tags()))
-    if res_type == 3:  # CustomC per user
+
+    if res_type == 3:  # If restriction type is "Custom per user"
+        # Check if user_id is valid; if not, use the current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if 'submit_allow' in element:
-            usr.allowed_column_value = restriction_addition(element, usr.list_allowed_column_values)
-            ub.session_commit("Changed allowed columns of user {} to {}".format(usr.name,
-                                                                                usr.list_allowed_column_values()))
-        elif 'submit_deny' in element:
-            usr.denied_column_value = restriction_addition(element, usr.list_denied_column_values)
-            ub.session_commit("Changed denied columns of user {} to {}".format(usr.name,
-                                                                               usr.list_denied_column_values()))
-    return ""
 
+        if 'submit_allow' in element:  # Check if "allow" restriction is specified
+            # Update allowed column values for the user and commit to session
+            usr.allowed_column_value = restriction_addition(element, usr.list_allowed_column_values)
+            ub.session_commit("Changed allowed columns of user {} to {}".format(usr.name, usr.list_allowed_column_values()))
+        elif 'submit_deny' in element:  # Check if "deny" restriction is specified
+            # Update denied column values for the user and commit to session
+            usr.denied_column_value = restriction_addition(element, usr.list_denied_column_values)
+            ub.session_commit("Changed denied columns of user {} to {}".format(usr.name, usr.list_denied_column_values()))
+
+    return ""  # Return an empty response after the restriction is added
 
 @admi.route("/ajax/deleterestriction/<int:res_type>", methods=['POST'])
 @user_login_required
 @admin_required
 def delete_user_0_restriction(res_type):
+    # Wrapper function to delete a restriction for the default user ID (0).
+    # Calls `delete_restriction` with `res_type` and default user ID 0.
     return delete_restriction(res_type, 0)
 
 
@@ -842,47 +879,64 @@ def delete_user_0_restriction(res_type):
 @user_login_required
 @admin_required
 def delete_restriction(res_type, user_id):
-    element = request.form.to_dict()
-    if res_type == 0:  # Tags as template
-        if element['id'].startswith('a'):
+    # Main function to delete specific types of restrictions for a given user ID
+    # `res_type` specifies the type of restriction to delete, and `user_id` targets a specific user.
+
+    element = request.form.to_dict()  # Collects form data from the request
+
+    if res_type == 0:  # If restriction type is "Tags as template"
+        if element['id'].startswith('a'):  # Checks if the ID corresponds to allowed tags
+            # Deletes allowed tags and saves the configuration
             config.config_allowed_tags = restriction_deletion(element, config.list_allowed_tags)
             config.save()
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if the ID corresponds to denied tags
+            # Deletes denied tags and saves the configuration
             config.config_denied_tags = restriction_deletion(element, config.list_denied_tags)
             config.save()
-    elif res_type == 1:  # CustomC as template
-        if element['id'].startswith('a'):
+
+    elif res_type == 1:  # If restriction type is "Custom as template"
+        if element['id'].startswith('a'):  # Checks if the ID corresponds to allowed column values
+            # Deletes allowed column values and saves the configuration
             config.config_allowed_column_value = restriction_deletion(element, config.list_allowed_column_values)
             config.save()
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if the ID corresponds to denied column values
+            # Deletes denied column values and saves the configuration
             config.config_denied_column_value = restriction_deletion(element, config.list_denied_column_values)
             config.save()
-    elif res_type == 2:  # Tags per user
+
+    elif res_type == 2:  # If restriction type is "Tags per user"
+        # Checks for a valid user ID; if invalid, assigns current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if element['id'].startswith('a'):
+
+        if element['id'].startswith('a'):  # Checks if ID corresponds to allowed tags for the user
+            # Deletes allowed tags for the user and commits to the session
             usr.allowed_tags = restriction_deletion(element, usr.list_allowed_tags)
             ub.session_commit("Deleted allowed tags of user {}: {}".format(usr.name, element['Element']))
-        elif element['id'].startswith('d'):
+        elif element['id'].startswith('d'):  # Checks if ID corresponds to denied tags for the user
+            # Deletes denied tags for the user and commits to the session
             usr.denied_tags = restriction_deletion(element, usr.list_denied_tags)
             ub.session_commit("Deleted denied tag of user {}: {}".format(usr.name, element['Element']))
-    elif res_type == 3:  # Columns per user
+
+    elif res_type == 3:  # If restriction type is "Columns per user"
+        # Checks for a valid user ID; if invalid, assigns current user
         if isinstance(user_id, int):
             usr = ub.session.query(ub.User).filter(ub.User.id == int(user_id)).first()
         else:
             usr = current_user
-        if element['id'].startswith('a'):
-            usr.allowed_column_value = restriction_deletion(element, usr.list_allowed_column_values)
-            ub.session_commit("Deleted allowed columns of user {}: {}".format(usr.name,
-                                                                              usr.list_allowed_column_values()))
 
-        elif element['id'].startswith('d'):
+        if element['id'].startswith('a'):  # Checks if ID corresponds to allowed columns for the user
+            # Deletes allowed columns for the user and commits to the session
+            usr.allowed_column_value = restriction_deletion(element, usr.list_allowed_column_values)
+            ub.session_commit("Deleted allowed columns of user {}: {}".format(usr.name, usr.list_allowed_column_values()))
+        elif element['id'].startswith('d'):  # Checks if ID corresponds to denied columns for the user
+            # Deletes denied columns for the user and commits to the session
             usr.denied_column_value = restriction_deletion(element, usr.list_denied_column_values)
-            ub.session_commit("Deleted denied columns of user {}: {}".format(usr.name,
-                                                                             usr.list_denied_column_values()))
-    return ""
+            ub.session_commit("Deleted denied columns of user {}: {}".format(usr.name, usr.list_denied_column_values()))
+
+    return ""  # Return an empty response after deletion
 
 
 @admi.route("/ajax/listrestriction/<int:res_type>", defaults={"user_id": 0})
@@ -1020,63 +1074,72 @@ def get_drives(current):
 
 
 def pathchooser():
+    # Define the type of browsing (folder or file)
     browse_for = "folder"
+    # Check if only folders should be returned
     folder_only = request.args.get('folder', False) == "true"
+    # Get the file filter and normalize the path
     file_filter = request.args.get('filter', "")
     path = os.path.normpath(request.args.get('path', ""))
 
-    if os.path.isfile(path):
-        old_file = path
-        path = os.path.dirname(path)
+    if os.path.isfile(path): # If the provided path is a file, get its directory
+        old_file = path       # Store the old file path
+        path = os.path.dirname(path)  # Get the directory of the file
     else:
-        old_file = ""
+        old_file = ""    # No old file if the path is not a file
 
-    absolute = False
+    absolute = False      # Flag to check if the path is absolute
 
-    if os.path.isdir(path):
-        cwd = os.path.realpath(path)
-        absolute = True
+    if os.path.isdir(path):    # Check if the given path is a directory
+        cwd = os.path.realpath(path)   # Get the absolute path
+        absolute = True              # Set the absolute flag
     else:
-        cwd = os.getcwd()
-
+        cwd = os.getcwd()           # Use the current working directory if not a valid path
+    # Normalize and resolve the current working directory
     cwd = os.path.normpath(os.path.realpath(cwd))
     parent_dir = os.path.dirname(cwd)
+    # Adjust cwd and parent_dir for relative paths
     if not absolute:
         if os.path.realpath(cwd) == os.path.realpath("/"):
-            cwd = os.path.relpath(cwd)
-        else:
-            cwd = os.path.relpath(cwd) + os.path.sep
-        parent_dir = os.path.relpath(parent_dir) + os.path.sep
+            cwd = os.path.relpath(cwd)     # Convert to relative path if at root
 
-    files = []
+        else:
+            cwd = os.path.relpath(cwd) + os.path.sep   # Append separator
+        parent_dir = os.path.relpath(parent_dir) + os.path.sep # Append separator
+
+    files = []       # Initialize list to store files and directories
+ # Check if we're at the root directory
     if os.path.realpath(cwd) == os.path.realpath("/") \
             or (sys.platform == "win32" and os.path.realpath(cwd)[1:] == os.path.realpath("/")[1:]):
         # we are in root
-        parent_dir = ""
+        parent_dir = ""    # No parent directory at root
         if sys.platform == "win32":
-            files = get_drives(cwd)
+            files = get_drives(cwd)           # Get available drives on Windows
 
+         # Attempt to list directories and files in the current working directory
     try:
         folders = os.listdir(cwd)
     except Exception:
-        folders = []
+        folders = []       # Handle exception gracefully
 
     for f in folders:
         try:
-            sanitized_f = str(Markup.escape(f))
+            sanitized_f = str(Markup.escape(f))      # Sanitize filename for safe HTML
             data = {"name": sanitized_f, "fullpath": os.path.join(cwd, sanitized_f)}
             data["sort"] = data["fullpath"].lower()
         except Exception:
-            continue
+            continue                 # Skip if an error occurs
+
+        # Check if the item is a file
 
         if os.path.isfile(os.path.join(cwd, f)):
             if folder_only:
-                continue
+                continue       # Skip files if only folders are requested
             if file_filter != "" and file_filter != f:
-                continue
-            data["type"] = "file"
+                continue       # Skip if file doesn't match the filter
+            data["type"] = "file"    # Set type to file
             data["size"] = os.path.getsize(os.path.join(cwd, f))
-
+               # Format file size for readability
             power = 0
             while (data["size"] >> 10) > 0.3:
                 power += 1
@@ -1084,33 +1147,72 @@ def pathchooser():
             units = ("", "K", "M", "G", "T")
             data["size"] = str(data["size"]) + " " + units[power] + "Byte"
         else:
-            data["type"] = "dir"
-            data["size"] = ""
+            data["type"] = "dir"        # Set type to directory
+            data["size"] = ""       # No size for directories
 
-        files.append(data)
-
+        files.append(data)    # Add item to the list
+     # Sort files and directories by type and name
     files = sorted(files, key=operator.itemgetter("type", "sort"))
-
+     # Prepare the context for JSON response
     context = {
-        "cwd": cwd,
-        "files": files,
-        "parentdir": parent_dir,
-        "type": browse_for,
-        "oldfile": old_file,
-        "absolute": absolute,
+        "cwd": cwd,            # Current working directory
+        "files": files,         # List of files and directories
+        "parentdir": parent_dir,  # Parent directory
+        "type": browse_for,       # Type of browsing
+        "oldfile": old_file,         # Previously selected file (if any)
+        "absolute": absolute,       # Flag indicating if the path is absolute
     }
-    return json.dumps(context)
+    return json.dumps(context)  # Return the context as a JSON response
 
 
 def _config_int(to_save, x, func=int):
+     """
+    Save an integer configuration value.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+    - func: A function to convert the value (default is int).
+
+    Returns:
+    - Result of setting the value in the configuration.
+    """
+    
+    # Use the provided function (default is int) to convert the value
+    # and save it in the configuration dictionary.
     return config.set_from_dictionary(to_save, x, func)
 
 
 def _config_checkbox(to_save, x):
+    """
+    Save a checkbox configuration value as a boolean.
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the boolean value.
+
+    Returns:
+    - Result of setting the boolean value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to a boolean based on the string "on"
+    
     return config.set_from_dictionary(to_save, x, lambda y: y == "on", False)
 
 
 def _config_checkbox_int(to_save, x):
+     """
+    Save a checkbox configuration value as an integer (0 or 1).
+
+    Parameters:
+    - to_save: The configuration dictionary where the value will be saved.
+    - x: The key or path in the dictionary to store the integer value.
+
+    Returns:
+    - Result of setting the integer value in the configuration.
+    """
+    
+    # Convert the value from the dictionary to an integer: 1 if "on", otherwise 0
     return config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
 
@@ -1148,27 +1250,53 @@ def _configuration_gdrive_helper(to_save):
         gdriveutils.deleteDatabaseOnChange()
     return gdrive_error
 
-
+#This function input paramters is to_save object 
+#This function will return bollean type.
 def _configuration_oauth_helper(to_save):
+    # Initialize counters and flags
     active_oauths = 0
     reboot_required = False
+    
+    # Helper function to construct the keys for accessing the configuration
+    def get_key(provider_id, suffix):
+        return f"config_{provider_id}_{suffix}"
+
+    # Iterate through each OAuth provider blueprint
     for element in oauthblueprints:
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] != element['oauth_client_id'] \
-          or to_save["config_" + str(element['id']) + "_oauth_client_secret"] != element['oauth_client_secret']:
-            reboot_required = True
-            element['oauth_client_id'] = to_save["config_" + str(element['id']) + "_oauth_client_id"]
-            element['oauth_client_secret'] = to_save["config_" + str(element['id']) + "_oauth_client_secret"]
-        if to_save["config_" + str(element['id']) + "_oauth_client_id"] \
-          and to_save["config_" + str(element['id']) + "_oauth_client_secret"]:
-            active_oauths += 1
-            element["active"] = 1
+        # Construct keys for client ID and secret
+        client_id_key = get_key(element['id'], "oauth_client_id")
+        client_secret_key = get_key(element['id'], "oauth_client_secret")
+
+        # Retrieve the current client ID and secret from to_save
+        current_client_id = to_save.get(client_id_key)
+        current_client_secret = to_save.get(client_secret_key)
+
+        # Check if there's a change in the client ID or secret
+        if current_client_id != element['oauth_client_id'] or current_client_secret != element['oauth_client_secret']:
+            reboot_required = True  # Mark reboot as required if changes were made
+            # Update the element with the new client ID and secret
+            element['oauth_client_id'] = current_client_id
+            element['oauth_client_secret'] = current_client_secret
+
+        # Determine if the current provider is active
+        if current_client_id and current_client_secret:
+            active_oauths += 1  # Increment active OAuth counter
+            element["active"] = 1  # Set provider as active
         else:
-            element["active"] = 0
+            element["active"] = 0  # Set provider as inactive
+
+        # Update the database with the new values
         ub.session.query(ub.OAuthProvider).filter(ub.OAuthProvider.id == element['id']).update(
-            {"oauth_client_id": to_save["config_" + str(element['id']) + "_oauth_client_id"],
-             "oauth_client_secret": to_save["config_" + str(element['id']) + "_oauth_client_secret"],
-             "active": element["active"]})
+            {
+                "oauth_client_id": current_client_id,
+                "oauth_client_secret": current_client_secret,
+                "active": element["active"]
+            }
+        )
+
+    # Return whether a reboot is required
     return reboot_required
+
 
 
 def _configuration_logfile_helper(to_save):
@@ -1187,8 +1315,16 @@ def _configuration_logfile_helper(to_save):
     return reboot_required, None
 
 
+
+
+#This function using ldap is a protocal
+#This function input Parameter is to_save object
+
 def _configuration_ldap_helper(to_save):
+    # Initialize a flag to track if a reboot is required
     reboot_required = False
+
+    # Check and update LDAP configuration values
     reboot_required |= _config_int(to_save, "config_ldap_port")
     reboot_required |= _config_int(to_save, "config_ldap_authentication")
     reboot_required |= _config_string(to_save, "config_ldap_dn")
@@ -1202,17 +1338,19 @@ def _configuration_ldap_helper(to_save):
     reboot_required |= _config_string(to_save, "config_ldap_cacert_path")
     reboot_required |= _config_string(to_save, "config_ldap_cert_path")
     reboot_required |= _config_string(to_save, "config_ldap_key_path")
-    _config_string(to_save, "config_ldap_group_name")
 
+    # Parse and validate the LDAP provider URL
     address = urlparse(to_save.get("config_ldap_provider_url", ""))
     to_save["config_ldap_provider_url"] = (address.hostname or address.path).strip("/")
     reboot_required |= _config_string(to_save, "config_ldap_provider_url")
 
+    # Check if the LDAP service password is provided and set it
     if to_save.get("config_ldap_serv_password_e", "") != "":
         reboot_required |= 1
         config.set_from_dictionary(to_save, "config_ldap_serv_password_e")
     config.save()
 
+    # Validate essential LDAP configuration fields
     if not config.config_ldap_provider_url \
       or not config.config_ldap_port \
       or not config.config_ldap_dn \
@@ -1220,6 +1358,7 @@ def _configuration_ldap_helper(to_save):
         return reboot_required, _configuration_result(_('Please Enter a LDAP Provider, '
                                                         'Port, DN and User Object Identifier'))
 
+    # Validate service account credentials based on authentication type
     if config.config_ldap_authentication > constants.LDAP_AUTH_ANONYMOUS:
         if config.config_ldap_authentication > constants.LDAP_AUTH_UNAUTHENTICATE:
             if not config.config_ldap_serv_username or not bool(config.config_ldap_serv_password_e):
@@ -1227,6 +1366,9 @@ def _configuration_ldap_helper(to_save):
         else:
             if not config.config_ldap_serv_username:
                 return reboot_required, _configuration_result(_('Please Enter a LDAP Service Account'))
+
+
+
 
     if config.config_ldap_group_object_filter:
         if config.config_ldap_group_object_filter.count("%s") != 1:
@@ -1302,9 +1444,13 @@ def edit_mailsettings():
 @admi.route("/admin/mailsettings", methods=["POST"])
 @user_login_required
 @admin_required
+#The mail setting can be used to collect the mail information
+#The function will be return edit mail setting object
+#The mail will be config the mail
 def update_mailsettings():
     to_save = request.form.to_dict()
     _config_int(to_save, "mail_server_type")
+#If statements contains the parameter value is invaliate
     if to_save.get("invalidate"):
         config.mail_gmail_token = {}
         try:
@@ -1319,6 +1465,11 @@ def update_mailsettings():
             flash(str(ex), category="error")
             log.error(ex)
             return edit_mailsettings()
+#The else statements using the parameter is to save mail use port and mail use ssl
+#The mail server is config the mail server equal to strip whitespaces to_save.get('mail_server')
+#The mail from is config the mail is equal to strip whitespaces (to_save.get('mail_from', ""))
+#The mail login is config the mail is equal to strip whitespaces (to_save.get('mail_login', ""))
+# The if and else can return the value is edit mail setting
 
     else:
         _config_int(to_save, "mail_port")
@@ -1328,7 +1479,10 @@ def update_mailsettings():
         _config_int(to_save, "mail_size", lambda y: int(y) * 1024 * 1024)
         config.mail_server = strip_whitespaces(to_save.get('mail_server', ""))
         config.mail_from = strip_whitespaces(to_save.get('mail_from', ""))
-        config.mail_login = strip_whitespaces(to_save.get('mail_login', ""))
+        config.mail_login = strip_whitespaces(to_save.get('mail_login', "")) 
+#try block can be using the parameter is operational error and invalid request error as e
+#This function will be return the statement is edit mail setting
+#This try block using the exception as e
     try:
         config.save()
     except (OperationalError, InvalidRequestError) as e:
@@ -1339,6 +1493,10 @@ def update_mailsettings():
     except Exception as e:
         flash(_("Oops! Database Error: %(error)s.", error=e.orig), category="error")
         return edit_mailsettings()
+#if statement can be using the current_ user. mail
+#The statement is execute the result is equals to sent test mail(current_user.email, current_user.name)
+# if result is false it execute the statement is none(flash(_("Test e-mail queued for sending to %(email)s, please check Tasks for result",
+                        email=current_user.email), category="info")
 
     if to_save.get("test"):
         if current_user.email:
@@ -1350,6 +1508,9 @@ def update_mailsettings():
                 flash(_("There was an error sending the Test e-mail: %(res)s", res=result), category="error")
         else:
             flash(_("Please configure your e-mail address first..."), category="error")
+#else statement is using the func is flash and the category is success
+#The return tyep is edit mail settings 
+
     else:
         flash(_("Email Server Settings updated"), category="success")
 
@@ -1359,6 +1520,9 @@ def update_mailsettings():
 @admi.route("/admin/scheduledtasks")
 @user_login_required
 @admin_required
+#Edit scheduledtask using the range function is 24
+#The start val is5,step val is 65,step val is 5
+#The return type is render title template
 def edit_scheduledtasks():
     content = config.get_scheduled_task_settings()
     time_field = list()
@@ -1380,6 +1544,10 @@ def edit_scheduledtasks():
 @admi.route("/admin/scheduledtasks", methods=["POST"])
 @user_login_required
 @admin_required
+#Update scheduledtask can be using if and else function
+#The if function return the true value
+#if not else function will be return the value
+#The return type is editscheduled task
 def update_scheduledtasks():
     error = False
     to_save = request.form.to_dict()
@@ -1399,6 +1567,7 @@ def update_scheduledtasks():
     _config_checkbox(to_save, "schedule_reconnect")
 
     if not error:
+ #try block can be perform the config.save operation
         try:
             config.save()
             flash(_("Scheduled tasks settings updated"), category="success")
@@ -1408,10 +1577,14 @@ def update_scheduledtasks():
 
             # Re-register tasks with new settings
             schedule.register_scheduled_tasks(config.schedule_reconnect)
+#except integrityerror using ub.sesssion.rollback
         except IntegrityError:
             ub.session.rollback()
             log.error("An unknown error occurred while saving scheduled tasks settings")
             flash(_("Oops! An unknown error occurred. Please try again later."), category="error")
+#except operational error is also using the ub.sesion.rollback
+#The log.error("Settings DB is not Writeable")
+#The return type is edit_scheduledtask()
         except OperationalError:
             ub.session.rollback()
             log.error("Settings DB is not Writeable")
