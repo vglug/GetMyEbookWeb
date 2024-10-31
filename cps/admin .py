@@ -416,12 +416,17 @@ def delete_user():
 @user_login_required
 @admin_required
 def table_get_locale():
-    locale = get_available_locale()
-    ret = list()
-    current_locale = get_locale()
-    for loc in locale:
-        ret.append({'value': str(loc), 'text': loc.get_language_name(current_locale)})
-    return json.dumps(ret)
+    locale = get_available_locale()  # Retrieve available locales
+    ret = list()  # Initialize the return list
+    current_locale = get_locale()  # Get the current user's locale
+
+    for loc in locale:  # Loop through each locale
+        ret.append({  # Append a dictionary for each locale
+
+            'value': str(loc),  # Locale identifier as string
+            'text': loc.get_language_name(current_locale)})  # Name of the locale in the current language
+
+    return json.dumps(ret)  # Return the list as a JSON string
 
 
 @admi.route("/ajax/getdefaultlanguage")
