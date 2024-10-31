@@ -1388,7 +1388,10 @@ def edit_scheduledtasks():
 @admi.route("/admin/scheduledtasks", methods=["POST"])
 @user_login_required
 @admin_required
-
+#Update scheduledtask can be using if and else function
+#The if function return the true value
+#if not else function will be return the value
+#The return type is editscheduled task
 def update_scheduledtasks():
     error = False
     to_save = request.form.to_dict()
@@ -1408,7 +1411,7 @@ def update_scheduledtasks():
     _config_checkbox(to_save, "schedule_reconnect")
 
     if not error:
- 
+ #try block can be perform the config.save operation
         try:
             config.save()
             flash(_("Scheduled tasks settings updated"), category="success")
@@ -1418,10 +1421,14 @@ def update_scheduledtasks():
 
             # Re-register tasks with new settings
             schedule.register_scheduled_tasks(config.schedule_reconnect)
+#except integrityerror using ub.sesssion.rollback
         except IntegrityError:
             ub.session.rollback()
             log.error("An unknown error occurred while saving scheduled tasks settings")
             flash(_("Oops! An unknown error occurred. Please try again later."), category="error")
+#except operational error is also using the ub.sesion.rollback
+#The log.error("Settings DB is not Writeable")
+#The return type is edit_scheduledtask()
         except OperationalError:
             ub.session.rollback()
             log.error("Settings DB is not Writeable")
