@@ -56,13 +56,13 @@ msgid "No. of Authors to Display Before Hiding (0=Disable Hiding)"
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "ஆய்வுப்அபாருள்"
 
 msgid "Standard Theme"
-msgstr ""
+msgstr "தரநிலை ஆய்வுப்அபாருள்"
 
 msgid "caliBlur! Dark Theme"
-msgstr ""
+msgstr "காலி ப்ளூர்! இருள் ஆய்வுப்அபாருள்"
 
 msgid "Regular Expression for Ignoring Columns"
 msgstr ""
