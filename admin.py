@@ -1324,6 +1324,9 @@ def update_mailsettings():
         config.mail_server = strip_whitespaces(to_save.get('mail_server', ""))
         config.mail_from = strip_whitespaces(to_save.get('mail_from', ""))
         config.mail_login = strip_whitespaces(to_save.get('mail_login', "")) 
+#try block can be using the parameter is operational error and invalid request error as e
+#This function will be return the statement is edit mail setting
+#This try block using the exception as e
     try:
         config.save()
     except (OperationalError, InvalidRequestError) as e:
@@ -1334,6 +1337,10 @@ def update_mailsettings():
     except Exception as e:
         flash(_("Oops! Database Error: %(error)s.", error=e.orig), category="error")
         return edit_mailsettings()
+#if statement can be using the current_ user. mail
+#The statement is execute the result is equals to sent test mail(current_user.email, current_user.name)
+# if result is false it execute the statement is none(flash(_("Test e-mail queued for sending to %(email)s, please check Tasks for result",
+                        email=current_user.email), category="info")
 
     if to_save.get("test"):
         if current_user.email:
@@ -1344,7 +1351,9 @@ def update_mailsettings():
             else:
                 flash(_("There was an error sending the Test e-mail: %(res)s", res=result), category="error")
         else:
-            flash(_("Please configure your e-mail address first..."), category="error") 
+            flash(_("Please configure your e-mail address first..."), category="error")
+#else statement is using the func is flash and the category is success
+#The return tyep is edit mail settings 
 
     else:
         flash(_("Email Server Settings updated"), category="success")
@@ -1355,6 +1364,9 @@ def update_mailsettings():
 @admi.route("/admin/scheduledtasks")
 @user_login_required
 @admin_required
+#Edit scheduledtask using the range function is 24
+#The start val is5,step val is 65,step val is 5
+#The return type is render title template
 def edit_scheduledtasks():
     content = config.get_scheduled_task_settings()
     time_field = list()
@@ -1376,6 +1388,10 @@ def edit_scheduledtasks():
 @admi.route("/admin/scheduledtasks", methods=["POST"])
 @user_login_required
 @admin_required
+#Update scheduledtask can be using if and else function
+#The if function return the true value
+#if not else function will be return the value
+#The return type is editscheduled task
 def update_scheduledtasks():
     error = False
     to_save = request.form.to_dict()
@@ -1395,6 +1411,7 @@ def update_scheduledtasks():
     _config_checkbox(to_save, "schedule_reconnect")
 
     if not error:
+ #try block can be perform the config.save operation
         try:
             config.save()
             flash(_("Scheduled tasks settings updated"), category="success")
@@ -1404,10 +1421,14 @@ def update_scheduledtasks():
 
             # Re-register tasks with new settings
             schedule.register_scheduled_tasks(config.schedule_reconnect)
+#except integrityerror using ub.sesssion.rollback
         except IntegrityError:
             ub.session.rollback()
             log.error("An unknown error occurred while saving scheduled tasks settings")
             flash(_("Oops! An unknown error occurred. Please try again later."), category="error")
+#except operational error is also using the ub.sesion.rollback
+#The log.error("Settings DB is not Writeable")
+#The return type is edit_scheduledtask()
         except OperationalError:
             ub.session.rollback()
             log.error("Settings DB is not Writeable")
