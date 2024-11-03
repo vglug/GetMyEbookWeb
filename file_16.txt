@@ -1,0 +1,124 @@
+msgid "Add Allowed/Denied custom column values"
+msgstr "
+அனுமதிக்கப்பட்ட/மறுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளைச் சேர்க்கவும்"
+
+msgid "Read in Browser"
+msgstr "உலாவியில் படிக்கவும்"
+
+msgid "Listen in Browser"
+msgstr "உலாவலில் கேளுங்கள்"
+
+msgid "Book %(index)s of %(range)s"
+msgstr "புத்தகம் %(index)s of %(range)s"
+
+msgid "Published"
+msgstr "
+வெளியிடப்பட்டது"
+
+msgid "Mark As Unread"
+msgstr "படிக்காததாகக் குறி"
+
+msgid "Mark As Read"
+msgstr "படித்ததாகக் குறி"
+
+msgid "Mark Book as Read or Unread"
+msgstr "
+புத்தகத்தை படித்ததாக அல்லது படிக்காததாகக் குறிக்கவும்"
+
+msgid "Read"
+msgstr "படிக்கவும்"
+
+msgid "Restore from archive"
+msgstr "
+காப்பகத்திலிருந்து மீட்டமை"
+
+msgid "Add to archive"
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Description:"
+msgstr ""
+
+msgid "Add to shelf"
+msgstr ""
+
+msgid "(Public)"
+msgstr ""
+
+msgid "Edit Metadata"
+msgstr ""
+
+msgid "Email Account Type"
+msgstr ""
+
+msgid "Standard Email Account"
+msgstr ""
+
+msgid "Gmail Account"
+msgstr ""
+
+msgid "Setup Gmail Account"
+msgstr ""
+
+msgid "Revoke Gmail Access"
+msgstr ""
+
+msgid "STARTTLS"
+msgstr ""
+
+msgid "SSL/TLS"
+msgstr ""
+
+msgid "SMTP Password"
+msgstr ""
+
+msgid "Attachment Size Limit"
+msgstr ""
+
+msgid "Save and Send Test Email"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Allowed Domains (Whitelist)"
+msgstr ""
+
+msgid "Add Domain"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Enter domainname"
+msgstr ""
+
+msgid "Denied Domains (Blacklist)"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid "Kobo Token:"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Calibre-Web Instance is unconfigured, please contact your administrator"
+msgstr ""
+
+msgid "Create Issue"
+msgstr ""
+
+msgid "Return to Home"
+msgstr ""
+
