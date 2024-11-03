@@ -1,32 +1,38 @@
 msgid "Location of Unrar binary"
-msgstr ""
+msgstr "Unrar பைனரியின் இடம்"
 
 msgid "Security Settings"
-msgstr ""
+msgstr "பாதுகாப்பு அமைப்புகள்"
 
 msgid "Limit failed login attempts"
-msgstr ""
+msgstr "
+தோல்வியுற்ற உள்நுழைவு முயற்சிகளை வரம்பிடவும்"
 
 msgid "Configure Backend for Limiter"
-msgstr ""
+msgstr "
+லிமிட்டருக்கான பின்தளத்தை உள்ளமைக்கவும்"
 
 msgid "Options for Limiter Backend"
-msgstr ""
+msgstr "
+லிமிட்டர் பின்தளத்திற்கான விருப்பங்கள்"
 
 msgid "Check if file extensions matches file content on upload"
-msgstr ""
+msgstr "
+கோப்பு நீட்டிப்புகள் பதிவேற்றத்தின் போது கோப்பு உள்ளடக்கத்துடன் பொருந்துகிறதா என சரிபார்க்கவும்"
 
 msgid "Session protection"
-msgstr ""
+msgstr "
+அமர்வு பாதுகாப்பு"
 
 msgid "Basic"
-msgstr ""
+msgstr "அடிப்படை"
 
 msgid "Strong"
-msgstr ""
+msgstr "வலுவான"
 
 msgid "User Password policy"
-msgstr ""
+msgstr "
+பயனர் கடவுச்சொல் கொள்கை"
 
 msgid "Minimum password length"
 msgstr ""
@@ -56,13 +62,13 @@ msgid "No. of Authors to Display Before Hiding (0=Disable Hiding)"
 msgstr ""
 
 msgid "Theme"
-msgstr "ஆய்வுப்அபாருள்"
+msgstr ""
 
 msgid "Standard Theme"
-msgstr "தரநிலை ஆய்வுப்அபாருள்"
+msgstr ""
 
 msgid "caliBlur! Dark Theme"
-msgstr "காலி ப்ளூர்! இருள் ஆய்வுப்அபாருள்"
+msgstr ""
 
 msgid "Regular Expression for Ignoring Columns"
 msgstr ""
