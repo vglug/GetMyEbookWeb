@@ -1,0 +1,137 @@
+msgid "Add Allowed/Denied custom column values"
+msgstr "
+அனுமதிக்கப்பட்ட/மறுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளைச் சேர்க்கவும்"
+
+msgid "Read in Browser"
+msgstr "உலாவியில் படிக்கவும்"
+
+msgid "Listen in Browser"
+msgstr "உலாவலில் கேளுங்கள்"
+
+msgid "Book %(index)s of %(range)s"
+msgstr "புத்தகம் %(index)s of %(range)s"
+
+msgid "Published"
+msgstr "
+வெளியிடப்பட்டது"
+
+msgid "Mark As Unread"
+msgstr "படிக்காததாகக் குறி"
+
+msgid "Mark As Read"
+msgstr "படித்ததாகக் குறி"
+
+msgid "Mark Book as Read or Unread"
+msgstr "
+புத்தகத்தை படித்ததாக அல்லது படிக்காததாகக் குறிக்கவும்"
+
+msgid "Read"
+msgstr "படிக்கவும்"
+
+msgid "Restore from archive"
+msgstr "
+காப்பகத்திலிருந்து மீட்டமை"
+
+msgid "Add to archive"
+msgstr "காப்பகத்தில் சேர்"
+
+msgid ""
+msgstr ""
+
+msgid "Archive"
+msgstr "
+காப்பகம்"
+
+msgid "Description:"
+msgstr "
+விளக்கம்:"
+
+msgid "Add to shelf"
+msgstr "அலமாரியில் சேர்க்கவும்"
+
+msgid "(Public)"
+msgstr "
+(பொது)"
+
+msgid "Edit Metadata"
+msgstr "மெட்டாடேட்டாவைத் திருத்தவும்"
+
+msgid "Email Account Type"
+msgstr "மின்னஞ்சல் கணக்கு வகை"
+
+msgid "Standard Email Account"
+msgstr "
+நிலையான மின்னஞ்சல் கணக்கு"
+
+msgid "Gmail Account"
+msgstr 
+"ஜிமெயில் கணக்கு"
+
+msgid "Setup Gmail Account"
+msgstr "
+ஜிமெயில் கணக்கை அமைக்கவும்"
+
+msgid "Revoke Gmail Access"
+msgstr "ஜிமெயில் அணுகலை ரத்துசெய்"
+
+msgid "STARTTLS"
+msgstr "STARTTLS"
+
+msgid "SSL/TLS"
+msgstr "SSL/TLS"
+
+msgid "SMTP Password"
+msgstr "SMTP கடவுச்சொல்"
+
+msgid "Attachment Size Limit"
+msgstr "
+இணைப்பு அளவு வரம்பு"
+
+msgid "Save and Send Test Email"
+msgstr "
+சோதனை மின்னஞ்சலைச் சேமித்து அனுப்பவும்"
+
+msgid "Back"
+msgstr "
+மீண்டும்"
+
+msgid "Allowed Domains (Whitelist)"
+msgstr "அனுமதிக்கப்பட்ட டொமைன்கள் (ஒயிட்லிஸ்ட்)"
+
+msgid "Add Domain"
+msgstr "
+டொமைனைச் சேர்க்கவும்"
+
+msgid "Add"
+msgstr "சேர்"
+
+msgid "Enter domainname"
+msgstr "டொமைன் பெயரை உள்ளிடவும்"
+
+msgid "Denied Domains (Blacklist)"
+msgstr "
+டொமைன் பெயரை உள்ளிடவும் மறுக்கப்பட்ட டொமைன்கள் (தடுப்பட்டியல்)"
+
+msgid "Next"
+msgstr "அடுத்து"
+
+msgid ""
+msgstr ""
+
+msgid "Kobo Token:"
+msgstr "கோபோ டோக்கன்:"
+
+msgid "List"
+msgstr "
+பட்டியல்"
+
+msgid "Calibre-Web Instance is unconfigured, please contact your administrator"
+msgstr "Calibre-Web Instance கட்டமைக்கப்படவில்லை, உங்கள் நிர்வாகியைத் தொடர்பு கொள்ளவும்"
+
+msgid "Create Issue"
+msgstr "
+சிக்கலை உருவாக்கவும்"
+
+msgid "Return to Home"
+msgstr "வீட்டிற்குத் திரும்பு"
+
