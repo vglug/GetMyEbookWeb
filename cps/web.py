@@ -417,6 +417,7 @@ def render_books_list(data, sort_param, book_id, page):
                                                                 db.books_series_link,
                                                                 db.Books.id == db.books_series_link.c.book,
                                                                 db.Series)
+        random = get_rated_books(page, book_id, order=order)
         return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
                                      title=_("Books"), page=website, order=order[1])
 
@@ -431,9 +432,25 @@ def render_rated_books(page, book_id, order):
                                                                 db.books_series_link,
                                                                 db.Books.id == db.books_series_link.c.book,
                                                                 db.Series)
-
+        random = get_rated_books(page, book_id, order=order)
         return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
                                      id=book_id, title=_("Top Rated Books"), page="rated", order=order[1])
+    else:
+        abort(404)
+
+
+def get_rated_books(page, book_id, order):
+    if current_user.check_visibility(constants.SIDEBAR_BEST_RATED):
+        entries, random, pagination = calibre_db.fill_indexpage(page, 0,
+                                                                db.Books,
+                                                                db.Books.ratings.any(db.Ratings.rating > 9),
+                                                                order[0],
+                                                                True, config.config_read_column,
+                                                                db.books_series_link,
+                                                                db.Books.id == db.books_series_link.c.book,
+                                                                db.Series)
+
+        return entries
     else:
         abort(404)
 
