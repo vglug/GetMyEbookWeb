@@ -417,7 +417,7 @@ def render_books_list(data, sort_param, book_id, page):
                                                                 db.books_series_link,
                                                                 db.Books.id == db.books_series_link.c.book,
                                                                 db.Series)
-        random = get_rated_books(page, book_id, order=order)
+        random = get_rated_books(page, book_id, order)
         return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
                                      title=_("Books"), page=website, order=order[1])
 
@@ -432,7 +432,6 @@ def render_rated_books(page, book_id, order):
                                                                 db.books_series_link,
                                                                 db.Books.id == db.books_series_link.c.book,
                                                                 db.Series)
-        random = get_rated_books(page, book_id, order=order)
         return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
                                      id=book_id, title=_("Top Rated Books"), page="rated", order=order[1])
     else:
@@ -440,19 +439,15 @@ def render_rated_books(page, book_id, order):
 
 
 def get_rated_books(page, book_id, order):
-    if current_user.check_visibility(constants.SIDEBAR_BEST_RATED):
-        entries, random, pagination = calibre_db.fill_indexpage(page, 0,
-                                                                db.Books,
-                                                                db.Books.ratings.any(db.Ratings.rating > 9),
-                                                                order[0],
-                                                                True, config.config_read_column,
-                                                                db.books_series_link,
-                                                                db.Books.id == db.books_series_link.c.book,
-                                                                db.Series)
-
-        return entries
-    else:
-        abort(404)
+    entries, random, pagination = calibre_db.fill_indexpage(page, 0,
+                                                            db.Books,
+                                                            db.Books.ratings.any(db.Ratings.rating > 9),
+                                                            order[0],
+                                                            True, config.config_read_column,
+                                                            db.books_series_link,
+                                                            db.Books.id == db.books_series_link.c.book,
+                                                            db.Series)
+    return entries
 
 
 def render_discover_books(book_id):
@@ -1677,3 +1672,131 @@ def show_book(book_id):
         flash(_("Oops! Selected book is unavailable. File does not exist or is not accessible"),
               category="error")
         return redirect(url_for("web.index"))
+
+
+@web.route('/mobile/getallbooks')
+@login_required_if_no_ano
+def mobile_get_all_books():
+    off = int(request.args.get("offset") or 0)
+    limit = int(request.args.get("limit") or config.config_books_per_page)
+    search_param = request.args.get("search")
+    sort_param = request.args.get("sort", "id")
+    order = request.args.get("order", "").lower()
+    state = None
+    join = tuple()
+
+    if sort_param == "state":
+        state = json.loads(request.args.get("state", "[]"))
+    elif sort_param == "tags":
+        order = [db.Tags.name.asc()] if order == "asc" else [db.Tags.name.desc()]
+        join = db.books_tags_link, db.Books.id == db.books_tags_link.c.book, db.Tags
+    elif sort_param == "series":
+        order = [db.Series.name.asc()] if order == "asc" else [db.Series.name.desc()]
+        join = db.books_series_link, db.Books.id == db.books_series_link.c.book, db.Series
+    elif sort_param == "publishers":
+        order = [db.Publishers.name.asc()] if order == "asc" else [db.Publishers.name.desc()]
+        join = db.books_publishers_link, db.Books.id == db.books_publishers_link.c.book, db.Publishers
+    elif sort_param == "authors":
+        order = [db.Authors.name.asc(), db.Series.name, db.Books.series_index] if order == "asc" \
+            else [db.Authors.name.desc(), db.Series.name.desc(), db.Books.series_index.desc()]
+        join = db.books_authors_link, db.Books.id == db.books_authors_link.c.book, db.Authors, db.books_series_link, \
+            db.Books.id == db.books_series_link.c.book, db.Series
+    elif sort_param == "languages":
+        order = [db.Languages.lang_code.asc()] if order == "asc" else [db.Languages.lang_code.desc()]
+        join = db.books_languages_link, db.Books.id == db.books_languages_link.c.book, db.Languages
+    elif order and sort_param in ["sort", "title", "authors_sort", "series_index"]:
+        order = [text(sort_param + " " + order)]
+    elif not state:
+        order = [db.Books.timestamp.desc()]
+
+    total_count = filtered_count = calibre_db.session.query(db.Books).filter(
+        calibre_db.common_filters(allow_show_archived=True)).count()
+    if state is not None:
+        if search_param:
+            books = calibre_db.search_query(search_param, config).all()
+            filtered_count = len(books)
+        else:
+            query = calibre_db.generate_linked_query(config.config_read_column, db.Books)
+            books = query.filter(calibre_db.common_filters(allow_show_archived=True)).all()
+        entries = calibre_db.get_checkbox_sorted(books, state, off, limit, order, True)
+    elif search_param:
+        entries, filtered_count, __ = calibre_db.get_search_results(search_param,
+                                                                    config,
+                                                                    off,
+                                                                    [order, ''],
+                                                                    limit,
+                                                                    *join)
+    else:
+        entries, __, __ = calibre_db.fill_indexpage_with_archived_books((int(off) / (int(limit)) + 1),
+                                                                        db.Books,
+                                                                        limit,
+                                                                        True,
+                                                                        order,
+                                                                        True,
+                                                                        True,
+                                                                        config.config_read_column,
+                                                                        *join)
+
+    result = list()
+    for entry in entries:
+        val = entry[0]
+        val.is_archived = entry[1] is True
+        val.read_status = entry[2] == ub.ReadBook.STATUS_FINISHED
+        for lang_index in range(0, len(val.languages)):
+            val.languages[lang_index].language_name = isoLanguages.get_language_name(get_locale(), val.languages[
+                lang_index].lang_code)
+        result.append(val)
+
+    
+    table_entries = {'totalNotFiltered': total_count, 'total': filtered_count, "rows": result}
+    parent_metadata = {'title':'getmyebooks','numberOfItems':len(result)}
+    parent_link = [{"rel": "self","href": "","type": "application/opds+json"}]
+    publication_list = list()
+    mimetype_of_pdf = 'application/pdf'
+    mimetype_of_epub = 'application/epub+zip'
+    env_url = "https://66c4-27-4-47-241.ngrok-free.app"
+    for data in result:
+        publication_metadata_dict = {
+            "@type": "http://schema.org/Book",
+            "title": data.title,
+            "subtitle": "",
+            "author": data.authors[0].name,
+            "identifier": data.identifiers,
+            "language": data.languages,
+            "modified": data.last_modified,
+            "published": data.pubdate,
+            "publisher": data.publishers,
+            "imprint": "",
+            "numberOfPages": 0,
+            "subject": [],
+            "belongsTo": {},
+            "description" : ""
+        }
+        book_id = data.id;
+        book_data = calibre_db.get_book_data_by_id(book_id)
+        book_format = book_data.format.lower()
+        mimetype = mimetype_of_pdf if book_format=='pdf' else mimetype_of_epub
+        publication_links_list = [{
+            "rel": env_url,
+            "href": f"{env_url}/download/{book_id}/{book_format}/{book_id}.{book_format}",
+            "type": mimetype
+        }]
+        publication_images_list = [{
+            "href": f"{env_url}/cover/{book_id}",
+            "type": "image/jpg",
+            "height": 0,
+            "width": 0
+        }]
+        publication_dict = {
+            'metadata': publication_metadata_dict,
+            'links': publication_links_list,
+            'images': publication_images_list
+        }
+        publication_list.append(publication_dict)
+    final_dict = {'metadata':parent_metadata,'links':parent_link,'publications':publication_list}
+    print(final_dict)
+    js_list = json.dumps(final_dict, cls=db.AlchemyEncoder,default=str)
+
+    response = make_response(js_list)
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    return response
