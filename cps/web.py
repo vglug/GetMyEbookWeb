@@ -1754,7 +1754,7 @@ def mobile_get_all_books():
     publication_list = list()
     mimetype_of_pdf = 'application/pdf'
     mimetype_of_epub = 'application/epub+zip'
-    env_url = "https://66c4-27-4-47-241.ngrok-free.app"
+    env_url = "https://www.getmyebook.in"
     for data in result:
         publication_metadata_dict = {
             "@type": "http://schema.org/Book",
