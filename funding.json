@@ -1,143 +1,124 @@
 {
     "version": "v1.0.0",
-
-    // Required. The entity associated with the project, soliciting funds.
-    // This can be an individual, organisation, community etc.
     "entity": {
-        "type": "organisation",                     // Required. [individual, group, organisation, other]. Use the closest approximation.
-        "role": "owner",                     // Required. [owner, steward, maintainer, contributor, other]. Use the closest approximation.
-        "name": "VGLUG FOUNDATION",                     // Required. Name of the entity. Max len 250.
-        "email": "vpmglug@gmail.com",                    // Required. Max len 250.
-        "phone": "9677504839",                    // Optional. Generally suitable for organisations. Max len 32.
-        "description": "The VGLUG Foundation, established in 2013, is a nonprofit organization inspired by the global Free and Open Source Software (FOSS) movement. As a social initiative, VGLUG is dedicated to spreading the principles and values of free software, aiming to foster knowledge liberation and technological empowerment. \n\nOur mission is to promote the use of free software and advocate its ideological significance across all regions of our nation—from urban centers to the most underserved communities. We strive to bridge the digital divide by educating individuals and organizations about the benefits of free software, ensuring that the advantages of open-source technology are accessible to everyone, regardless of their socioeconomic background. \n\nOur core objectives include raising awareness among computer users about the value of free software, facilitating its adoption in diverse sectors such as rural areas, schools, higher education, and academic and industrial research. By promoting open-source solutions, we seek to revolutionize the educational and technological landscape, encouraging innovation, collaboration, and the democratization of knowledge.",              // Required. Information about the entity. Max len 2000.
+        "type": "organisation",
+        "role": "owner",
+        "name": "VGLUG FOUNDATION",
+        "email": "vpmglug@gmail.com",
+        "phone": "9677504839",
+        "description": "The VGLUG Foundation, established in 2013, is a nonprofit organization inspired by the global Free and Open Source Software (FOSS) movement. As a social initiative, VGLUG is dedicated to spreading the principles and values of free software, aiming to foster knowledge liberation and technological empowerment. \n\nOur mission is to promote the use of free software and advocate its ideological significance across all regions of our nation—from urban centers to the most underserved communities. We strive to bridge the digital divide by educating individuals and organizations about the benefits of free software, ensuring that the advantages of open-source technology are accessible to everyone, regardless of their socioeconomic background. \n\nOur core objectives include raising awareness among computer users about the value of free software, facilitating its adoption in diverse sectors such as rural areas, schools, higher education, and academic and industrial research. By promoting open-source solutions, we seek to revolutionize the educational and technological landscape, encouraging innovation, collaboration, and the democratization of knowledge.",
         "webpageUrl": {
-            "url": "https://vglug.org",                  // Required. Webpage with information about the entity. Starts with https:// or http://. Max len 250.
-            "wellKnown": ""             // Optional. Required if the above url and the URL of the funding.json manifest do not have the same hostname. Starts with https:// or http://. Max len 250.
+            "url": "https://vglug.org",
+            "wellKnown": ""
         }
     },
-
-    // Optional. One or more projects for which the funding is solicited.
     "projects": [{
-        "guid": "getmyebook-web",                     // Required. A short unique ID for the project. Lowercase-alphanumeric-dashes only. eg: my-cool-project. Max len 32.
-        "name": "GetMyEbook Web",                     // Required. Name of the project. Max len 250.
-        "description": "This is a free eBook learning platform that provides access to a diverse collection of books, all available under Creative Commons (CC) licenses. It empowers users to explore, read, and learn from a wide variety of resources at no cost, fostering knowledge sharing and accessibility for everyone. This includes the web development, OCR application, collecting books from author and adding it in cc license and proof reading for building it as epub",              // Required. Description of the project. Max len 2000.
+        "guid": "getmyebook-web",
+        "name": "GetMyEbook Web",
+        "description": "This is a free eBook learning platform that provides access to a diverse collection of books, all available under Creative Commons (CC) licenses. It empowers users to explore, read, and learn from a wide variety of resources at no cost, fostering knowledge sharing and accessibility for everyone. This includes the web development, OCR application, collecting books from author and adding it in cc license and proof reading for building it as epub",
         "webpageUrl": {
-            "url": "https://getmyebook.in",                  // Required. Webpage with information about the project. Starts with https:// or http://. Max len 250.
-            "wellKnown": ""             // Optional. Required if the above url and the URL of the funding.json manifest do not have the same hostname. Starts with https:// or http://. Max len 250.
+            "url": "https://getmyebook.in",
+            "wellKnown": ""
         },
         "repositoryUrl": {
-            "url": "https://github.com/vglug/GetMyEbookWeb",                  // Required. URL of the repository where the project's source code and other assets are available. Starts with https:// or http://. Max len 250.
-            "wellKnown": ""             // Optional. Required if the above url and the URL of the funding.json manifest do not have the same hostname. Starts with https:// or http://. Max len 250.
+            "url": "https://github.com/vglug/GetMyEbookWeb",
+            "wellKnown": ""
         },
-        "licenses": ['gplV3'],                 // Required. The project's licenses (up to 5). For standard licenses, use the license ID from the SDPX index prefixed by "spdx:". eg: "spdx:GPL-3.0", "spdx:CC-BY-SA-4.0"        "tags": ["ebook", "library", "books", "FOSS", "DigitalBooks", "OpenAccess", "Accessible Learning"]                     // Required. Up to 10 general tags describing the project. Lowercase-alphanumeric-dashes (max 32 chars). eg: ["programming", "developer-tools"]. For reference, see tags.txt
+        "licenses": ["gplV3"],
+        "tags": ["ebook", "library", "books", "FOSS", "DigitalBooks", "OpenAccess", "Accessible Learning"]
     },
     {
-        "guid": "getmyebookapp",                     // Required. A short unique ID for the project. Lowercase-alphanumeric-dashes only. eg: my-cool-project. Max len 32.
-        "name": "GetMyEbook App",                     // Required. Name of the project. Max len 250.
-        "description": "A go-to platform for eBooks, this Android app transforms your phone into a portable library, offering a seamless and immersive reading experience. With access to a vast collection of free books, it empowers users to explore diverse genres and topics effortlessly. Designed to provide a native, book-like feel, the app encourages a positive habit shift by making reading an integral part of your phone usage. Embrace the joy of learning and reading, anytime, anywhere—all for free!",              // Required. Description of the project. Max len 2000.
+        "guid": "getmyebookapp",
+        "name": "GetMyEbook App",
+        "description": "A go-to platform for eBooks, this Android app transforms your phone into a portable library, offering a seamless and immersive reading experience. With access to a vast collection of free books, it empowers users to explore diverse genres and topics effortlessly. Designed to provide a native, book-like feel, the app encourages a positive habit shift by making reading an integral part of your phone usage. Embrace the joy of learning and reading, anytime, anywhere—all for free!",
         "webpageUrl": {
-            "url": "https://getmyebook.in",                  // Required. Webpage with information about the project. Starts with https:// or http://. Max len 250.
-            "wellKnown": ""             // Optional. Required if the above url and the URL of the funding.json manifest do not have the same hostname. Starts with https:// or http://. Max len 250.
+            "url": "https://getmyebook.in",
+            "wellKnown": ""
         },
         "repositoryUrl": {
-            "url": "https://github.com/vglug/GetMyEbookApp",                  // Required. URL of the repository where the project's source code and other assets are available. Starts with https:// or http://. Max len 250.
-            "wellKnown": ""             // Optional. Required if the above url and the URL of the funding.json manifest do not have the same hostname. Starts with https:// or http://. Max len 250.
+            "url": "https://github.com/vglug/GetMyEbookApp",
+            "wellKnown": ""
         },
-        "licenses": ['gplV3'],                 // Required. The project's licenses (up to 5). For standard licenses, use the license ID from the SDPX index prefixed by "spdx:". eg: "spdx:GPL-3.0", "spdx:CC-BY-SA-4.0"        
-        "tags": [["FreeEbooks", "MobileLibrary", "ImmersiveReading"]                     // Required. Up to 10 general tags describing the project. Lowercase-alphanumeric-dashes (max 32 chars). eg: ["programming", "developer-tools"]. For reference, see tags.txt
-    }],
-
-    // Required.
+        "licenses": ["gplV3"],      
+        "tags": ["FreeEbooks", "MobileLibrary", "ImmersiveReading"]
+	}        
     "funding": {
-        // Required. This describes one or more channels via which the entity can receive funds.
         "channels": [{
-            "guid": "mybank",                 // Required. A short unique ID for the channel. Lowercase-alphanumeric-dashes only. eg: mybank, my-paypal. Max len 32.
-            "type": "bank",                 // Required. [bank, payment-provider, cheque, cash, other].
-            "address": "",              // Optional. A short unstructured textual representation of the payment address for the channel. eg: "Account: 12345 (branch: ABCX)", "mypaypal@domain.com", "https://payment-url.com", or a physical address for cheques. Max len 250.
-            "description": "Will accept direct bank transfers. Please e-mail me for details."           // Optional. Any additional description or instructions for the payment channel. Max len 500.
+            "guid": "mybank",
+            "type": "bank",
+            "address": "",
+            "description": "Will accept direct bank transfers. Please e-mail me for details."
         }],
-
-        // Required. One or more funding and payment plans.
         "plans": [{
-            "guid": "hosting-monthly",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Hosting support",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This will cover the monthly server hosting costs for the projects.",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 21102,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "monthly",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "hosting-monthly",
+            "status": "active",
+            "name": "Hosting support",
+            "description": "This will cover the monthly server hosting costs for the projects.",
+            "amount": 21102,
+            "currency": "INR",
+            "frequency": "monthly",
+            "channels": ["bank"]
         },
         {
-            "guid": "developer-time",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Developer Compensation",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This will cover the cost of two developers working part-time and interns working full-time on the projects.",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 116000,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "monthly",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "developer-time",
+            "status": "active",
+            "name": "Developer Compensation",
+            "description": "This will cover the cost of two developers working part-time and interns working full-time on the projects.",
+            "amount": 116000,
+            "currency": "INR",
+            "frequency": "monthly",
+            "channels": ["bank"]
         },
         {
-            "guid": "proof-readers",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Proof Readers Compensation",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This process involves scanning the books and doing the OCR also proof reading the books.Totally 6 fullm timers involves in this process with renumeration of 15000 INR",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 90000,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "monthly",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "proof-readers",
+            "status": "active",
+            "name": "Proof Readers Compensation",
+            "description": "This process involves scanning the books and doing the OCR also proof reading the books.Totally 6 fullm timers involves in this process with renumeration of 15000 INR",
+            "amount": 90000,
+            "currency": "INR",
+            "frequency": "monthly",
+            "channels": ["bank"]
         },
         {
-            "guid": "scanning-machine",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Scanning machine cost",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This an one time cost for buying the scanning machine which is used to scan the old books and involves it into OCR process.",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 110000,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "one-time",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "scanning-machine",
+            "status": "active",
+            "name": "Scanning machine cost",
+            "description": "This an one time cost for buying the scanning machine which is used to scan the old books and involves it into OCR process.",
+            "amount": 110000,
+            "currency": "INR",
+            "frequency": "one-time",
+            "channels": ["bank"]
         },
         {
-            "guid": "rental-laptops",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Laptops rental cost",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This involves the cost of laptops used by the proof readers ,therfore 6 laptops involves in it each cost 2000 INR per month",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 12000,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "monthly",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "rental-laptops",
+            "status": "active",
+            "name": "Laptops rental cost", 
+            "description": "This involves the cost of laptops used by the proof readers ,therfore 6 laptops involves in it each cost 2000 INR per month",
+            "amount": 12000,
+            "currency": "INR",
+            "frequency": "monthly",
+            "channels": ["bank"]
         },
         {
-            "guid": "connectivity",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Electricity and internet",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This involves the cost of electricity bill and internet bill",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 4200,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "monthly",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "connectivity",
+            "status": "active",
+            "name": "Electricity and internet",
+            "description": "This involves the cost of electricity bill and internet bill",
+            "amount": 4200,
+            "currency": "INR",
+            "frequency": "monthly",
+            "channels": ["bank"]
         },
         {
-            "guid": "library-reachouts",                 // Required. A short unique ID for the plan. Lowercase-alphanumeric-dashes only. eg: mybank, paypal. Max len 32.
-            "status": "active",               // Required. [active, inactive]. Indicates whether this plan is currently active or inactive.
-            "name": "Reaching out GetMyEBooks to Public libraries",                 // Required. Name of the funding plan. eg: "Starter support plan", "Infra hosting", "Monthly funding plan".
-            "description": "This involves the cost of frame that have QR-code that redirect to GetMyEbook site using that readers can get access to number of free E-books. Each library costs 500 INR",          // Optional. Any additional description or instructions for the funding plan.
-            "amount": 2000000,                // Required. The solicited amount for this plan. 0 is a wildcard that indicates "any amount".
-            "currency": INR,             // Required. Three letter ISO 4217 currency code. eg: USD
-            "frequency": "one-time",            // Required. [one-time, weekly, fortnightly, monthly, yearly, other]
-            "channels": ["bank"]              // Required. One or more channel IDs defined in channels[] via which this plan can accept payments.
+            "guid": "library-reachouts"
+            "status": "active",
+            "name": "Reaching out GetMyEBooks to Public libraries",
+            "description": "This involves the cost of frame that have QR-code that redirect to GetMyEbook site using that readers can get access to number of free E-books. Each library costs 500 INR",
+            "amount": 2000000,
+            "currency": "INR",
+            "frequency": "one-time",
+            "channels": ["bank"]
         }],
-
-        // Optional. A simple summary of funding history. Only include if at least one, either income or expenses, have to be communicated.
-        "history": [{
-            "year": 2024,               // Required. Year (fiscal, preferably).
-            "income": 0,                // Optional.
-            "expenses": 0,              // Optional.
-            "taxes": 0,                 // Optional.
-            "currency": "",             // Required. Three letter ISO 4217 currency code. eg: USD
-            "description": ""           // Optional. Any additional description. Max length 500.
-        }]
     }
 }
 
