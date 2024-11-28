@@ -41,14 +41,15 @@
         },
         "licenses": ["gplV3"],      
         "tags": ["FreeEbooks", "MobileLibrary", "ImmersiveReading"]
-	}        
+	  }],        
     "funding": {
         "channels": [{
             "guid": "mybank",
             "type": "bank",
             "address": "",
             "description": "Will accept direct bank transfers. Please e-mail me for details."
-        }],
+        }]
+        },
         "plans": [{
             "guid": "hosting-monthly",
             "status": "active",
@@ -110,7 +111,7 @@
             "channels": ["bank"]
         },
         {
-            "guid": "library-reachouts"
+            "guid": "library-reachouts",
             "status": "active",
             "name": "Reaching out GetMyEBooks to Public libraries",
             "description": "This involves the cost of frame that have QR-code that redirect to GetMyEbook site using that readers can get access to number of free E-books. Each library costs 500 INR",
@@ -118,7 +119,7 @@
             "currency": "INR",
             "frequency": "one-time",
             "channels": ["bank"]
-        }],
+        }]
     }
-}
+
 
