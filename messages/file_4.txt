@@ -1,83 +1,83 @@
 msgid "Custom Column No.%(column)d does not exist in calibre database"
-msgstr ""
+msgstr "தனிப்பயன் நெடுவரிசை எண்.%(column)d காலிபர் தரவுத்தளத்தில் இல்லை"
 
 msgid "None"
-msgstr ""
+msgstr "இல்லை"
 
 msgid "File %(file)s uploaded"
-msgstr ""
+msgstr "கோப்பு %(file) பதிவேற்றப்பட்டது"
 
 msgid "Source or destination format for conversion missing"
-msgstr ""
+msgstr "மாற்றத்திற்கான மூலம் அல்லது இலக்கு வடிவம் இல்லை"
 
 msgid "Book successfully queued for converting to %(book_format)s"
-msgstr ""
+msgstr "%(book_format)sக்கு மாற்றுவதற்கு புத்தகம் வெற்றிகரமாக வரிசையில் இணைக்கப்பட்டது"
 
 msgid "There was an error converting this book: %(res)s"
-msgstr ""
+msgstr "இந்தப் புத்தகத்தை மாற்றுவதில் பிழை ஏற்பட்டது: %(res)s"
 
 msgid ""
 msgstr ""
 
 msgid "User has no rights to upload cover"
-msgstr ""
+msgstr "கவரைப் பதிவேற்ற பயனருக்கு உரிமை இல்லை"
 
 msgid "Identifiers are not Case Sensitive, Overwriting Old Identifier"
-msgstr ""
+msgstr "அடையாளங்காட்டிகள் கேஸ் சென்சிட்டிவ் அல்ல, பழைய அடையாளங்காட்டியை மேலெழுதும்"
 
 msgid "'%(langname)s' is not a valid language"
-msgstr ""
+msgstr "'%(langname)s' சரியான மொழி அல்ல"
 
 msgid "Metadata successfully updated"
-msgstr ""
+msgstr "மெட்டாடேட்டா வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
 
 msgid "Error editing book: {}"
-msgstr ""
+msgstr "புத்தகத்தைத் திருத்துவதில் பிழை: {}"
 
 msgid ""
 msgstr ""
 
 msgid "File type isn't allowed to be uploaded to this server"
-msgstr ""
+msgstr "கோப்பு வகையை இந்த சர்வரில் பதிவேற்ற அனுமதிக்கப்படவில்லை"
 
 msgid "File extension '%(ext)s' is not allowed to be uploaded to this server"
-msgstr ""
+msgstr "கோப்பு நீட்டிப்பு '%(ext)s' இந்த சேவையகத்தில் பதிவேற்ற அனுமதிக்கப்படவில்லை"
 
 msgid "File to be uploaded must have an extension"
-msgstr ""
+msgstr "பதிவேற்றப்படும் கோப்பில் நீட்டிப்பு இருக்க வேண்டும்"
 
 msgid "File %(filename)s could not saved to temp dir"
-msgstr ""
+msgstr "கோப்பு %(filename)s ஐ தற்காலிக இயக்கத்தில் சேமிக்க முடியவில்லை"
 
 msgid "Failed to Move Cover File %(file)s: %(error)s"
-msgstr ""
+msgstr "கவர் கோப்பை நகர்த்துவதில் தோல்வி %(file)s: %(error)s"
 
 msgid "Book Format Successfully Deleted"
-msgstr ""
+msgstr "புத்தக வடிவம் வெற்றிகரமாக நீக்கப்பட்டது"
 
 msgid "Book Successfully Deleted"
-msgstr ""
+msgstr "புத்தகம் வெற்றிகரமாக நீக்கப்பட்டது"
 
 msgid "You are missing permissions to delete books"
-msgstr ""
+msgstr "புத்தகங்களை நீக்குவதற்கான அனுமதிகளை நீங்கள் காணவில்லை"
 
 msgid "edit metadata"
-msgstr ""
+msgstr "மெட்டாடேட்டாவைத் திருத்தவும்"
 
 msgid "Seriesindex: %(seriesindex)s is not a valid number, skipping"
-msgstr ""
+msgstr "Seriesindex: %(seriesindex)s செல்லுபடியாகும் எண் அல்ல, தவிர்க்கிறது"
 
 msgid "User has no rights to upload additional file formats"
-msgstr ""
+msgstr "கூடுதல் கோப்பு வடிவங்களைப் பதிவேற்ற பயனருக்கு உரிமை இல்லை"
 
 msgid "Failed to create path %(path)s (Permission denied)."
-msgstr ""
+msgstr "பாதை %(பாதை)களை உருவாக்குவதில் தோல்வி (அனுமதி மறுக்கப்பட்டது)."
 
 msgid "Failed to store file %(file)s."
-msgstr ""
+msgstr "%(file)s கோப்பை சேமிப்பதில் தோல்வி."
 
 msgid "File format %(ext)s added to %(book)s"
-msgstr ""
+msgstr "%(ext)s கோப்பு வடிவம் %(book)s இல் சேர்க்கப்பட்டது"
 
 msgid ""
 msgstr ""
@@ -86,35 +86,35 @@ msgid ""
 msgstr ""
 
 msgid "%(format)s format not found for book id: %(book)d"
-msgstr ""
+msgstr "புத்தக ஐடிக்கு %(format)s வடிவம் இல்லை: %(book)d"
 
 msgid "%(format)s not found on Google Drive: %(fn)s"
-msgstr ""
+msgstr "Google இயக்ககத்தில் %(format)கள் காணப்படவில்லை: %(fn)s"
 
 msgid "%(format)s not found: %(fn)s"
-msgstr ""
+msgstr "%(format)கள் காணப்படவில்லை: %(fn)s"
 
 msgid "Send to eReader"
-msgstr ""
+msgstr "மின் வாசகர்க்கு அனுப்பவும்"
 
 msgid "This Email has been sent via Calibre-Web."
-msgstr ""
+msgstr "இந்த மின்னஞ்சல் Calibre-Web வழியாக அனுப்பப்பட்டது."
 
 msgid "Calibre-Web Test Email"
-msgstr ""
+msgstr "Calibre-Web சோதனை மின்னஞ்சல்"
 
 msgid "Test Email"
-msgstr ""
+msgstr "சோதனை மின்னஞ்சல்"
 
 msgid "Get Started with Calibre-Web"
-msgstr ""
+msgstr "Calibre-Web உடன் தொடங்கவும்"
 
 msgid "Registration Email for user: %(name)s"
-msgstr ""
+msgstr "பயனருக்கான பதிவு மின்னஞ்சல்: %(name)s"
 
 msgid "Convert %(orig)s to %(format)s and send to eReader"
-msgstr ""
+msgstr "%(orig)s ஐ %(format)s ஆக மாற்றி மின் வாசகர்க்கு அனுப்பவும்"
 
 msgid "Send %(format)s to eReader"
-msgstr ""
+msgstr "மின் வாசகர்க்கு %(format)s ஐ அனுப்பவும்"
 
