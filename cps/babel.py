@@ -11,22 +11,28 @@ log = logger.create()
 babel = Babel()
 
 
-def get_locale():
+def get_locale(locale=None):
     # if a user is logged in, use the locale from the user settings
     if current_user is not None and hasattr(current_user, "locale"):
         # if the account is the guest account bypass the config lang settings
         if current_user.name != 'Guest':
             return current_user.locale
-
-    preferred = list()
-    if request.accept_languages:
-        for x in request.accept_languages.values():
-            try:
-                preferred.append(str(Locale.parse(x.replace('-', '_'))))
-            except (UnknownLocaleError, ValueError) as e:
-                log.debug('Could not parse locale "%s": %s', x, e)
-
-    return negotiate_locale(preferred or ['en'], get_available_translations())
+    locale_value = None
+    if locale:
+        locale_value = locale
+    else:
+        request_locale = request.cookies.get("get_my_ebook_locale")
+        user_locale = [request_locale] if request_locale else None
+        preferred = list()
+        if request.accept_languages:
+            for x in request.accept_languages.values():
+                try:
+                    preferred.append(str(Locale.parse(x.replace('-', '_'))))
+                except (UnknownLocaleError, ValueError) as e:
+                    log.debug('Could not parse locale "%s": %s', x, e)
+        locale_value = negotiate_locale(user_locale or preferred or ['el'], get_available_translations())
+    print("Current Locale", locale_value)
+    return locale_value
 
 
 def get_user_locale_language(user_language):

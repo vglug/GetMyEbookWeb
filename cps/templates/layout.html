@@ -67,7 +67,7 @@
               <div class="toggle_switch">
                 <label>English</label>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" id="locale" onclick="setLocale()">
                   <span class="slider round"></span>
                 </label>
                 <label>தமிழ்</label>
@@ -252,6 +252,19 @@
       <script src="{{ url_for('static', filename='js/libs/readmore.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/caliBlur.js') }}"></script>
     {% endif %}
+    <script>
+      function setLocale() {
+        var checkBox = document.getElementById("locale");
+        var text = document.getElementById("text");
+        if (checkBox.checked == true){
+          document.cookie = 'get_my_ebook_locale=el';
+          window.location.reload();
+        } else {
+          document.cookie = 'get_my_ebook_locale=en'
+          window.location.reload();
+        }
+      }
+      </script>
     {% block js %}{% endblock %}
   </body>
 </html>

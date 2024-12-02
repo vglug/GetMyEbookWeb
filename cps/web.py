@@ -838,6 +838,13 @@ def books_table():
     return render_title_template('book_table.html', title=_("Books List"), cc=cc, page="book_table",
                                  visiblility=visibility)
 
+@web.route("/ajax/listbooks")
+def set_user_locale():
+    user_locale = request.args.get('locale', 'en')
+    response = make_response({'message':'success'})
+    response.set_cookie('get_my_ebook_locale', user_locale)
+    return response
+
 
 @web.route("/ajax/listbooks")
 @user_login_required
