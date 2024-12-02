@@ -1,120 +1,120 @@
 msgid "Installed Version"
-msgstr ""
+msgstr "நிறுவப்பட்ட பதிப்பு"
 
 msgid "User"
-msgstr ""
+msgstr "பயனர்"
 
 msgid "Task"
-msgstr ""
+msgstr "பணி"
 
 msgid "Status"
-msgstr ""
+msgstr "நிலை"
 
 msgid "Progress"
-msgstr ""
+msgstr "மேம்பாடு"
 
 msgid "Run Time"
-msgstr ""
+msgstr "இயக்க நேரம்"
 
 msgid "Message"
-msgstr ""
+msgstr "தூதுரை"
 
 msgid "Actions"
-msgstr ""
+msgstr "செயல்பாடுகள்"
 
 msgid "This task will be cancelled. Any progress made by this task will be saved."
-msgstr ""
+msgstr "இந்த பணி ரத்து செய்யப்படும். இதற்கு முன் செய்யப்பட்ட அணைத்து பணிகளும் சேமிக்கப்படும்."
 
 msgid ""
 msgstr ""
 
 msgid "Reset user Password"
-msgstr ""
+msgstr "பயனர் கடவுச்சொல்லை மீட்டமைக்கவும்"
 
 msgid ""
 msgstr ""
 
 msgid "Language of Books"
-msgstr ""
+msgstr "புத்தகங்களின் மொழி"
 
 msgid "OAuth Settings"
-msgstr ""
+msgstr "OAuth அமைப்புகள்"
 
 msgid "Link"
-msgstr ""
+msgstr "இணைப்பு"
 
 msgid "Unlink"
-msgstr ""
+msgstr "இணைப்பை துண்டிக்கவும்"
 
 msgid "Kobo Sync Token"
 msgstr ""
 
 msgid "Create/View"
-msgstr ""
+msgstr "உருவாக்கவும்/பார்க்கவும்"
 
 msgid "Force full kobo sync"
 msgstr ""
 
 msgid "Add allowed/Denied Custom Column Values"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட/மறுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளைச் சேர்க்கவும்"
 
 msgid "Sync only books in selected shelves with Kobo"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட அலமாரிகளில் உள்ள புத்தகங்களை மட்டும் கோபோவுடன் ஒத்திசைக்கவும்"
 
 msgid "Delete User"
-msgstr ""
+msgstr "பயனரை நீக்கு"
 
 msgid "Generate Kobo Auth URL"
 msgstr ""
 
 msgid "Select..."
-msgstr ""
+msgstr "தேர்ந்தெடு..."
 
 msgid "Edit User"
-msgstr ""
+msgstr "பயனரைத் திருத்து"
 
 msgid "Enter Username"
-msgstr ""
+msgstr "பயனர்பெயரை உள்ளிடவும்"
 
 msgid "Enter Email"
-msgstr ""
+msgstr "மின்னஞ்சலை உள்ளிடவும்"
 
 msgid "Enter eReader Email"
-msgstr ""
+msgstr "வாசிப்பவர் மின்னஞ்சலை உள்ளிடவும்"
 
 msgid "eReader Email"
-msgstr ""
+msgstr "வாசிப்பவர் மின்னஞ்சல்"
 
 msgid "Locale"
-msgstr ""
+msgstr "நிகழ்வு இயலிடம்"
 
 msgid "Visible Book Languages"
-msgstr ""
+msgstr "காணக்கூடிய புத்தக மொழிகள்"
 
 msgid "Edit Allowed Tags"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட குறிச்சொற்களைத் திருத்தவும்"
 
 msgid "Allowed Tags"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட குறிச்சொற்கள்"
 
 msgid "Edit Denied Tags"
-msgstr ""
+msgstr "மறுக்கப்பட்ட குறிச்சொற்களைத் திருத்தவும்"
 
 msgid "Denied Tags"
-msgstr ""
+msgstr "மறுக்கப்பட்ட குறிச்சொற்கள்"
 
 msgid "Edit Allowed Column Values"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட நெடுவரிசை மதிப்புகளைத் திருத்தவும்"
 
 msgid "Allowed Column Values"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட நெடுவரிசை மதிப்புகள்"
 
 msgid "Edit Denied Column Values"
-msgstr ""
+msgstr "மறுக்கப்பட்ட நெடுவரிசை மதிப்புகளைத் திருத்தவும்"
 
 msgid "Denied Column Values"
-msgstr ""
+msgstr "நிராகரிக்கப்பட்ட நெடுவரிசை மதிப்புகள்"
 
 msgid "Change Password"
-msgstr ""
+msgstr "கடவுச்சொல்லை மாற்றவும்"
 
