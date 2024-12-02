@@ -1,120 +1,120 @@
 msgid "%(book)s send to eReader"
-msgstr ""
+msgstr "%(book)கள் மின் வாசகர்க்கு அனுப்பப்படும்"
 
 msgid "The requested file could not be read. Maybe wrong permissions?"
-msgstr ""
+msgstr "கோரப்பட்ட கோப்பைப் படிக்க முடியவில்லை. ஒருவேளை தவறான அனுமதிகள்?"
 
 msgid "Read status could not set: {}"
-msgstr ""
+msgstr "வாசிப்பு நிலையை அமைக்க முடியவில்லை: {}"
 
 msgid "Deleting bookfolder for book %(id)s failed, path has subfolders: %(path)s"
-msgstr ""
+msgstr "%(id)s புத்தகத்திற்கான புத்தகக் கோப்புறையை நீக்குவது தோல்வியடைந்தது, பாதையில் துணைக் கோப்புறைகள் உள்ளன: %(path)s"
 
 msgid "Deleting book %(id)s failed: %(message)s"
-msgstr ""
+msgstr "%(id)s புத்தகத்தை நீக்குவது தோல்வி: %(message)s""
 
 msgid ""
 msgstr ""
 
 msgid "Rename author from: '%(src)s' to '%(dest)s' failed with error: %(error)s"
-msgstr ""
+msgstr "இதிலிருந்து ஆசிரியரின் பெயரை மாற்றவும்: '%(src)s' ஆக '%(dest)s' ஆக பிழையுடன் தோல்வியடைந்தது: %(error)s"
 
 msgid "File %(file)s not found on Google Drive"
-msgstr ""
+msgstr "%(file)s கோப்பு Google இயக்ககத்தில் காணப்படவில்லை"
 
 msgid "Rename title from: '%(src)s' to '%(dest)s' failed with error: %(error)s"
-msgstr ""
+msgstr "இதிலிருந்து தலைப்பை மறுபெயரிடவும்: '%(src)s' ஆக '%(dest)s' பிழையுடன் தோல்வியடைந்தது: %(error)s"
 
 msgid "Book path %(path)s not found on Google Drive"
-msgstr ""
+msgstr "புத்தக பாதை %(path)கள் Google இயக்ககத்தில் காணப்படவில்லை"
 
 msgid "Found an existing account for this Email address"
-msgstr ""
+msgstr "இந்த மின்னஞ்சல் முகவரிக்கு ஏற்கனவே கணக்கு உள்ளது"
 
 msgid "This username is already taken"
-msgstr ""
+msgstr "இந்த பயனர் பெயர் ஏற்கனவே எடுக்கப்பட்டது"
 
 msgid "Invalid Email address format"
-msgstr ""
+msgstr "தவறான மின்னஞ்சல் முகவரி வடிவம்"
 
 msgid "Password doesn't comply with password validation rules"
-msgstr ""
+msgstr "கடவுச்சொல் சரிபார்ப்பு கடவுச்சொல் விதிகளுடன் இணங்கவில்லை"
 
 msgid "Python module 'advocate' is not installed but is needed for cover uploads"
-msgstr ""
+msgstr "பைதான் தொகுதி 'வழக்கறிஞர்' நிறுவப்படவில்லை ஆனால் கவர் பதிவேற்றங்களுக்கு இது தேவைப்படுகிறது"
 
 msgid "Error Downloading Cover"
-msgstr ""
+msgstr "அட்டையைப் பதிவிறக்குவதில் பிழை"
 
 msgid "Cover Format Error"
-msgstr ""
+msgstr "கவர் வடிவமைப்பு பிழை"
 
 msgid ""
 msgstr ""
 
 msgid "Failed to create path for cover"
-msgstr ""
+msgstr "மேலுறைக்கான பாதையை உருவாக்க முடியவில்லை"
 
 msgid "Cover-file is not a valid image file, or could not be stored"
-msgstr ""
+msgstr "மேலுறை-கோப்பு சரியான படக் கோப்பு அல்ல, அல்லது சேமிக்க முடியவில்லை"
 
 msgid "Only jpg/jpeg/png/webp/bmp files are supported as coverfile"
-msgstr ""
+msgstr "jpg/jpeg/png/webp/bmp கோப்புகள் மட்டுமே மேலுறை-கோப்புக்கு ஆதரிக்கப்படும்"
 
 msgid "Invalid cover file content"
-msgstr ""
+msgstr "தவறான மேலுறை-கோப்பு உள்ளடக்கம்"
 
 msgid "Only jpg/jpeg files are supported as coverfile"
-msgstr ""
+msgstr "jpg/jpeg கோப்புகள் மட்டுமே மேலுறை-கோப்புக்கு ஆதரிக்கப்படும்"
 
 msgid "Cover"
-msgstr ""
+msgstr "மேலுறை"
 
 msgid "UnRar binary file not found"
-msgstr ""
+msgstr "UnRar பைனரி கோப்பு கிடைக்கவில்லை"
 
 msgid "Error executing UnRar"
-msgstr ""
+msgstr "UnRar ஐ இயக்குவதில் பிழை"
 
 msgid "Could not find the specified directory"
-msgstr ""
+msgstr "குறிப்பிட்ட கோப்பகத்தைக் கண்டுபிடிக்க முடியவில்லை"
 
 msgid "Please specify a directory, not a file"
-msgstr ""
+msgstr "தயவு செய்து ஒரு கோப்பகத்தைக் குறிப்பிடவும், கோப்பு அல்ல"
 
 msgid "Calibre binaries not viable"
-msgstr ""
+msgstr "காலிபர் பைனரிகள் சாத்தியமில்லை"
 
 msgid "Missing calibre binaries: %(missing)s"
-msgstr ""
+msgstr "காலிபர் பைனரிகள் காணவில்லை: %(missing)கள்"
 
 msgid "Missing executable permissions: %(missing)s"
-msgstr ""
+msgstr "இயங்கக்கூடிய அனுமதிகள் இல்லை: %(missing)s"
 
 msgid "Error executing Calibre"
-msgstr ""
+msgstr "காலிபரை இயக்குவதில் பிழை"
 
 msgid "Queue all books for metadata backup"
-msgstr ""
+msgstr "மெட்டாடேட்டா காப்புப்பிரதிக்கு எல்லா புத்தகங்களையும் வரிசைப்படுத்தவும்"
 
 msgid ""
 msgstr ""
 
 msgid "Kobo Setup"
-msgstr ""
+msgstr "கோபோ அமைப்பு"
 
 msgid "Register with %(provider)s"
-msgstr ""
+msgstr "%(provider)களுடன் பதிவு செய்யவும்"
 
 msgid "Success! You are now logged in as: %(nickname)s"
-msgstr ""
+msgstr "வெற்றி! நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: %(புனைப்பெயர்)s"
 
 msgid "Link to %(oauth)s Succeeded"
-msgstr ""
+msgstr "%(auth)sக்கான இணைப்பு வெற்றியடைந்தது"
 
 msgid "Login failed, No User Linked With OAuth Account"
-msgstr ""
+msgstr "உள்நுழைவு தோல்வியடைந்தது, OAuth கணக்குடன் எந்த பயனரும் இணைக்கப்படவில்லை"
 
 msgid "Unlink to %(oauth)s Succeeded"
-msgstr ""
+msgstr "%(auth)sக்கான இணைப்பை நீக்குதல் வெற்றியடைந்தது""
 
