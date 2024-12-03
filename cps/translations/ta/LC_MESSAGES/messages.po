@@ -1,0 +1,2390 @@
+msgid "Statistics"
+msgstr "புள்ளிவிவரங்கள்"
+
+msgid "Server restarted, please reload page."
+msgstr "சேவையகம் மறுதொடக்கம் செய்யப்பட்டது பக்கத்தை ஏற்றவும்"
+
+msgid "Performing Server shutdown, please close window."
+msgstr "சேவையகம் பணிநிறுத்தம் செய்யப்படுகிறது சாளரத்தை மூடு"
+
+msgid "Success! Database Reconnected"
+msgstr "வெற்றி!,தரவுத்தளம் மீண்டும் இணைக்கப்பட்டது"
+
+msgid "Unknown command"
+msgstr "தெரியாத கருத்து"
+
+msgid "Success! Books queued for Metadata Backup, please check Tasks for result"
+msgstr "வெற்றி , மெட்டாடேட்டா காப்புப்பிரதிக்காக புத்தகம் வரிசைப்படுத்தப்பட்டுள்ளது, முடிவுக்கான பணியைச் சரிபார்க்கவும்"
+
+msgid "Unknown"
+msgstr "தெரியவில்லை"
+
+msgid "Admin page"
+msgstr "நிர்வாக பக்கம்" 
+
+msgid "Basic Configuration"
+msgstr "அடிப்படை கட்டமைப்பு"
+
+msgid "UI Configuration"
+msgstr "பயனர் இடைமுக கட்டமைப்பு"
+
+msgid "Edit Users"
+msgstr "பயனர் திருத்தம்"
+
+msgid "All"
+msgstr "அனைத்தும்"
+
+msgid "User not found"
+msgstr "பயனர் கிடைக்கவில்லை"
+
+msgid "{} users deleted successfully"
+msgstr "பயனர்கள் நீக்கப்பட்டனர்"
+
+msgid "Show All"
+msgstr "அனைத்தையும் காட்டு"
+
+msgid "Malformed request"
+msgstr "தவறான கோரிக்கை"
+
+msgid "Guest Name can't be changed"
+msgstr "விருந்தினர் பெயரை மாற்ற முடியாது"
+
+msgid "Guest can't have this role"
+msgstr "விருந்தினருக்கு இந்தப் பங்கு இருக்க முடியாது"
+
+msgid "No admin user remaining, can't remove admin role"
+msgstr "நிர்வாகிப் பயனர் எவரும் இல்லை, நிர்வாகிப் பொறுப்பை அகற்ற முடியாது"
+
+msgid "Value has to be true or false"
+msgstr "மதிப்பு உண்மையாகவோ அல்லது பொய்யாகவோ இருக்க வேண்டும் "
+
+msgid "Invalid role"
+msgstr "தவறான பங்கு"
+
+msgid "Guest can't have this view"
+msgstr "விருந்தினர் இந்தக் காட்சியைப் பார்க்க முடியாது"
+
+msgid "Invalid view"
+msgstr "தவறான பார்வை"
+
+msgid "Guest's Locale is determined automatically and can't be set"
+msgstr "விருந்தினரின் இருப்பிடம் தானாக தீர்மானிக்கப்பட்டு அமைக்க முடியாது"
+
+msgid "No Valid Locale Given"
+msgstr "சரியான உள்ளூர் கொடுக்கப்படவில்லை"
+
+msgid "No Valid Book Language Given"
+msgstr "சரியான புத்தக மொழி கொடுக்கப்படவில்லை"
+
+msgid "Parameter not found"
+msgstr "அளவுரு காணப்படவில்லை"
+
+msgid "Invalid Read Column"
+msgstr "படிக்கும் நெடுவரிசை தவறானது"
+
+msgid "Invalid Restricted Column"
+msgstr "தவறான கட்டுப்படுத்தப்பட்ட நெடுவரிசை"
+
+msgid "Calibre-Web configuration updated"
+msgstr "திறன்-வலை கட்டமைப்பு புதுப்பிக்கப்பட்டது"
+
+msgid "Do you really want to delete the Kobo Token?"
+msgstr "நீங்கள் உண்மையில் கோபோ டோக்கனை நீக்க விரும்புகிறீர்களா? "
+
+msgid "Do you really want to delete this domain?"
+msgstr "இந்த டொமைனை உண்மையில் நீக்க விரும்புகிறீர்களா?"
+
+msgid "Do you really want to delete this user?"
+msgstr "இந்த பயனரை உண்மையில் நீக்க விரும்புகிறீர்களா?"
+
+msgid "Are you sure you want to delete this shelf?"
+msgstr "இந்த அலமாரியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
+
+msgid "Are you sure you want to change locales of selected user(s)?"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பயனர்(களின்) இருப்பிடங்களை நிச்சயமாக மாற்ற விரும்புகிறீர்களா? "
+
+msgid "Are you sure you want to change Calibre library location?"
+msgstr "காலிபர் லைப்ரரி இருப்பிடத்தை நிச்சயமாக மாற்ற விரும்புகிறீர்களா?"
+
+msgid "Deny"
+msgstr "மறுக்கவும்"
+
+msgid "Allow"
+msgstr ""அனுமதி
+
+msgid "{} sync entries deleted"
+msgstr "{} ஒத்திசைவு உள்ளீடுகள் நீக்கப்பட்டன"
+
+msgid "Tag not found"
+msgstr "குறி கிடைக்கவில்லை"
+
+msgid "Invalid Action"
+msgstr "தவறான செயல்"
+
+msgid "client_secrets.json Is Not Configured For Web Application"
+msgstr "client_secrets.json இணைய பயன்பாட்டிற்காக கட்டமைக்கப்படவில்லை"
+
+msgid "Logfile Location is not Valid, Please Enter Correct Path"
+msgstr "லாக்ஃபைல் இருப்பிடம் தவறானது, சரியான பாதையை உள்ளிடவும்"
+
+msgid "Access Logfile Location is not Valid, Please Enter Correct Path"
+msgstr "அணுகல் லாக்ஃபைல் இருப்பிடம் செல்லுபடியாகாது, சரியான பாதையை உள்ளிடவும்"
+
+msgid "Please Enter a LDAP Provider, Port, DN and User Object Identifier"
+msgstr "LDAP வழங்குநர், போர்ட், DN மற்றும் பயனர் பொருள் அடையாளங்காட்டியை உள்ளிடவும்"
+
+msgid "Please Enter a LDAP Service Account and Password"
+msgstr "LDAP சேவை கணக்கு மற்றும் கடவுச்சொல்லை உள்ளிடவும்"
+
+msgid "Please Enter a LDAP Service Account"
+msgstr "LDAP சேவைக் கணக்கை உள்ளிடவும்"
+
+msgid "LDAP Group Object Filter Needs to Have One \"%s\" Format Identifier"
+msgstr "LDAP குழு பொருள் வடிகட்டி ஒன்று \"%s\" வடிவமைப்பு அடையாளங்காட்டியைக் கொண்டிருக்க வேண்டும்"
+
+msgid "LDAP Group Object Filter Has Unmatched Parenthesis"
+msgstr ""LDAP குழு பொருள் வடிகட்டி பொருத்தமற்ற அடைப்புக்குறியைக் கொண்டுள்ளது
+
+msgid "LDAP User Object Filter needs to Have One \"%s\" Format Identifier"
+msgstr "LDAP குழு பொருள் வடிகட்டி ஒன்று \"%s\" வடிவமைப்பு அடையாளங்காட்டியைக் கொண்டிருக்க வேண்டும்"
+
+msgid "LDAP User Object Filter Has Unmatched Parenthesis"
+msgstr "LDAP பயனர் பொருள் வடிகட்டி பொருத்தமற்ற அடைப்புக்குறியைக் கொண்டுள்ளது"
+
+msgid "LDAP Member User Filter needs to Have One \"%s\" Format Identifier"
+msgstr "LDAP குழு பொருள் வடிகட்டி ஒன்று \"%s\" வடிவமைப்பு அடையாளங்காட்டியைக் கொண்டிருக்க வேண்டும்"
+
+msgid "LDAP Member User Filter Has Unmatched Parenthesis"
+msgstr "LDAP பயனர் பொருள் வடிகட்டி பொருத்தமற்ற அடைப்புக்குறியைக் கொண்டுள்ளது"
+
+msgid "Add New User"
+msgstr "புதிய பயனரைச் சேர்க்கவும்"
+
+msgid "Edit Email Server Settings"
+msgstr "மின்னஞ்சல் சேவையக அமைப்புகளைத் திருத்தவும்"
+
+msgid "Success! Gmail Account Verified."
+msgstr "வெற்றி! ஜிமெயில் கணக்கு சரிபார்க்கப்பட்டது."
+
+msgid "Oops! Database Error: %(error)s."
+msgstr "அச்சச்சோ! தரவுத்தளப் பிழை: %(பிழை)கள்."
+
+msgid "Test e-mail queued for sending to %(email)s, please check Tasks for result"
+msgstr "சோதனை மின்னஞ்சலை %(மின்னஞ்சல்)களுக்கு அனுப்ப வரிசைப்படுத்தப்பட்டுள்ளது, முடிவுக்கான பணிகளைச் சரிபார்க்கவும்"
+
+msgid "There was an error sending the Test e-mail: %(res)s"
+msgstr "சோதனை மின்னஞ்சலை அனுப்புவதில் பிழை ஏற்பட்டது: %(res)s"
+
+msgid "Please configure your e-mail address first..."
+msgstr "முதலில் உங்கள் மின்னஞ்சல் முகவரியை உள்ளமைக்கவும்..."
+
+msgid "Email Server Settings updated"
+msgstr "மின்னஞ்சல் சேவையக அமைப்புகள் புதுப்பிக்கப்பட்டன"
+
+msgid "Edit Scheduled Tasks Settings"
+msgstr "திட்டமிடப்பட்ட பணிகளின் அமைப்புகளைத் திருத்தவும்"
+
+msgid "Invalid start time for task specified"
+msgstr "குறிப்பிடப்பட்ட பணிக்கான தவறான தொடக்க நேரம்"
+
+msgid "Invalid duration for task specified"
+msgstr "குறிப்பிடப்பட்ட பணிக்கான தவறான கால அளவு"
+
+msgid "Scheduled tasks settings updated"
+msgstr "திட்டமிடப்பட்ட பணிகளின் அமைப்புகள் புதுப்பிக்கப்பட்டன"
+
+msgid "Oops! An unknown error occurred. Please try again later."
+msgstr "அச்சச்சோ! அறியப்படாத பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்"
+
+msgid "Settings DB is not Writeable"
+msgstr "அமைப்புகள் DB எழுதக்கூடியது அல்ல"
+
+msgid "Edit User %(nick)s"
+msgstr "பயனர் %(nick)s ஐத் திருத்தவும்"
+
+msgid "Success! Password for user %(user)s reset"
+msgstr "வெற்றி! பயனர் %(user)s மீட்டமைப்பிற்கான கடவுச்சொல்"
+
+msgid "Oops! Please configure the SMTP mail settings."
+msgstr "அச்சச்சோ! SMTP அஞ்சல் அமைப்புகளை உள்ளமைக்கவும்."
+
+msgid "Logfile viewer"
+msgstr "லாக்ஃபைல் வியூவர்"
+
+msgid "Requesting update package"
+msgstr "புதுப்பிப்பு தொகுப்பைக் கோருகிறது"
+
+msgid "Downloading update package"
+msgstr "புதுப்பிப்பு தொகுப்பைப் பதிவிறக்குகிறது"
+
+msgid "Unzipping update package"
+msgstr "புதுப்பிப்பு தொகுப்பை அன்சிப் செய்கிறது"
+
+msgid "Replacing files"
+msgstr "கோப்புகளை மாற்றுதல்"
+
+msgid "Database connections are closed"
+msgstr "தரவுத்தள இணைப்புகள் மூடப்பட்டுள்ளன"
+
+msgid "Stopping server"
+msgstr "சேவையகத்தை நிறுத்துகிறது"
+
+msgid "Update finished, please press okay and reload page"
+msgstr "புதுப்பித்தல் முடிந்தது, சரி என்பதை அழுத்தி பக்கத்தை மீண்டும் ஏற்றவும்"
+
+msgid "Update failed:"
+msgstr "புதுப்பிப்பு தோல்வியடைந்தது:"
+
+msgid "HTTP Error"
+msgstr "HTTP பிழை"
+
+msgid "Connection error"
+msgstr "இணைப்பு பிழை"
+
+msgid "Timeout while establishing connection"
+msgstr "இணைப்பை நிறுவும் போது நேரம் முடிந்தது"
+
+msgid "General error"
+msgstr "பொதுவான பிழை"
+
+msgid "Update file could not be saved in temp dir"
+msgstr "புதுப்பிப்பு கோப்பை தற்காலிக இயக்கத்தில் சேமிக்க முடியவில்லை"
+
+msgid "Files could not be replaced during update"
+msgstr "புதுப்பிப்பின் போது கோப்புகளை மாற்ற முடியவில்லை"
+
+msgid "Failed to extract at least One LDAP User"
+msgstr "குறைந்தது ஒரு LDAP பயனரைப் பிரித்தெடுக்க முடியவில்லை"
+
+msgid "Failed to Create at Least One LDAP User"
+msgstr "குறைந்தது ஒரு LDAP பயனரை உருவாக்க முடியவில்லை"
+
+msgid "Error: %(ldaperror)s"
+msgstr "பிழை: %(ldaperror)s"
+
+msgid "Error: No user returned in response of LDAP server"
+msgstr "பிழை: LDAP சேவையகத்தின் பதிலில் எந்தப் பயனரும் திரும்பவில்லை"
+
+msgid "At Least One LDAP User Not Found in Database"
+msgstr "தரவுத்தளத்தில் குறைந்தது ஒரு LDAP பயனரைக் காணவில்லை"
+
+msgid "{} User Successfully Imported"
+msgstr "{} பயனர் வெற்றிகரமாக இறக்குமதி செய்யப்பட்டார்"
+
+msgid "Books path not valid"
+msgstr "புத்தக பாதை செல்லாது"
+
+msgid "DB Location is not Valid, Please Enter Correct Path"
+msgstr "DB இருப்பிடம் தவறானது, சரியான பாதையை உள்ளிடவும்"
+
+msgid "DB is not Writeable"
+msgstr "DB எழுதக்கூடியது அல்ல"
+
+msgid "Keyfile Location is not Valid, Please Enter Correct Path"
+msgstr "கீஃபைல் இருப்பிடம் செல்லுபடியாகவில்லை, சரியான பாதையை உள்ளிடவும்"
+
+msgid "Certfile Location is not Valid, Please Enter Correct Path"
+msgstr "சான்றிதழ் இருப்பிடம் தவறானது, சரியான பாதையை உள்ளிடவும்"
+
+msgid "Password length has to be between 1 and 40"
+msgstr "கடவுச்சொல் நீளம் 1 முதல் 40 வரை இருக்க வேண்டும்"
+
+msgid "Database Settings updated"
+msgstr "தரவுத்தள அமைப்புகள் புதுப்பிக்கப்பட்டன"
+
+msgid "Database Configuration"
+msgstr "தரவுத்தள கட்டமைப்பு"
+
+msgid "Oops! Please complete all fields."
+msgstr "அச்சச்சோ! அனைத்து புலங்களையும் பூர்த்தி செய்யவும்"
+
+msgid "E-mail is not from valid domain"
+msgstr "மின்னஞ்சல் செல்லுபடியாகும் டொமைனிலிருந்து இல்லை"
+
+msgid "Add new user"
+msgstr "புதிய பயனரைச் சேர்க்கவும்"
+
+msgid User '%(user)s' created""
+msgstr "பயனர் '%(user)s' உருவாக்கப்பட்டது"
+
+msgid "Oops! An account already exists for this Email. or name."
+msgstr "அச்சச்சோ! இந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது. அல்லது பெயர்."
+
+msgid "User '%(nick)s' deleted"
+msgstr "பயனர் '%(nick)s' நீக்கப்பட்டார்"
+
+msgid "Can't delete Guest User"
+msgstr "விருந்தினர் பயனரை நீக்க முடியாது"
+
+msgid "No admin user remaining, can't delete user"
+msgstr "நிர்வாகி பயனர் யாரும் இல்லை, பயனரை நீக்க முடியாது"
+
+msgid "Email can't be empty and has to be a valid Email"
+msgstr "மின்னஞ்சல் காலியாக இருக்கக்கூடாது மற்றும் சரியான மின்னஞ்சலாக இருக்க வேண்டும்"
+
+msgid "User '%(nick)s' updated"
+msgstr "பயனர் '%(nick)s' புதுப்பிக்கப்பட்டது"
+
+msgid "not installed"
+msgstr "நிறுவப்படவில்லை"
+
+msgid "Execution permissions missing"
+msgstr "செயல்படுத்துவதற்கான அனுமதிகள் இல்லை"
+
+msgid "Custom Column No.%(column)d does not exist in calibre database"
+msgstr "தனிப்பயன் நெடுவரிசை எண்.%(column)d காலிபர் தரவுத்தளத்தில் இல்லை"
+
+msgid "None"
+msgstr "இல்லை"
+
+msgid "File %(file)s uploaded"
+msgstr "கோப்பு %(file) பதிவேற்றப்பட்டது"
+
+msgid "Source or destination format for conversion missing"
+msgstr "மாற்றத்திற்கான மூலம் அல்லது இலக்கு வடிவம் இல்லை"
+
+msgid "Book successfully queued for converting to %(book_format)s"
+msgstr "%(book_format)sக்கு மாற்றுவதற்கு புத்தகம் வெற்றிகரமாக வரிசையில் இணைக்கப்பட்டது"
+
+msgid "There was an error converting this book: %(res)s"
+msgstr "இந்தப் புத்தகத்தை மாற்றுவதில் பிழை ஏற்பட்டது: %(res)s"
+
+msgid ""
+msgstr ""
+
+msgid "User has no rights to upload cover"
+msgstr "கவரைப் பதிவேற்ற பயனருக்கு உரிமை இல்லை"
+
+msgid "Identifiers are not Case Sensitive, Overwriting Old Identifier"
+msgstr "அடையாளங்காட்டிகள் கேஸ் சென்சிட்டிவ் அல்ல, பழைய அடையாளங்காட்டியை மேலெழுதும்"
+
+msgid "'%(langname)s' is not a valid language"
+msgstr "'%(langname)s' சரியான மொழி அல்ல"
+
+msgid "Metadata successfully updated"
+msgstr "மெட்டாடேட்டா வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
+
+msgid "Error editing book: {}"
+msgstr "புத்தகத்தைத் திருத்துவதில் பிழை: {}"
+
+msgid ""
+msgstr ""
+
+msgid "File type isn't allowed to be uploaded to this server"
+msgstr "கோப்பு வகையை இந்த சர்வரில் பதிவேற்ற அனுமதிக்கப்படவில்லை"
+
+msgid "File extension '%(ext)s' is not allowed to be uploaded to this server"
+msgstr "கோப்பு நீட்டிப்பு '%(ext)s' இந்த சேவையகத்தில் பதிவேற்ற அனுமதிக்கப்படவில்லை"
+
+msgid "File to be uploaded must have an extension"
+msgstr "பதிவேற்றப்படும் கோப்பில் நீட்டிப்பு இருக்க வேண்டும்"
+
+msgid "File %(filename)s could not saved to temp dir"
+msgstr "கோப்பு %(filename)s ஐ தற்காலிக இயக்கத்தில் சேமிக்க முடியவில்லை"
+
+msgid "Failed to Move Cover File %(file)s: %(error)s"
+msgstr "கவர் கோப்பை நகர்த்துவதில் தோல்வி %(file)s: %(error)s"
+
+msgid "Book Format Successfully Deleted"
+msgstr "புத்தக வடிவம் வெற்றிகரமாக நீக்கப்பட்டது"
+
+msgid "Book Successfully Deleted"
+msgstr "புத்தகம் வெற்றிகரமாக நீக்கப்பட்டது"
+
+msgid "You are missing permissions to delete books"
+msgstr "புத்தகங்களை நீக்குவதற்கான அனுமதிகளை நீங்கள் காணவில்லை"
+
+msgid "edit metadata"
+msgstr "மெட்டாடேட்டாவைத் திருத்தவும்"
+
+msgid "Seriesindex: %(seriesindex)s is not a valid number, skipping"
+msgstr "Seriesindex: %(seriesindex)s செல்லுபடியாகும் எண் அல்ல, தவிர்க்கிறது"
+
+msgid "User has no rights to upload additional file formats"
+msgstr "கூடுதல் கோப்பு வடிவங்களைப் பதிவேற்ற பயனருக்கு உரிமை இல்லை"
+
+msgid "Failed to create path %(path)s (Permission denied)."
+msgstr "பாதை %(பாதை)களை உருவாக்குவதில் தோல்வி (அனுமதி மறுக்கப்பட்டது)."
+
+msgid "Failed to store file %(file)s."
+msgstr "%(file)s கோப்பை சேமிப்பதில் தோல்வி."
+
+msgid "File format %(ext)s added to %(book)s"
+msgstr "%(ext)s கோப்பு வடிவம் %(book)s இல் சேர்க்கப்பட்டது"
+
+msgid "%(format)s format not found for book id: %(book)d"
+msgstr "புத்தக ஐடிக்கு %(format)s வடிவம் இல்லை: %(book)d"
+
+msgid "%(format)s not found on Google Drive: %(fn)s"
+msgstr "Google இயக்ககத்தில் %(format)கள் காணப்படவில்லை: %(fn)s"
+
+msgid "%(format)s not found: %(fn)s"
+msgstr "%(format)கள் காணப்படவில்லை: %(fn)s"
+
+msgid "Send to eReader"
+msgstr "மின் வாசகர்க்கு அனுப்பவும்"
+
+msgid "This Email has been sent via Calibre-Web."
+msgstr "இந்த மின்னஞ்சல் Calibre-Web வழியாக அனுப்பப்பட்டது."
+
+msgid "Calibre-Web Test Email"
+msgstr "Calibre-Web சோதனை மின்னஞ்சல்"
+
+msgid "Test Email"
+msgstr "சோதனை மின்னஞ்சல்"
+
+msgid "Get Started with Calibre-Web"
+msgstr "Calibre-Web உடன் தொடங்கவும்"
+
+msgid "Registration Email for user: %(name)s"
+msgstr "பயனருக்கான பதிவு மின்னஞ்சல்: %(name)s"
+
+msgid "Convert %(orig)s to %(format)s and send to eReader"
+msgstr "%(orig)s ஐ %(format)s ஆக மாற்றி மின் வாசகர்க்கு அனுப்பவும்"
+
+msgid "Send %(format)s to eReader"
+msgstr "மின் வாசகர்க்கு %(format)s ஐ அனுப்பவும்"
+
+msgid "%(book)s send to eReader"
+msgstr "%(book)கள் மின் வாசகர்க்கு அனுப்பப்படும்"
+
+msgid "The requested file could not be read. Maybe wrong permissions?"
+msgstr "கோரப்பட்ட கோப்பைப் படிக்க முடியவில்லை. ஒருவேளை தவறான அனுமதிகள்?"
+
+msgid "Read status could not set: {}"
+msgstr "வாசிப்பு நிலையை அமைக்க முடியவில்லை: {}"
+
+msgid "Deleting bookfolder for book %(id)s failed, path has subfolders: %(path)s"
+msgstr "%(id)s புத்தகத்திற்கான புத்தகக் கோப்புறையை நீக்குவது தோல்வியடைந்தது, பாதையில் துணைக் கோப்புறைகள் உள்ளன: %(path)s"
+
+msgid "Deleting book %(id)s failed: %(message)s"
+msgstr "%(id)s புத்தகத்தை நீக்குவது தோல்வி: %(message)s"
+
+msgid "Rename author from: '%(src)s' to '%(dest)s' failed with error: %(error)s"
+msgstr "இதிலிருந்து ஆசிரியரின் பெயரை மாற்றவும்: '%(src)s' ஆக '%(dest)s' ஆக பிழையுடன் தோல்வியடைந்தது: %(error)s"
+
+msgid "File %(file)s not found on Google Drive"
+msgstr "%(file)s கோப்பு Google இயக்ககத்தில் காணப்படவில்லை"
+
+msgid "Rename title from: '%(src)s' to '%(dest)s' failed with error: %(error)s"
+msgstr "இதிலிருந்து தலைப்பை மறுபெயரிடவும்: '%(src)s' ஆக '%(dest)s' பிழையுடன் தோல்வியடைந்தது: %(error)s"
+
+msgid "Book path %(path)s not found on Google Drive"
+msgstr "புத்தக பாதை %(path)கள் Google இயக்ககத்தில் காணப்படவில்லை"
+
+msgid "Found an existing account for this Email address"
+msgstr "இந்த மின்னஞ்சல் முகவரிக்கு ஏற்கனவே கணக்கு உள்ளது"
+
+msgid "This username is already taken"
+msgstr "இந்த பயனர் பெயர் ஏற்கனவே எடுக்கப்பட்டது"
+
+msgid "Invalid Email address format"
+msgstr "தவறான மின்னஞ்சல் முகவரி வடிவம்"
+
+msgid "Password doesn't comply with password validation rules"
+msgstr "கடவுச்சொல் சரிபார்ப்பு கடவுச்சொல் விதிகளுடன் இணங்கவில்லை"
+
+msgid "Python module 'advocate' is not installed but is needed for cover uploads"
+msgstr "பைதான் தொகுதி 'வழக்கறிஞர்' நிறுவப்படவில்லை ஆனால் கவர் பதிவேற்றங்களுக்கு இது தேவைப்படுகிறது"
+
+msgid "Error Downloading Cover"
+msgstr "அட்டையைப் பதிவிறக்குவதில் பிழை"
+
+msgid "Cover Format Error"
+msgstr "கவர் வடிவமைப்பு பிழை"
+
+msgid "Failed to create path for cover"
+msgstr "மேலுறைக்கான பாதையை உருவாக்க முடியவில்லை"
+
+msgid "Cover-file is not a valid image file, or could not be stored"
+msgstr "மேலுறை-கோப்பு சரியான படக் கோப்பு அல்ல, அல்லது சேமிக்க முடியவில்லை"
+
+msgid "Only jpg/jpeg/png/webp/bmp files are supported as coverfile"
+msgstr "jpg/jpeg/png/webp/bmp கோப்புகள் மட்டுமே மேலுறை-கோப்புக்கு ஆதரிக்கப்படும்"
+
+msgid "Invalid cover file content"
+msgstr "தவறான மேலுறை-கோப்பு உள்ளடக்கம்"
+
+msgid "Only jpg/jpeg files are supported as coverfile"
+msgstr "jpg/jpeg கோப்புகள் மட்டுமே மேலுறை-கோப்புக்கு ஆதரிக்கப்படும்"
+
+msgid "Cover"
+msgstr "மேலுறை"
+
+msgid "UnRar binary file not found"
+msgstr "UnRar பைனரி கோப்பு கிடைக்கவில்லை"
+
+msgid "Error executing UnRar"
+msgstr "UnRar ஐ இயக்குவதில் பிழை"
+
+msgid "Could not find the specified directory"
+msgstr "குறிப்பிட்ட கோப்பகத்தைக் கண்டுபிடிக்க முடியவில்லை"
+
+msgid "Please specify a directory, not a file"
+msgstr "தயவு செய்து ஒரு கோப்பகத்தைக் குறிப்பிடவும், கோப்பு அல்ல"
+
+msgid "Calibre binaries not viable"
+msgstr "காலிபர் பைனரிகள் சாத்தியமில்லை"
+
+msgid "Missing calibre binaries: %(missing)s"
+msgstr "காலிபர் பைனரிகள் காணவில்லை: %(missing)கள்"
+
+msgid "Missing executable permissions: %(missing)s"
+msgstr "இயங்கக்கூடிய அனுமதிகள் இல்லை: %(missing)s"
+
+msgid "Error executing Calibre"
+msgstr "காலிபரை இயக்குவதில் பிழை"
+
+msgid "Queue all books for metadata backup"
+msgstr "மெட்டாடேட்டா காப்புப்பிரதிக்கு எல்லா புத்தகங்களையும் வரிசைப்படுத்தவும்"
+
+
+msgid "Kobo Setup"
+msgstr "கோபோ அமைப்பு"
+
+msgid "Register with %(provider)s"
+msgstr "%(provider)s பதிவு செய்யவும்"
+
+msgid "Unlink to %(oauth)s Failed"
+msgstr "%(oauth)s இணைப்பை பிரிக்க முடியவில்லை"
+
+msgid "Not Linked to %(oauth)s"
+msgstr "%(oauth)s உடன் இணைக்கப்படவில்லை"
+
+msgid "Failed to log in with GitHub."
+msgstr "GitHub மூலம் உள்நுழைவு தோல்வியடைந்தது."
+
+msgid "Failed to fetch user info from GitHub."
+msgstr "GitHub இலிருந்து பயனர் தகவலை பெற முடியவில்லை."
+
+msgid "Failed to log in with Google."
+msgstr "Google மூலம் உள்நுழைவு தோல்வியடைந்தது."
+
+msgid "Failed to fetch user info from Google."
+msgstr "Google இலிருந்து பயனர் தகவலை பெற முடியவில்லை."
+
+msgid "GitHub Oauth error, please retry later."
+msgstr "GitHub Oauth பிழை, பின்னர் முயற்சிக்கவும்."
+
+msgid "GitHub Oauth error: {}"
+msgstr "GitHub Oauth பிழை: {}"
+
+msgid "Google Oauth error, please retry later."
+msgstr "Google Oauth பிழை, பின்னர் முயற்சிக்கவும்."
+
+msgid "Google Oauth error: {}"
+msgstr "Google Oauth பிழை: {}"
+
+msgid "{} Stars"
+msgstr "{} நட்சத்திரங்கள்"
+
+msgid "Login"
+msgstr "உள்நுழைவு"
+
+msgid "Token not found"
+msgstr "டோக்கன் கிடைக்கவில்லை"
+
+msgid "Token has expired"
+msgstr "டோக்கன் காலாவதியானது"
+
+msgid "Success! Please return to your device"
+msgstr "வெற்றி! உங்கள் சாதனத்திற்கு திரும்பவும்"
+
+msgid "Books"
+msgstr "புத்தகங்கள்"
+
+msgid "Show recent books"
+msgstr "சமீபத்திய புத்தகங்களை காட்டு"
+
+msgid "Hot Books"
+msgstr "பிரபலமான புத்தகங்கள்"
+
+msgid "Show Hot Books"
+msgstr "பிரபலமான புத்தகங்களை காட்டு"
+
+msgid "Downloaded Books"
+msgstr "பதிவிறக்கம் செய்யப்பட்ட புத்தகங்கள்"
+
+msgid "Show Downloaded Books"
+msgstr "பதிவிறக்கம் செய்யப்பட்ட புத்தகங்களை காட்டு"
+
+msgid "Top Rated Books"
+msgstr "உயர் மதிப்பீடு பெற்ற புத்தகங்கள்"
+
+msgid "Show Top Rated Books"
+msgstr "உயர் மதிப்பீடு பெற்ற புத்தகங்களை காட்டு"
+
+msgid "Read Books"
+msgstr "படித்த புத்தகங்கள்"
+
+msgid "Show Read and Unread"
+msgstr "படித்த மற்றும் படிக்காதவற்றை காட்டு"
+
+msgid "Unread Books"
+msgstr "படிக்காத புத்தகங்கள்"
+
+msgid "Show unread"
+msgstr "படிக்காதவற்றை காட்டு"
+
+msgid "Discover"
+msgstr "கண்டறி"
+
+msgid "Show Random Books"
+msgstr "சமயோக புத்தகங்களை காட்டு"
+
+msgid "Categories"
+msgstr "வகைகள்"
+
+msgid "Show Category Section"
+msgstr "வகை பகுதியை காட்டு"
+
+msgid "Series"
+msgstr "தொடர்கள்"
+
+msgid "Show Series Section"
+msgstr "தொடர் பகுதியை காட்டு"
+
+msgid "Authors"
+msgstr "ஆசிரியர்கள்"
+
+msgid "Show Author Section"
+msgstr "ஆசிரியர் பகுதியை காட்டு"
+
+msgid "Publishers"
+msgstr "பதிப்பாளர்கள்"
+
+msgid "Show Publisher Section"
+msgstr "பதிப்பாளர் பகுதியை காட்டு"
+
+msgid "Languages"
+msgstr "மொழிகள்"
+
+msgid "Show Language Section"
+msgstr "மொழி பகுதியை காட்டு"
+
+msgid "Ratings"
+msgstr "மதிப்பீடுகள்"
+
+msgid "Success! You are now logged in as: %(nickname)s"
+msgstr "வெற்றி! நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: %(புனைப்பெயர்)s"
+
+msgid "Link to %(oauth)s Succeeded"
+msgstr "%(auth)sக்கான இணைப்பு வெற்றியடைந்தது"
+
+msgid "Login failed, No User Linked With OAuth Account"
+msgstr "உள்நுழைவு தோல்வியடைந்தது, OAuth கணக்குடன் எந்த பயனரும் இணைக்கப்படவில்லை"
+
+msgid "Unlink to %(oauth)s Succeeded"
+msgstr "%(auth)sக்கான இணைப்பை நீக்குதல் வெற்றியடைந்தது"
+
+msgid "Show Ratings Section"
+msgstr "மதிப்பீடுகள் பகுதியைக் காட்டு"
+
+msgid "File formats"
+msgstr "கோப்பு வடிவங்கள்"
+
+msgid "Show File Formats Section"
+msgstr "கோப்பு வடிவங்கள் பகுதியைக் காட்டு"
+
+msgid "Archived Books"
+msgstr "காப்பகப்படுத்தப்பட்ட புத்தகங்கள்"
+
+msgid "Show Archived Books"
+msgstr "காப்பகப்படுத்தப்பட்ட புத்தகங்களைக் காட்டு"
+
+msgid "Books List"
+msgstr "புத்தகங்கள் பட்டியல்"
+
+msgid "Show Books List"
+msgstr "புத்தகங்களின் பட்டியலைக் காட்டு"
+
+msgid "Search"
+msgstr "தேடு"
+
+msgid "Published after "
+msgstr "பிறகு வெளியிடப்பட்டது"
+
+msgid "Published before "
+msgstr "முன்பு வெளியிடப்பட்டது"
+
+msgid "Rating <= %(rating)s"
+msgstr "மதிப்பீடு <= %(மதிப்பீடு)கள்"
+
+msgid "Rating >= %(rating)s"
+msgstr "மதிப்பீடு >= %(மதிப்பீடு)கள்"
+
+msgid "Read Status = '%(status)s'"
+msgstr "நிலை = '%(நிலை)களை படிக்கவும்"
+
+msgid "Error on search for custom columns, please restart GetMyEbookWeb"
+msgstr "தனிப்பயன் நெடுவரிசைகளைத் தேடுவதில் பிழை, GetMyEbookWeb ஐ மீண்டும் தொடங்கவும்"
+
+msgid "Advanced Search"
+msgstr "மேம்பட்ட தேடல்"
+
+msgid "Invalid shelf specified"
+msgstr "தவறான புத்தக வரிசை குறிப்பிடப்பட்டுள்ளது"
+
+msgid "Sorry you are not allowed to add a book to that shelf"
+msgstr "மன்னிக்கவும், அந்த புத்தக வரிசையில் புத்தகத்தைச் சேர்க்க உங்களுக்கு அனுமதி இல்லை"
+
+msgid "Book is already part of the shelf: %(shelfname)s"
+msgstr "புத்தகம் ஏற்கனவே வரிசையில் ஒரு பகுதியாக உள்ளது: %(shelfname)s"
+
+msgid "%(book_id)s is a invalid Book Id. Could not be added to Shelf"
+msgstr "%(book_id)s என்பது தவறான புத்தக ஐடி. வரிசையில் சேர்க்க முடியவில்லை"
+
+msgid "Book has been added to shelf: %(sname)s"
+msgstr "புத்தகம் வரிசையில் சேர்க்கப்பட்டது: %(sname)s"
+
+msgid "You are not allowed to add a book to the shelf"
+msgstr "வரிசையில் புத்தகத்தைச் சேர்க்க உங்களுக்கு அனுமதி இல்லை"
+
+msgid "Books are already part of the shelf: %(name)s"
+msgstr "புத்தகங்கள் ஏற்கனவே வரிசையில் ஒரு பகுதியாக உள்ளன: %(name)s"
+
+msgid "Books have been added to shelf: %(sname)s"
+msgstr "புத்தகங்கள் வரிசையில் சேர்க்கப்பட்டுள்ளன: %(sname)s"
+
+msgid "Could not add books to shelf: %(sname)s"
+msgstr "புத்தகங்களை வரிசையில் சேர்க்க முடியவில்லை: %(sname)s"
+
+msgid "Book has been removed from shelf: %(sname)s"
+msgstr "புத்தகம் வரிசையில் இருந்து அகற்றப்பட்டது: %(sname)s"
+
+msgid "Sorry you are not allowed to remove a book from this shelf"
+msgstr "மன்னிக்கவும், இந்த வரிசையில் இருந்து புத்தகத்தை அகற்ற உங்களுக்கு அனுமதி இல்லை"
+
+msgid "Create a Shelf"
+msgstr "ஒரு வரிசையை உருவாக்கவும்"
+
+msgid "Sorry you are not allowed to edit this shelf"
+msgstr "மன்னிக்கவும், இந்த வரிசையை திருத்த உங்களுக்கு அனுமதி இல்லை"
+
+msgid "Edit a shelf"
+msgstr "வரிசையை திருத்தவும்"
+
+msgid "Error deleting Shelf"
+msgstr "வரிசையை நீக்குவதில் பிழை"
+
+msgid "Shelf successfully deleted"
+msgstr "வரிசை வெற்றிகரமாக நீக்கப்பட்டது"
+
+msgid "Change order of Shelf: '%(name)s'"
+msgstr "புத்தக வரிசையின் வரிசையை மாற்றவும்: '%(name)s'"
+
+msgid "Sorry you are not allowed to create a public shelf"
+msgstr "மன்னிக்கவும், பொது வரிசையை உருவாக்க உங்களுக்கு அனுமதி இல்லை"
+
+msgid "Shelf %(title)s created"
+msgstr "புத்தக வரிசை %(title)கள் உருவாக்கப்பட்டது"
+
+msgid "Shelf %(title)s changed"
+msgstr "புத்தக வரிசை %(title)கள் மாற்றப்பட்டன"
+
+msgid "There was an error"
+msgstr "பிழை ஏற்பட்டது"
+
+msgid "A public shelf with the name '%(title)s' already exists."
+msgstr "'%(title)s' என்ற பெயரில் ஒரு பொது புத்தக வரிசை ஏற்கனவே உள்ளது."
+
+
+msgid "Shelf: '%(name)s'"
+msgstr "புத்தக வரிசை: '%(name)s'"
+
+msgid "Error opening shelf. Shelf does not exist or is not accessible"
+msgstr "வரிசையைத் திறப்பதில் பிழை. புத்தக வரிசை இல்லை அல்லது அணுக முடியாது"
+
+msgid "Tasks"
+msgstr "பணிகள்"
+
+msgid "Waiting"
+msgstr "காத்திருக்கிறது"
+
+msgid "Failed"
+msgstr "தோல்வியடைந்தது"
+
+msgid "Started"
+msgstr "தொடங்கப்பட்டது"
+
+msgid "Finished"
+msgstr "முடிந்தது"
+
+msgid "Ended"
+msgstr "முடிந்தது"
+
+msgid "Cancelled"
+msgstr "ரத்து செய்யப்பட்டது"
+
+msgid "Unknown Status"
+msgstr "தெரியாத நிலை"
+
+msgid "Unexpected data while reading update information"
+msgstr "புதுப்பிப்புத் தகவலைப் படிக்கும்போது எதிர்பாராத தரவு"
+
+msgid "No update available. You already have the latest version installed"
+msgstr "புதுப்பிப்பு இல்லை. நீங்கள் ஏற்கனவே சமீபத்திய பதிப்பை நிறுவியுள்ளீர்கள்"
+
+msgid "Could not fetch update information"
+msgstr "புதுப்பிப்புத் தகவலைப் பெற முடியவில்லை"
+
+msgid "Click on the button below to update to the latest stable version."
+msgstr "சமீபத்திய நிலையான பதிப்பிற்கு புதுப்பிக்க கீழே உள்ள பொத்தானைக் கிளிக் செய்யவும்."
+
+msgid "No release information available"
+msgstr "வெளியீட்டுத் தகவல் இல்லை"
+
+msgid "Discover (Random Books)"
+msgstr "கண்டுபிடி (ரேண்டம் புக்ஸ்)"
+
+msgid "Hot Books (Most Downloaded)"
+msgstr "சூடான புத்தகங்கள் (அதிகமாக பதிவிறக்கம் செய்யப்பட்டவை)"
+
+msgid "Downloaded books by %(user)s"
+msgstr "%(user)s மூலம் பதிவிறக்கம் செய்யப்பட்ட புத்தகங்கள்"
+
+msgid "Author: %(name)s"
+msgstr "ஆசிரியர்: %(பெயர்)s"
+
+msgid "Publisher: %(name)s"
+msgstr "வெளியீட்டாளர்: %(பெயர்)கள்"
+
+msgid "Series: %(serie)s"
+msgstr "தொடர்: %(தொடர்)கள்"
+
+msgid "Rating: None"
+msgstr "மதிப்பீடு: இல்லை"
+
+msgid "Rating: %(rating)s stars"
+msgstr "மதிப்பீடு: %(ரேட்டிங்)s நட்சத்திரங்கள்"
+
+msgid "File format: %(format)s"
+msgstr "கோப்பு வடிவம்: %(format)s"
+
+msgid "Category: %(name)s"
+msgstr "வகை: %(பெயர்)கள்"
+
+msgid "Language: %(name)s"
+msgstr "மொழி: %(பெயர்)s"
+
+msgid "Downloads"
+msgstr "பதிவிறக்கங்கள்"
+
+msgid "Ratings list"
+msgstr "மதிப்பீடுகள் பட்டியல்"
+
+msgid "File formats list"
+msgstr "கோப்பு வடிவங்களின் பட்டியல்"
+
+msgid "Please configure the SMTP mail settings first..."
+msgstr "முதலில் SMTP அஞ்சல் அமைப்புகளை உள்ளமைக்கவும்..."
+
+msgid "Success! Book queued for sending to %(eReadermail)s"
+msgstr "வெற்றி! %(eReadermail)sக்கு அனுப்புவதற்கு புத்தகம் வரிசையில் நிற்கிறது"
+
+msgid "Oops! There was an error sending book: %(res)s"
+msgstr "புத்தகத்தை அனுப்புவதில் பிழை ஏற்பட்டது: %(res)s"
+
+msgid "Oops! Please update your profile with a valid eReader Email."
+msgstr "சரியான eReader மின்னஞ்சலுடன் உங்கள் சுயவிவரத்தைப் புதுப்பிக்கவும்."
+
+msgid "Please wait one minute to register next user"
+msgstr "அடுத்த பயனரை பதிவு செய்ய ஒரு நிமிடம் காத்திருக்கவும்"
+
+msgid "Register"
+msgstr "பதிவு செய்யுங்கள்"
+
+msgid "Connection error to limiter backend, please contact your administrator"
+msgstr "லிமிட்டர் பின்தளத்தில் இணைப்பு பிழை, உங்கள் நிர்வாகியைத் தொடர்பு கொள்ளவும்"
+
+msgid "Oops! Email server is not configured, please contact your administrator."
+msgstr "மின்னஞ்சல் சேவையகம் உள்ளமைக்கப்படவில்லை, உங்கள் நிர்வாகியைத் தொடர்பு கொள்ளவும்"
+
+msgid "Oops! Your Email is not allowed."
+msgstr "உங்கள் மின்னஞ்சல் அனுமதிக்கப்படவில்லை."
+
+msgid "Success! Confirmation Email has been sent."
+msgstr "வெற்றி! உறுதிப்படுத்தல் மின்னஞ்சல் அனுப்பப்பட்டது."
+
+msgid "Cannot activate LDAP authentication"
+msgstr "LDAP அங்கீகாரத்தை செயல்படுத்த முடியவில்லை"
+
+msgid "Please wait one minute before next login"
+msgstr "அடுத்த உள்நுழைவுக்கு முன் ஒரு நிமிடம் காத்திருக்கவும்"
+
+msgid "you are now logged in as: '%(nickname)s'"
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s'"
+
+msgid "Could not login: %(message)s"
+msgstr "உள்நுழைய முடியவில்லை: %(message)s"
+
+msgid "Wrong Username or Password"
+msgstr "தவறான பயனர்பெயர் அல்லது கடவுச்சொல்"
+
+msgid "New Password was sent to your email address"
+msgstr "உங்கள் மின்னஞ்சல் முகவரிக்கு புதிய கடவுச்சொல் அனுப்பப்பட்டது"
+
+msgid "An unknown error occurred. Please try again later."
+msgstr "அறியப்படாத பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்."
+
+msgid "Please enter valid username to reset password"
+msgstr "கடவுச்சொல்லை மீட்டமைக்க சரியான பயனர்பெயரை உள்ளிடவும்"
+
+msgid "You are now logged in as: '%(nickname)s'"
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s'"
+
+msgid "%(name)s's Profile"
+msgstr "%(name) இன் சுயவிவரம்"
+
+msgid "Success! Profile Updated"
+msgstr "வெற்றி! சுயவிவரம் புதுப்பிக்கப்பட்டது"
+
+msgid "Oops! An account already exists for this Email."
+msgstr "இந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது."
+
+msgid "Found no valid gmail.json file with OAuth information"
+msgstr "OAuth தகவலுடன் சரியான gmail.json கோப்பு எதுவும் இல்லை"
+
+msgid "Delete temp folder contents"
+msgstr "தற்காலிக கோப்புறை உள்ளடக்கங்களை நீக்கவும்"
+
+msgid "%(book)s send to E-Reader"
+msgstr "%(book)கள் ஈ-ரீடருக்கு அனுப்பப்படும்"
+
+msgid "Calibre ebook-convert %(tool)s not found"
+msgstr "Caliber ebook-convert %(tool)s கிடைக்கவில்லை"
+
+msgid "%(format)s format not found on disk"
+msgstr "%(format)s வடிவம் வட்டில் இல்லை"
+
+msgid "Ebook converter failed with unknown error"
+msgstr "அறியப்படாத பிழையால் மின்புத்தக மாற்றி தோல்வியடைந்தது"
+
+msgid "Kepubify-converter failed: %(error)s"
+msgstr "Kepubify-converter தோல்வியடைந்தது: %(error)s"
+
+msgid "Converted file not found or more than one file in folder %(folder)s"
+msgstr "மாற்றப்பட்ட கோப்பு காணப்படவில்லை அல்லது %(folder)s கோப்புறையில் ஒன்றுக்கும் மேற்பட்ட கோப்புகள்"
+
+msgid "Calibre failed with error: %(error)s"
+msgstr "பிழையுடன் காலிபர் தோல்வியடைந்தது: %(error)s"
+
+msgid "Ebook-converter failed: %(error)s"
+msgstr "மின்புத்தக மாற்றி தோல்வியடைந்தது: %(error)s"
+
+msgid "Convert"
+msgstr "மாற்றவும்"
+
+msgid "Reconnecting Calibre database"
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கிறது"
+
+msgid "E-mail"
+msgstr "மின்னஞ்சல்"
+
+msgid "Backing up Metadata"
+msgstr "மெட்டாடேட்டாவை காப்புப் பிரதி எடுக்கிறது"
+
+msgid "Generated %(count)s cover thumbnails"
+msgstr "%(count)s கவர் சிறுபடங்களை உருவாக்கியது"
+
+msgid "Cover Thumbnails"
+msgstr "கவர் சிறுபடங்கள்"
+
+msgid "Generated {0} series thumbnails"
+msgstr "{0} தொடர் சிறுபடங்களை உருவாக்கியது"
+
+msgid "Clearing cover thumbnail cache"
+msgstr "அட்டை சிறுபட தேக்ககத்தை அழிக்கிறது"
+
+msgid "Upload"
+msgstr "பதிவேற்றவும்"
+
+msgid "Users"
+msgstr "பயனர்கள்"
+
+msgid "Username"
+msgstr "பயனர் பெயர்"
+
+msgid "Email"
+msgstr "மின்னஞ்சல்"
+
+msgid "Send to eReader Email"
+msgstr "eReader மின்னஞ்சலுக்கு அனுப்பவும்"
+
+msgid "Admin"
+msgstr "நிர்வாகி"
+
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+msgid "Download"
+msgstr "பதிவிறக்கவும்"
+
+msgid "View Books"
+msgstr "புத்தகங்களைப் பார்க்கவும்"
+
+msgid "Edit"
+msgstr "திருத்தவும்"
+
+msgid "Delete"
+msgstr "நீக்கவும்"
+
+msgid "Public Shelf"
+msgstr "பொது வரிசை"
+
+msgid "Import LDAP Users"
+msgstr "LDAP பயனர்களை இறக்குமதி செய்யவும்"
+
+msgid "Email Server Settings"
+msgstr  "மின்னஞ்சல் சேவையக அமைப்புகள்"
+
+msgid "SMTP Hostname"
+msgstr "SMTP ஹோஸ்ட்பெயர்"
+
+msgid "SMTP Port"
+msgstr "SMTP போர்ட்"
+
+msgid "Encryption"
+msgstr "குறியாக்கம்"
+
+msgid "SMTP Login"
+msgstr "SMTP உள்நுழைவு"
+
+msgid "From Email"
+msgstr "மின்னஞ்சலில் இருந்து"
+
+msgid "Email Service"
+msgstr "மின்னஞ்சலில் இருந்து"
+
+msgid "Gmail via Oauth2"
+msgstr "Oauth2 வழியாக Gmail"
+
+msgid "Configuration"
+msgstr "கட்டமைப்பு"
+
+msgid "Calibre Database Directory"
+msgstr "காலிபர் டேட்டாபேஸ் டைரக்டரி"
+
+msgid "Log Level"
+msgstr "பதிவு நிலை"
+
+msgid "Port"
+msgstr "துறைமுகம்"
+
+msgid "External Port"
+msgstr "வெளி துறைமுகம்"
+
+msgid "Books per Page"
+msgstr "ஒரு பக்கத்திற்கு புத்தகங்கள்"
+
+msgid "Uploads"
+msgstr "பதிவேற்றங்கள்"
+
+msgid "Anonymous Browsing"
+msgstr "அநாமதேய உலாவல்"
+
+msgid "Public Registration"
+msgstr "பொதுப் பதிவு"
+
+msgid "Magic Link Remote Login"
+msgstr "மேஜிக் லிங்க் ரிமோட் உள்நுழைவு "
+
+msgid "Reverse Proxy Login"
+msgstr "ரிவர்ஸ் ப்ராக்ஸி உள்நுழைவு"
+
+msgid "Reverse Proxy Header Name"
+msgstr "தலைகீழ் பதிலாள் தலைப்பு பெயர்"
+
+msgid "Edit Calibre Database Configuration"
+msgstr "காலிபர் தரவுத்தள உள்ளமைவைத் திருத்தவும்"
+
+msgid "Edit Basic Configuration"
+msgstr "அடிப்படை உள்ளமைவைத் திருத்தவும்"
+
+msgid "Edit UI Configuration"
+msgstr "UI உள்ளமைவைத் திருத்து"
+
+msgid "Scheduled Tasks"
+msgstr "திட்டமிடப்பட்ட பணிகள்"
+
+msgid "Start Time"
+msgstr "தொடக்க நேரம்"
+
+msgid "Maximum Duration"
+msgstr "அதிகபட்ச காலம்"
+
+msgid "Generate Thumbnails"
+msgstr "சிறுபடங்களை உருவாக்கவும்"
+
+msgid "Generate series cover thumbnails"
+msgstr "தொடர் அட்டை சிறுபடங்களை உருவாக்கவும்"
+
+msgid "Reconnect Calibre Database"
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கவும்"
+
+msgid "Generate Metadata Backup Files"
+msgstr மெட்டாடேட்டா காப்பு கோப்புகளை உருவாக்கவும்""
+
+msgid "Refresh Thumbnail Cache"
+msgstr "சிறுபடம் தற்காலிக சேமிப்பைப் புதுப்பிக்கவும்"
+
+msgid "Administration"
+msgstr "நிர்வாகம்"
+
+msgid "Download Debug Package"
+msgstr "பிழைத்திருத்த தொகுப்பைப் பதிவிறக்கவும்"
+
+msgid "View Logs"
+msgstr "பதிவுகளைப் பார்க்கவும்"
+
+msgid "Restart"
+msgstr "மறுதொடக்கம்"
+
+msgid "Shutdown"
+msgstr "பணிநிறுத்தம்"
+
+msgid "Version Information"
+msgstr "பதிப்பு தகவல்"
+
+msgid "Version"
+msgstr "பதிப்பு"
+
+msgid "Details"
+msgstr "விவரங்கள்"
+
+msgid "Current Version"
+msgstr "தற்போதைய பதிப்பு"
+
+msgid "Check for Update"
+msgstr "புதுப்பிப்பை சரிபார்க்கவும்"
+
+msgid "Perform Update"
+msgstr "புதுப்பிப்பைச் செய்யவும்"
+
+msgid "Are you sure you want to restart?"
+msgstr "நிச்சயமாக மீண்டும் தொடங்க விரும்புகிறீர்களா?"
+
+msgid "OK"
+msgstr "சரி"
+
+msgid "Cancel"
+msgstr "ரத்து செய்"
+
+msgid "Are you sure you want to shutdown?"
+msgstr "நிச்சயமாக நிறுத்த வேண்டுமா?"
+
+msgid "Updating, please do not reload this page"
+msgstr "புதுப்பிக்கிறது, இந்தப் பக்கத்தை மீண்டும் ஏற்ற வேண்டாம்"
+
+msgid "via"
+msgstr "வழியாக"
+
+msgid "In Library"
+msgstr "நூலகத்தில்"
+
+msgid "Sort according to book date, newest first"
+msgstr "புத்தகத் தேதியின்படி வரிசைப்படுத்தவும், புதியது முதலில்"
+
+msgid "Sort according to book date, oldest first"
+msgstr "புத்தகத் தேதியின்படி வரிசைப்படுத்தவும், பழையது முதலில்"
+
+msgid "Sort title in alphabetical order"
+msgstr "தலைப்பை அகர வரிசைப்படி வரிசைப்படுத்தவும்"
+
+msgid "Sort title in reverse alphabetical order"
+msgstr "தலைப்பை தலைகீழ் அகரவரிசையில் வரிசைப்படுத்தவும்"
+
+msgid "Sort according to publishing date, newest first"
+msgstr "வெளியிடும் தேதியின்படி வரிசைப்படுத்தவும், புதியது முதலில்"
+
+msgid "Sort according to publishing date, oldest first"
+msgstr "வெளியிடப்பட்ட தேதியின்படி வரிசைப்படுத்தவும், பழையது முதலில்"
+
+msgid "reduce"
+msgstr "குறைக்க"
+
+msgid "More by"
+msgstr "மேலும் மூலம்"
+
+msgid "Delete Book"
+msgstr "புத்தகத்தை நீக்கு"
+
+msgid "Delete formats:"
+msgstr "வடிவங்களை நீக்கு:"
+
+msgid "Convert book format:"
+msgstr "புத்தக வடிவத்தை மாற்றவும்:"
+
+msgid "Convert from:"
+msgstr "இதிலிருந்து மாற்று:"
+
+msgid "select an option"
+msgstr "ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Convert to:"
+msgstr "இதற்கு மாற்று:"
+
+msgid "Convert book"
+msgstr "புத்தகத்தை மாற்றவும்"
+
+msgid "Uploading..."
+msgstr "பதிவேற்றுகிறது..."
+
+msgid "Close"
+msgstr "மூடு"
+
+msgid "Error"
+msgstr "பிழை"
+
+msgid "Upload done, processing, please wait..."
+msgstr "பதிவேற்றம் முடிந்தது, செயலாக்கப்படுகிறது, காத்திருக்கவும்..."
+
+msgid "Upload Format"
+msgstr "பதிவேற்ற வடிவம்"
+
+msgid "Book Title"
+msgstr "புத்தகத்தின் தலைப்பு"
+
+msgid "Author"
+msgstr "ஆசிரியர்"
+
+msgid "Description"
+msgstr "விளக்கம்"
+
+msgid "Identifiers"
+msgstr "அடையாளங்காட்டிகள்"
+
+msgid "Identifier Type"
+msgstr "அடையாளங்காட்டி வகை"
+
+msgid "Identifier Value"
+msgstr "அடையாளங்காட்டி மதிப்பு"
+
+msgid "Remove"
+msgstr "அகற்று"
+
+msgid "Add Identifier"
+msgstr "அடையாளங்காட்டியைச் சேர்க்கவும்"
+
+msgid "Tags"
+msgstr "குறிச்சொற்கள்"
+
+msgid "Series ID"
+msgstr "தொடர் ஐடி"
+
+msgid "Rating"
+msgstr "மதிப்பீடு"
+
+msgid "Upload Cover from Local Disk"
+msgstr "உங்கள் கணிணியிலிருந்து முதற்பக்க அட்டையை  தெரிவு செய்யவும்"
+
+msgid "Published Date"
+msgstr "வெளியிட்ட தேதி"
+
+msgid "Publisher"
+msgstr "பதிப்பாளர்"
+
+msgid "Language"
+msgstr "மொழி"
+
+msgid "Yes"
+msgstr "ஆம்"
+
+msgid "No"
+msgstr "இல்லை"
+
+msgid "View Book on Save"
+msgstr "சேமிக்கும்போது புத்தகத்தைப் பார்க்கவும்"
+
+msgid "Fetch Metadata"
+msgstr "மெட்டாடேட்டாவைப் பெறவும்"
+
+msgid "Save"
+msgstr "சேமி"
+
+msgid "Keyword"
+msgstr "முக்கிய வார்த்தை"
+
+msgid "Search keyword"
+msgstr " வார்த்தையை தேடு"
+
+msgid "Click the cover to load metadata to the form"
+msgstr "மெட்டாடேட்டாவை படிவத்தில் ஏற்ற அட்டையைக் கிளிக் செய்க"
+
+msgid "Loading..."
+msgstr "ஏற்றுகிறது..."
+
+msgid "Source"
+msgstr "மூலம்"
+
+msgid "Search error!"
+msgstr "பிழையை தேடு!"
+
+msgid "No Result(s) found! Please try another keyword."
+msgstr "முடிவு(கள்) கிடைக்கவில்லை! மற்றொரு முக்கிய சொல்லை முயற்சிக்கவும்."
+
+msgid "This Field is Required"
+msgstr "இந்த புலம் தேவை"
+
+msgid "Merge selected books"
+msgstr "தேர்ந்தெடுக்கப்பட்ட புத்தகங்களை ஒன்றிணைக்கவும்"
+
+msgid "Remove Selections"
+msgstr "தேர்வுகளை அகற்று"
+
+msgid "Exchange author and title"
+msgstr "ஆசிரியர் மற்றும் தலைப்பு பரிமாற்றம்"
+
+msgid "Update Title Sort automatically"
+msgstr "தலைப்பு வரிசையை தானாகவே புதுப்பிக்கவும்"
+
+msgid "Update Author Sort automatically"
+msgstr "ஆசிரியரின் வரிசையை தானாகவே புதுப்பிக்கவும்"
+
+msgid "Enter Title"
+msgstr "தலைப்பை உள்ளிடவும்"
+
+msgid "Title"
+msgstr "தலைப்பு"
+
+msgid "Enter Title Sort"
+msgstr "தலைப்பு வரிசையை உள்ளிடவும்"
+
+msgid "Title Sort"
+msgstr "தலைப்பு வரிசைப்படுத்தவும்"
+
+msgid "Enter Author Sort"
+msgstr "ஆசிரியர் வரிசையை உள்ளிடவும்"
+
+msgid "Author Sort"
+msgstr "ஆசிரியர் வரிசை"
+
+msgid "Enter Authors"
+msgstr "ஆசிரியர்களை உள்ளிடவும்"
+
+msgid "Enter Categories"
+msgstr "வகைகளை உள்ளிடவும்"
+
+msgid "Enter Series"
+msgstr "தொடரை உள்ளிடவும்"
+
+msgid "Series Index"
+msgstr "தொடர் குறியீடு"
+
+msgid "Enter Languages"
+msgstr "மொழிகளை உள்ளிடவும்"
+
+msgid "Publishing Date"
+msgstr "வெளியிடும் தேதி"
+
+msgid "Enter Publishers"
+msgstr "வெளியீட்டாளர்களை உள்ளிடவும்"
+
+msgid "Enter comments"
+msgstr "கருத்துகளை உள்ளிடவும்"
+
+msgid "Comments"
+msgstr "கருத்துகள்"
+
+msgid "Archive Status"
+msgstr "காப்பக நிலை"
+
+msgid "Read Status"
+msgstr "படித்த நிலை"
+
+msgid "Enter "
+msgstr "உள்ளிடவும்"
+
+msgid "Are you really sure?"
+msgstr "நீங்கள் உண்மையில் நிச்சயமாக இருக்கிறீர்களா?"
+
+msgid "Books with Title will be merged from:"
+msgstr "தலைப்புடன் உள்ள புத்தகங்கள் இதிலிருந்து இணைக்கப்படும்:"
+
+msgid "Into Book with Title:"
+msgstr "தலைப்புடன் உள்ள புத்தகத்துக்குள்:"
+
+msgid "Merge"
+msgstr "இணைக்கவும்"
+
+msgid "Location of Calibre Database"
+msgstr "காலிப்ர் தரவுத்தொகுப்பின் இருப்பிடம்"
+
+msgid "Separate Book Files from Library"
+msgstr "புத்தக கோப்புகளை நூலகத்திலிருந்து வேறுபடுத்தவும்"
+
+msgid "Use Google Drive?"
+msgstr "கூகிள் டிரைவ் பயன்படுத்த வேண்டுமா?"
+
+msgid "Authenticate Google Drive"
+msgstr "கூகிள் டிரைவ் அங்கீகாரம் செய்யவும்"
+
+msgid "Google Drive Calibre folder"
+msgstr "கூகிள் டிரைவ் காலிப்ர் கோப்பகம்"
+
+msgid "Metadata Watch Channel ID"
+msgstr "மெட்டாடேட்டா கவனிப்பு சேனல் ஐடி"
+
+msgid "Revoke"
+msgstr "ரத்து செய்யவும்"
+
+msgid "New db location is invalid, please enter valid path"
+msgstr "புதிய db இருப்பிடம் தவறானது, தயவுசெய்து சரியான பாதையை உள்ளிடவும்"
+
+msgid "Server Configuration"
+msgstr "சர்வர் அமைப்பு"
+
+msgid "Server Port"
+msgstr "சர்வர் போர்ட்"
+
+msgid "SSL certfile location (leave it empty for non-SSL Servers)"
+msgstr "SSL சான்றிதழ் கோப்பு இருப்பிடம் (SSL இல்லாத சர்வர்களுக்கு காலியாக விட்டு வைக்கவும்)"
+
+msgid "SSL Keyfile location (leave it empty for non-SSL Servers)"
+msgstr "SSL விசை கோப்பு இருப்பிடம் (SSL இல்லாத சர்வர்களுக்கு காலியாக விட்டு வைக்கவும்)"
+
+msgid "Update Channel"
+msgstr "புதியமைவு சேனல்"
+
+msgid "Stable"
+msgstr "நிலையான"
+
+msgid "Nightly"
+msgstr "நள்ளிரவு"
+
+msgid "Trusted Hosts (Comma Separated)"
+msgstr "நம்பகமான ஹோஸ்ட் (கொமா பிரிக்கப்பட்ட)"
+
+msgid "Logfile Configuration"
+msgstr "பதிவெழுத்து கோப்பு அமைப்பு"
+
+msgid "Location and name of logfile (calibre-web.log for no entry)"
+msgstr "பதிவெழுத்து கோப்பின் இருப்பிடமும் பெயரும் (calibre-web.log என்றால் பதிவு இல்லை)"
+
+msgid "Enable Access Log"
+msgstr "அணுகல் பதிவை செயல்படுத்தவும்"
+
+msgid "Location and name of access logfile (access.log for no entry)"
+msgstr "அணுகல் பதிவின் இருப்பிடமும் பெயரும் (access.log என்றால் பதிவு இல்லை)"
+
+msgid "Feature Configuration"
+msgstr "அம்சம் அமைப்பு"
+
+msgid "Convert non-English characters in title and author while saving to disk"
+msgstr "தலைப்பு மற்றும் ஆசிரியரின் ஆங்கிலமில்லாத எழுத்துக்களை டிஸ்கில் சேமிக்கும் போது மாற்றவும்"
+
+msgid "Enable Uploads"
+msgstr "பதிவேற்றங்களை செயல்படுத்தவும்"
+
+msgid "(Please ensure that users also have upload permissions)"
+msgstr "(பயனர்களுக்கு பதிவேற்ற அனுமதிகள் உள்ளனவென உறுதி செய்யவும்)"
+
+msgid "Allowed Upload Fileformats"
+msgstr "அனுமதிக்கப்பட்ட பதிவேற்ற கோப்பு வடிவங்கள்"
+
+msgid "Enable Anonymous Browsing"
+msgstr "அடையாளமற்ற உலாவலை செயல்படுத்தவும்"
+
+msgid "Enable Public Registration"
+msgstr "பொது பதிவு செயல்படுத்தவும்"
+
+msgid "Use Email as Username"
+msgstr "மின்னஞ்சலை பயனர் பெயராகப் பயன்படுத்தவும்"
+
+msgid "Enable Magic Link Remote Login"
+msgstr "மாஜிக் லிங்க் தொலைதூர உள்நுழைவை செயல்படுத்தவும்"
+
+msgid "Enable Kobo sync"
+msgstr "கோபோ ஒத்திசைவை செயல்படுத்தவும்"
+
+msgid "Proxy unknown requests to Kobo Store"
+msgstr "பொரியாத கோரிக்கைகளை கோபோ கடைக்கு பிராக்ஸி செய்யவும்"
+
+msgid "Server External Port (for port forwarded API calls)"
+msgstr "சர்வர் வெளிப்புற போர்ட் (போர்ட் அனுப்பப்பட்ட API அழைப்புகளுக்கு)"
+
+msgid "Use Goodreads"
+msgstr "குட்ரீட்ஸைப் பயன்படுத்தவும்"
+
+msgid "Goodreads API Key"
+msgstr "குட்ரீட்ஸ் API விசை"
+
+msgid "Allow Reverse Proxy Authentication"
+msgstr "ரிவர்ஸ் பிராக்ஸி அங்கீகாரத்தை அனுமதிக்கவும்"
+
+msgid "Login type"
+msgstr "உள்நுழைவு வகை"
+
+msgid "Use Standard Authentication"
+msgstr "நிலையான அங்கீகாரத்தை பயன்படுத்தவும்"
+
+msgid "Use LDAP Authentication"
+msgstr "LDAP அங்கீகாரத்தை பயன்படுத்தவும்"
+
+msgid "Use OAuth"
+msgstr "OAuth ஐ பயன்படுத்தவும்"
+
+msgid "LDAP Server Host Name or IP Address"
+msgstr "LDAP சர்வர் ஹோஸ்ட் பெயர் அல்லது IP முகவரி"
+
+msgid "LDAP Server Port"
+msgstr "LDAP சர்வர் போர்ட்"
+
+msgid "LDAP Encryption"
+msgstr "LDAP குறியாக்கம்"
+
+msgid "TLS"
+msgstr "TLS"
+
+msgid "SSL"
+msgstr "SSL"
+
+msgid "LDAP Certificate Path (Only needed for Client Certificate Authentication)"
+msgstr "LDAP சான்றிதழ் பாதை (வாடிக்கையாளர் சான்றிதழ் அங்கீகாரத்திற்கு மட்டும் தேவையானது)"
+
+msgid "LDAP Keyfile Path (Only needed for Client Certificate Authentication)"
+msgstr "LDAP விசைப்பதிவு கோப்பு பாதை (வாடிக்கையாளர் சான்றிதழ் அங்கீகாரத்திற்கு மட்டும் தேவையானது)"
+
+msgid "LDAP Authentication"
+msgstr "LDAP அங்கீகாரம்"
+
+msgid "Anonymous"
+msgstr "அடையாளமற்ற"
+
+msgid "Unauthenticated"
+msgstr "அங்கீகரிக்கப்படாத"
+
+msgid "Simple"
+msgstr "எளிமையான"
+
+msgid "LDAP Administrator Username"
+msgstr "LDAP நிர்வாகி பயனர் பெயர்"
+
+msgid "LDAP Administrator Password"
+msgstr "LDAP நிர்வாகி கடவுச்சொல்"
+
+msgid "LDAP Distinguished Name (DN)"
+msgstr "LDAP மாறுபட்ட பெயர் (DN)"
+
+msgid "LDAP User Object Filter"
+msgstr "LDAP பயனர் பொருள் வடிகட்டி"
+
+msgid "LDAP Server is OpenLDAP?"
+msgstr "LDAP சர்வர் OpenLDAP ஆக உள்ளதா?"
+
+msgid "Following Settings are Needed For User Import"
+msgstr "பயனர் இறக்குமதிக்கு பின்வரும் அமைப்புகள் தேவையானவை"
+
+msgid "LDAP Group Object Filter"
+msgstr "LDAP குழு பொருள் வடிகட்டி"
+
+msgid "LDAP Group Name"
+msgstr "LDAP குழு பெயர்"
+
+msgid "LDAP Group Members Field"
+msgstr "LDAP குழு உறுப்பினர்கள் புலம்"
+
+msgid "LDAP Member User Filter Detection"
+msgstr "LDAP உறுப்பினர் பயனர் வடிகட்டி கண்டறிதல்"
+
+msgid "Autodetect"
+msgstr "தானாக கண்டறி"
+
+msgid "Custom Filter"
+msgstr "தனிப்பயன் வடிகட்டி"
+
+msgid "LDAP Member User Filter"
+msgstr "LDAP உறுப்பினர் பயனர் வடிகட்டி"
+
+msgid "Obtain %(provider)s OAuth Credential"
+msgstr "%(provider)s OAuth சான்றுகளை பெறவும்"
+
+msgid "%(provider)s OAuth Client Id"
+msgstr "%(provider)s OAuth கிளையன்ட் ஐடி"
+
+msgid "%(provider)s OAuth Client Secret"
+msgstr "%(provider)s OAuth கிளையன்ட் ரகசியம்"
+
+msgid "External binaries"
+msgstr "வெளிப்புற பைனரிகள்"
+
+msgid "Path to Calibre Binaries"
+msgstr "காலிப்ர் பைனரிகளுக்கான பாதை"
+
+msgid "Calibre E-Book Converter Settings"
+msgstr "காலிப்ர் மின்னூல் மாற்றி அமைப்புகள்"
+
+msgid "Path to Kepubify E-Book Converter"
+msgstr "கேபபுஃபி மின்னூல் மாற்றிக்கு பாதை"
+
+msgid "Add Allowed/Denied custom column values"
+msgstr "அனுமதிக்கப்பட்ட/தடுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளைச் சேர்க்கவும்"
+
+msgid "Read in Browser"
+msgstr "உலாவியில் படிக்கவும்"
+
+msgid "Listen in Browser"
+msgstr "உலாவியில் கேட்கவும்"
+
+msgid "Book %(index)s of %(range)s"
+msgstr "புத்தகம் %(index)s / %(range)s"
+
+msgid "Published"
+msgstr "வெளியிடப்பட்டது"
+
+msgid "Mark As Unread"
+msgstr "படிக்காததாக குறிக்கவும்"
+
+msgid "Mark As Read"
+msgstr "படித்ததாக குறிக்கவும்"
+
+msgid "Mark Book as Read or Unread"
+msgstr "புத்தகத்தை படித்தது அல்லது படிக்காதது என்று குறிக்கவும்"
+
+msgid "Read"
+msgstr "படிக்கவும்"
+
+msgid "Restore from archive"
+msgstr "காப்பகத்திலிருந்து மீட்டெடுக்கவும்"
+
+msgid "Add to archive"
+msgstr "காப்பகத்தில் சேர்"
+
+msgid "Archive"
+msgstr "காப்பகம்"
+
+msgid "Description:"
+msgstr "விவரம்:"
+
+msgid "Add to shelf"
+msgstr "தொகுப்பில் சேர்"
+
+msgid "(Public)"
+msgstr "(பொது)"
+
+msgid "Edit Metadata"
+msgstr "மெட்டாடேட்டாவை தொகுக்கவும்"
+
+msgid "Email Account Type"
+msgstr "மின்னஞ்சல் கணக்கு வகை"
+
+msgid "Standard Email Account"
+msgstr "நிலையான மின்னஞ்சல் கணக்கு"
+
+msgid "Gmail Account"
+msgstr "ஜிமெயில் கணக்கு"
+
+msgid "Setup Gmail Account"
+msgstr "ஜிமெயில் கணக்கை அமைக்கவும்"
+
+msgid "Revoke Gmail Access"
+msgstr "ஜிமெயில் அணுகலை ரத்து செய்யவும்"
+
+msgid "STARTTLS"
+msgstr "STARTTLS"
+
+msgid "SSL/TLS"
+msgstr "SSL/TLS"
+
+msgid "SMTP Password"
+msgstr "SMTP கடவுச்சொல்"
+
+msgid "Attachment Size Limit"
+msgstr "இணைப்பு அளவு வரம்பு"
+
+msgid "Save and Send Test Email"
+msgstr "சேமித்து சோதனை மின்னஞ்சலை அனுப்பவும்"
+
+msgid "Back"
+msgstr "மீண்டும்"
+
+msgid "Allowed Domains (Whitelist)"
+msgstr "அனுமதிக்கப்பட்ட டொமைன்கள் (வெள்ளைப்பட்டியல்)"
+
+msgid "Add Domain"
+msgstr "டொமைன் சேர்க்கவும்"
+
+msgid "Add"
+msgstr "சேர்"
+
+msgid "Enter domainname"
+msgstr "டொமைன் பெயரை உள்ளிடவும்"
+
+msgid "Denied Domains (Blacklist)"
+msgstr "தடுக்கப்பட்ட டொமைன்கள் (கருப்பு பட்டியல்)"
+
+msgid "Next"
+msgstr "அடுத்து"
+
+msgid "Kobo Token:"
+msgstr "கோபோ டோக்கன்:"
+
+msgid "List"
+msgstr "பட்டியல்"
+
+msgid "Calibre-Web Instance is unconfigured, please contact your administrator"
+msgstr "காலிப்ர்-வெப் அமைவு செய்யப்படவில்லை, தயவுசெய்து உங்கள் நிர்வாகியை தொடர்புகொள்ளவும்"
+
+msgid "Create Issue"
+msgstr "பிரச்சினையை உருவாக்கவும்"
+
+msgid "Return to Home"
+msgstr "முகப்பிற்கு திரும்பவும்"
+
+msgid "Books ordered by Rating"
+msgstr "மதிப்பீட்டின்படி வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
+
+msgid "Books ordered by file formats"
+msgstr "கோப்பு வடிவங்கள் மூலம் வரிசைப்படுத்தப்பட்ட புத்தகங்கள்"
+
+msgid "Shelves"
+msgstr "அலமாரிகள்"
+
+msgid "Books organized in shelves"
+msgstr "புத்தகங்கள் அலமாரிகளில் ஏற்பாடு செய்யப்பட்டுள்ளன"
+
+msgid "Home"
+msgstr "முகப்பு"
+
+msgid "Toggle Navigation"
+msgstr "வழிசெலுத்தலை மாற்று"
+
+msgid "Search Library"
+msgstr "புத்தகங்களைத் தேடு"
+
+msgid "Account"
+msgstr "கணக்கு"
+
+msgid "Logout"
+msgstr "வெளியேறு"
+
+msgid "Settings"
+msgstr "அமைப்புகள்"
+
+msgid "Show Calibre-Web Log: "
+msgstr "காலிப்ர்-வெப் பதிவுகளை காண்பி"
+
+msgid "Calibre-Web Log: "
+msgstr "காலிப்ர்-வெப் பதிவுகள்"
+
+msgid "Stream output, can't be displayed"
+msgstr "ஸ்ட்ரீம் வெளியீடு, காட்ட முடியாது"
+
+msgid "Show Access Log: "
+msgstr "அணுகல் பதிவுகளை காண்பி"
+
+msgid "Download Calibre-Web Log"
+msgstr "காலிப்ர்-வெப் பதிவுகளை பதிவிறக்கு"
+
+msgid "Download Access Log"
+msgstr "அணுகல் பதிவுகளை பதிவிறக்கு"
+
+msgid "Select Allowed/Denied Tags"
+msgstr "அனுமதிக்கப்பட்ட/தடுக்கப்பட்ட குறிச்சொற்களை தேர்வு செய்க"
+
+msgid "Select Allowed/Denied Custom Column Values"
+msgstr "அனுமதிக்கப்பட்ட/தடுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளை தேர்வு செய்க"
+
+msgid "Select Allowed/Denied Tags of User"
+msgstr "பயனரின் அனுமதிக்கப்பட்ட/தடுக்கப்பட்ட குறிச்சொற்களை தேர்வு செய்க"
+
+msgid "Select Allowed/Denied Custom Column Values of User"
+msgstr "பயனரின் அனுமதிக்கப்பட்ட/தடுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளை தேர்வு செய்க"
+
+msgid "Enter Tag"
+msgstr "குறிச்சொல் உள்ளிடவும்"
+
+msgid "Add View Restriction"
+msgstr "பார்வை கட்டுப்பாடுகளை சேர்க்கவும்"
+
+msgid "This book format will be permanently erased from database"
+msgstr "இந்த புத்தக வடிவமைப்பு தரவுத்தொகுப்பிலிருந்து நிரந்தரமாக அழிக்கப்படும்"
+
+msgid "This book will be permanently erased from database"
+msgstr "இந்த புத்தகம் தரவுத்தொகுப்பிலிருந்து நிரந்தரமாக அழிக்கப்படும்"
+
+msgid "and hard disk"
+msgstr "மற்றும் ஹார்ட் டிஸ்கில்"
+
+msgid "Important Kobo Note: deleted books will remain on any paired Kobo device."
+msgstr "முக்கியமான கோபோ குறிப்பு: நீக்கப்பட்ட புத்தகங்கள் இணைக்கப்பட்ட கோபோ சாதனங்களில் இருக்கும்"
+
+msgid "Choose File Location"
+msgstr "கோப்பு இருப்பிடத்தை தேர்ந்தெடுக்கவும்"
+
+msgid "type"
+msgstr "வகை"
+
+msgid "name"
+msgstr "பெயர்"
+
+msgid "size"
+msgstr "அளவு"
+
+msgid "Parent Directory"
+msgstr "மூல கோப்பகம்"
+
+msgid "Select"
+msgstr "தேர்ந்தெடுக்கவும்"
+
+msgid "Ok"
+msgstr "சரி"
+
+msgid "GetMyEbook eBook Catalog"
+msgstr "GetMyEbook மின்னூல் பட்டியல்"
+
+msgid "epub Reader"
+msgstr "இபப் வாசகர்"
+
+msgid "Light"
+msgstr "ஒளி"
+
+msgid "Dark"
+msgstr "இருள்"
+
+msgid "Sepia"
+msgstr "செம்பழுப்பு"
+
+msgid "Black"
+msgstr "கருப்பு"
+
+msgid "Reflow text when sidebars are open."
+msgstr "பக்கத்தொகுதிகள் திறக்கும்போது உரையை மறுவரிசைப்படுத்தவும்"
+
+msgid "Font Sizes"
+msgstr "எழுத்துரு அளவுகள்"
+
+msgid "Font"
+msgstr "எழுத்துரு"
+
+msgid "Default"
+msgstr "இயல்புநிலை"
+
+msgid "Yahei"
+msgstr "யாஹெய்"
+
+msgid "SimSun"
+msgstr "சிம்சன்"
+
+msgid "KaiTi"
+msgstr "கைதி"
+
+msgid "Arial"
+msgstr "ஏரியல்"
+
+msgid "Spread"
+msgstr "பரப்பு"
+
+msgid "Two columns"
+msgstr "இரண்டு நெடுவரிசைகள்"
+
+msgid "One column"
+msgstr "ஒரு நெடுவரிசை"
+
+msgid "Comic Reader"
+msgstr "நகைச்சுவை வாசகர்"
+
+msgid "Keyboard Shortcuts"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
+
+msgid "Previous Page"
+msgstr "முந்தைய பக்கம்"
+
+msgid "Next Page"
+msgstr "அடுத்த பக்கம்"
+
+msgid "Single Page Display"
+msgstr "ஒற்றைப் பக்கக் காட்சி"
+
+msgid "Long Strip Display"
+msgstr "நீண்ட துண்டு காட்சி"
+
+msgid "Scale to Best"
+msgstr "சிறந்ததாக அளவிடவும்"
+
+msgid "Scale to Width"
+msgstr "அகலத்திற்கு அளவிடவும்"
+
+msgid "Scale to Height"
+msgstr "உயரத்திற்கு அளவுகோல்"
+
+msgid "Scale to Native"
+msgstr "பூர்வீகமாக அளவிடவும்"
+
+msgid "Rotate Right"
+msgstr "வலதுபுறம் சுழற்று"
+
+msgid "Rotate Left"
+msgstr "இடதுபுறம் சுழற்று"
+
+msgid "Flip Image"
+msgstr "படத்தை புரட்டவும்"
+
+msgid "Display"
+msgstr "காட்சி"
+
+msgid "Single Page"
+msgstr "ஒற்றை பக்கம்"
+
+msgid "Long Strip"
+msgstr "நீண்ட துண்டு"
+
+msgid "Scale"
+msgstr "அளவுகோல்"
+
+msgid "Best"
+msgstr "சிறந்த"
+
+msgid "Width"
+msgstr "அகலம்"
+
+msgid "Height"
+msgstr "உயரம்"
+
+msgid "Native"
+msgstr "பூர்வீகம்"
+
+msgid "Rotate"
+msgstr "சுழற்று"
+
+msgid "Flip"
+msgstr "புரட்டவும்"
+
+msgid "Horizontal"
+msgstr "கிடைமட்ட"
+
+msgid "Vertical"
+msgstr "செங்குத்து"
+
+msgid "Direction"
+msgstr "திசை"
+
+msgid "Left to Right"
+msgstr "இடமிருந்து வலம்"
+
+msgid "Right to Left"
+msgstr "வலமிருந்து இடமாக"
+
+msgid "Reset to Top"
+msgstr "மேலே மீட்டமைக்கவும்"
+
+msgid "Remember Position"
+msgstr "நிலையை நினைவில் கொள்ளுங்கள்"
+
+msgid "Scrollbar"
+msgstr "சுருள் பட்டை"
+
+msgid "Show"
+msgstr "காட்டு"
+
+msgid "Hide"
+msgstr "மறை"
+
+msgid "DJVU Reader"
+msgstr "DJVU வாசகர்"
+
+msgid "PDF Reader"
+msgstr "PDF வாசகர்"
+
+msgid "txt Reader"
+msgstr "Text வாசகர்"
+
+msgid "Register New Account"
+msgstr "புதிய கணக்கை பதிவு செய்யவும்"
+
+
+msgid "Choose a username"
+msgstr "பயனர்பெயரை தேர்வு செய்யவும்"
+
+msgid "Your Email"
+msgstr "உங்கள் மின்னஞ்சல்"
+
+msgid "Location of Unrar binary"
+msgstr "Unrar பைனரியின் இடம்"
+
+msgid "Security Settings"
+msgstr "பாதுகாப்பு அமைப்புகள்"
+
+msgid "Limit failed login attempts"
+msgstr "உள்நுழைவுக்குக்கான வரம்பு முடிந்தது"
+
+msgid "Configure Backend for Limiter"
+msgstr "பின்தளத்த்திற்கான வரம்பை உள்ளமைக்கவும்"
+
+msgid "Options for Limiter Backend"
+msgstr "வரம்பு பின்தளத்திற்கான விருப்பங்கள்"
+
+msgid "Check if file extensions matches file content on upload"
+msgstr "கோப்பு நீட்டிப்புகள் பதிவேற்றத்தின் போது கோப்பு உள்ளடக்கத்துடன் பொருந்துகிறதா என சரிபார்க்கவும்"
+
+msgid "Session protection"
+msgstr "அமர்வு பாதுகாப்பு"
+
+msgid "Basic"
+msgstr "அடிப்படை"
+
+msgid "Strong"
+msgstr "வலுவான"
+
+msgid "User Password policy"
+msgstr "பயனர் கடவுச்சொல் கொள்கை"
+
+msgid "Minimum password length"
+msgstr "குறைந்தபட்ச கடவுச்சொல் நீளம்"
+
+msgid "Enforce number"
+msgstr "எண்ணைச் செயல்படுத்தவும்"
+
+msgid "Enforce lowercase characters"
+msgstr "சிறிய எழுத்துக்களைச் செயல்படுத்தவும்"
+
+msgid "Enforce uppercase characters"
+msgstr "பெரிய எழுத்துகளை செயல்படுத்தவும்"
+
+msgid "Enforce characters (needed For Chinese/Japanese/Korean Characters)"
+msgstr "எழுத்துக்களைச் செயல்படுத்து (சீன/ஜப்பானிய/கொரிய எழுத்துக்களுக்குத் தேவை)"
+
+msgid "Enforce special characters"
+msgstr "சிறப்பு எழுத்துக்களைச் செயல்படுத்தவும்"
+
+msgid "View Configuration"
+msgstr "உள்ளமைவைப் பார்க்கவும்"
+
+msgid "No. of Random Books to Display"
+msgstr "காட்சிப்படுத்த வேண்டிய ரேண்டம் புத்தகங்களின் எண்ணிக்கை"
+
+msgid "No. of Authors to Display Before Hiding (0=Disable Hiding)"
+msgstr "மறைப்பதற்கு முன் காண்பிக்க வேண்டிய ஆசிரியர்களின் எண்ணிக்கை (0=மறைப்பதை முடக்கு)"
+
+msgid "Theme"
+msgstr "ஆய்வுப்அபாருள்"
+
+msgid "Standard Theme"
+msgstr "தரநிலை ஆய்வுப்அபாருள்"
+
+msgid "caliBlur! Dark Theme"
+msgstr "காலி ப்ளூர்! இருள் ஆய்வுப்அபாருள்"
+
+msgid "Regular Expression for Ignoring Columns"
+msgstr "நெடுவரிசைகளைப் புறக்கணிப்பதற்கான வழக்கமான வெளிப்பாடு"
+
+msgid "Link Read/Unread Status to Calibre Column"
+msgstr "படித்த/படிக்காத நிலையை காலிபர் நெடுவரிசையுடன் இணைக்கவும்"
+
+msgid "View Restrictions based on Calibre column"
+msgstr "காலிபர் நெடுவரிசையின் அடிப்படையில் கட்டுப்பாடுகளைக் காண்க"
+
+msgid "Regular Expression for Title Sorting"
+msgstr "தலைப்பு வரிசையாக்கத்திற்கான வழக்கமான வெளிப்பாடு"
+
+msgid "Default Settings for New Users"
+msgstr "புதிய பயனர்களுக்கான இயல்புநிலை அமைப்புகள்"
+
+msgid "Admin User"
+msgstr "நிர்வாக பயனர்"
+
+msgid "Allow Downloads"
+msgstr "பதிவிறக்கங்களை அனுமதிக்கவும்"
+
+msgid "Allow eBook Viewer"
+msgstr "மின்புத்தக பார்வையாளரை அனுமதிக்கவும்"
+
+msgid "Allow Uploads"
+msgstr "பதிவேற்றங்களை அனுமதிக்கவும்"
+
+msgid "Allow Edit"
+msgstr "திருத்த அனுமதிக்கவும்"
+
+msgid "Allow Delete Books"
+msgstr "புத்தகங்களை நீக்க அனுமதிக்கவும்"
+
+msgid "Allow Changing Password"
+msgstr "கடவுச்சொல்லை மாற்ற அனுமதிக்கவும்"
+
+msgid "Allow Editing Public Shelves"
+msgstr "பொது புத்தக வரிசைககளைத் திருத்த அனுமதிக்கவும்"
+
+msgid "Default Language"
+msgstr "இயல்பு மொழி"
+
+msgid "Default Visible Language of Books"
+msgstr "புத்தகங்களின் இயல்புநிலை  மொழி"
+
+msgid "Default Visibilities for New Users"
+msgstr "புதிய பயனர்களுக்கான இயல்புநிலை பார்வைகள்"
+
+msgid "Show Random Books in Detail View"
+msgstr "ரேண்டம் புத்தகங்களை விரிவான பார்வையில் காட்டு"
+
+msgid "Add Allowed/Denied Tags"
+msgstr "அனுமதிக்கப்பட்ட/மறுக்கப்பட்ட குறிச்சொற்களைச் சேர்க்கவும்"
+
+msgid "Magic Link - Authorise New Device"
+msgstr "மேஜிக் இணைப்பு - புதிய சாதனத்தை அங்கீகரிக்கவும்"
+
+msgid "On another device, login and visit:"
+msgstr "மற்றொரு சாதனத்தில், உள்நுழைந்து பார்வையிடவும்"
+
+msgid "Once verified, you will automatically be logged in on this device."
+msgstr "சரிபார்க்கப்பட்டதும், நீங்கள் தானாகவே இந்தச் சாதனத்தில் உள்நுழைவீர்கள்."
+
+msgid "This verification link will expire in 10 minutes."
+msgstr "இந்த சரிபார்ப்பு இணைப்பு 10 நிமிடங்களில் காலாவதியாகிவிடும்."
+
+msgid "Generate Series Cover Thumbnails"
+msgstr "தொடர் அட்டை சிறு உருவங்களை உருவாக்கவும்"
+
+msgid "No Results Found"
+msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
+
+msgid "Search Term:"
+msgstr "தேடல் கால"
+
+msgid "Results for:"
+msgstr "க்கான முடிவுகள்"
+
+msgid "Published Date From"
+msgstr "வெளியிடப்பட்ட தேதி"
+
+msgid "Published Date To"
+msgstr "வெளியிடப்பட்ட தேதி"
+
+msgid "Any"
+msgstr "ஏதேனும்"
+
+msgid "Empty"
+msgstr "காலி"
+
+msgid "Exclude Tags"
+msgstr "குறிச்சொற்களை விலக்கு"
+
+msgid "Exclude Series"
+msgstr "தொடரை விலக்கு"
+
+msgid "Exclude Shelves"
+msgstr "அலமாரிகளை விலக்கு"
+
+msgid "Exclude Languages"
+msgstr "மொழிகளை விலக்கு"
+
+msgid "Extensions"
+msgstr "நீட்டிப்புகள்"
+
+msgid "Exclude Extensions"
+msgstr "நீட்டிப்புகளை விலக்கு"
+
+msgid "Rating Above"
+msgstr "மதிப்பீடு மேலே"
+
+msgid "Rating Below"
+msgstr "மதிப்பீடு கீழே"
+
+msgid "From:"
+msgstr "இருந்து"
+
+msgid "To:"
+msgstr "செய்ய"
+
+msgid "Delete this Shelf"
+msgstr "இந்த அலமாரியை நீக்கு"
+
+msgid "Edit Shelf Properties"
+msgstr "ஷெல்ஃப் பண்புகளைத் திருத்தவும்"
+
+msgid "Arrange books manually"
+msgstr "புத்தகங்களை கைமுறையாக வரிசைப்படுத்துங்கள்"
+
+msgid "Disable Change order"
+msgstr "மாற்ற வரிசையை முடக்கு"
+
+msgid "Enable Change order"
+msgstr "வரிசையை மாற்றுவதை இயக்கு"
+
+msgid "Sort according to book added to shelf, newest first"
+msgstr "அலமாரியில் சேர்க்கப்பட்ட புத்தகத்தின்படி வரிசைப்படுத்தவும், புதியது முதலில்"
+
+msgid "Sort according to book added to shelf, oldest first"
+msgstr "அலமாரியில் சேர்க்கப்பட்ட புத்தகத்தின்படி வரிசைப்படுத்தவும், முதலில் பழையது"
+
+msgid "Share with Everyone"
+msgstr "அனைவருக்கும் பகிரவும்"
+
+msgid "Sync this shelf with Kobo device"
+msgstr "இந்த அலமாரியை கோபோ சாதனத்துடன் ஒத்திசைக்கவும்"
+
+msgid "Drag to Rearrange Order"
+msgstr "வரிசையை மறுசீரமைக்க இழுக்கவும்"
+
+msgid "Hidden Book"
+msgstr "மறைக்கப்பட்ட புத்தகம்"
+
+msgid "Library Statistics"
+msgstr "நூலக புள்ளிவிவரங்கள்"
+
+msgid "Books in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள புத்தகங்கள்"
+
+msgid "Authors in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள ஆசிரியர்கள்"
+
+msgid "Categories in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள வகைகள்"
+
+msgid "Series in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள தொடர்"
+
+msgid "System Statistics"
+msgstr "கணினி புள்ளிவிவரங்கள்"
+
+msgid "Program"
+msgstr "நிரல்"
+
+msgid "Installed Version"
+msgstr "நிறுவப்பட்ட பதிப்பு"
+
+msgid "User"
+msgstr "பயனர்"
+
+msgid "Task"
+msgstr "பணி"
+
+msgid "Status"
+msgstr "நிலை"
+
+msgid "Progress"
+msgstr "மேம்பாடு"
+
+msgid "Run Time"
+msgstr "இயக்க நேரம்"
+
+msgid "Message"
+msgstr "தூதுரை"
+
+msgid "Actions"
+msgstr "செயல்பாடுகள்"
+
+msgid "This task will be cancelled. Any progress made by this task will be saved."
+msgstr "இந்த பணி ரத்து செய்யப்படும். இதற்கு முன் செய்யப்பட்ட அணைத்து பணிகளும் சேமிக்கப்படும்."
+
+msgid "Reset user Password"
+msgstr "பயனர் கடவுச்சொல்லை மீட்டமைக்கவும்"
+
+msgid "Language of Books"
+msgstr "புத்தகங்களின் மொழி"
+
+msgid "OAuth Settings"
+msgstr "OAuth அமைப்புகள்"
+
+msgid "Link"
+msgstr "இணைப்பு"
+
+msgid "Unlink"
+msgstr "இணைப்பை துண்டிக்கவும்"
+
+msgid "Kobo Sync Token"
+msgstr "Kobo Sync Token"
+
+msgid "Create/View"
+msgstr "உருவாக்கவும்/பார்க்கவும்"
+
+msgid "Force full kobo sync"
+msgstr "Force full kobo sync"
+
+msgid "Add allowed/Denied Custom Column Values"
+msgstr "அனுமதிக்கப்பட்ட/மறுக்கப்பட்ட தனிப்பயன் நெடுவரிசை மதிப்புகளைச் சேர்க்கவும்"
+
+msgid "Sync only books in selected shelves with Kobo"
+msgstr "தேர்ந்தெடுக்கப்பட்ட அலமாரிகளில் உள்ள புத்தகங்களை மட்டும் கோபோவுடன் ஒத்திசைக்கவும்"
+
+msgid "Delete User"
+msgstr "பயனரை நீக்கு"
+
+msgid "Generate Kobo Auth URL"
+msgstr "Generate Kobo Auth URL"
+
+msgid "Select..."
+msgstr "தேர்ந்தெடு..."
+
+msgid "Edit User"
+msgstr "பயனரைத் திருத்து"
+
+msgid "Enter Username"
+msgstr "பயனர்பெயரை உள்ளிடவும்"
+
+msgid "Enter Email"
+msgstr "மின்னஞ்சலை உள்ளிடவும்"
+
+msgid "Enter eReader Email"
+msgstr "வாசிப்பவர் மின்னஞ்சலை உள்ளிடவும்"
+
+msgid "eReader Email"
+msgstr "வாசிப்பவர் மின்னஞ்சல்"
+
+msgid "Locale"
+msgstr "நிகழ்வு இயலிடம்"
+
+msgid "Visible Book Languages"
+msgstr "காணக்கூடிய புத்தக மொழிகள்"
+
+msgid "Edit Allowed Tags"
+msgstr "அனுமதிக்கப்பட்ட குறிச்சொற்களைத் திருத்தவும்"
+
+msgid "Allowed Tags"
+msgstr "அனுமதிக்கப்பட்ட குறிச்சொற்கள்"
+
+msgid "Edit Denied Tags"
+msgstr "மறுக்கப்பட்ட குறிச்சொற்களைத் திருத்தவும்"
+
+msgid "Denied Tags"
+msgstr "மறுக்கப்பட்ட குறிச்சொற்கள்"
+
+msgid "Edit Allowed Column Values"
+msgstr "அனுமதிக்கப்பட்ட நெடுவரிசை மதிப்புகளைத் திருத்தவும்"
+
+msgid "Allowed Column Values"
+msgstr "அனுமதிக்கப்பட்ட நெடுவரிசை மதிப்புகள்"
+
+msgid "Edit Denied Column Values"
+msgstr "மறுக்கப்பட்ட நெடுவரிசை மதிப்புகளைத் திருத்தவும்"
+
+msgid "Denied Column Values"
+msgstr "நிராகரிக்கப்பட்ட நெடுவரிசை மதிப்புகள்"
+
+msgid "Change Password"
+msgstr "கடவுச்சொல்லை மாற்றவும்"
+
+msgid "View"
+msgstr "காண்க"
+
+msgid "Edit Public Shelves"
+msgstr "பொது அலமாரிகளைத் திருத்தவும்"
+
+msgid "Sync selected Shelves with Kobo"
+msgstr "தேர்ந்தெடுக்கப்பட்ட அலமாரிகளை கோபோவுடன் ஒத்திசைக்கவும்"
+
+msgid "Show Read/Unread Section"
+msgstr "படித்த/படிக்காத பகுதியைக் காட்டு"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

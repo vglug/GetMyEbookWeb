@@ -31,7 +31,6 @@ def get_locale(locale=None):
                 except (UnknownLocaleError, ValueError) as e:
                     log.debug('Could not parse locale "%s": %s', x, e)
         locale_value = negotiate_locale(user_locale or preferred or ['el'], get_available_translations())
-    print("Current Locale", locale_value)
     return locale_value
 
 

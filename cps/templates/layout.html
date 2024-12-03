@@ -257,12 +257,19 @@
         var checkBox = document.getElementById("locale");
         var text = document.getElementById("text");
         if (checkBox.checked == true){
-          document.cookie = 'get_my_ebook_locale=el';
+          document.cookie = 'get_my_ebook_locale=ta';
           window.location.reload();
         } else {
           document.cookie = 'get_my_ebook_locale=en'
           window.location.reload();
         }
+      }
+      var checkBox = document.getElementById("locale");
+      if (document.cookie == 'get_my_ebook_locale=en') {
+        checkBox.checked = false
+      }
+      else {
+        checkBox.checked = true
       }
       </script>
     {% block js %}{% endblock %}
