@@ -1,0 +1,119 @@
+msgid "Magic Link - Authorise New Device"
+msgstr "மேஜிக் இணைப்பு - புதிய சாதனத்தை அங்கீகரிக்கவும்"
+
+msgid "On another device, login and visit:"
+msgstr "மற்றொரு சாதனத்தில், உள்நுழைந்து பார்வையிடவும்"
+
+msgid "Once verified, you will automatically be logged in on this device."
+msgstr "சரிபார்க்கப்பட்டதும், நீங்கள் தானாகவே இந்தச் சாதனத்தில் உள்நுழைவீர்கள்."
+
+msgid "This verification link will expire in 10 minutes."
+msgstr "இந்த சரிபார்ப்பு இணைப்பு 10 நிமிடங்களில் காலாவதியாகிவிடும்."
+
+msgid "Generate Series Cover Thumbnails"
+msgstr "தொடர் அட்டை சிறு உருவங்களை உருவாக்கவும்"
+
+msgid "No Results Found"
+msgstr "முடிவுகள் எதுவும் கிடைக்கவில்லை"
+
+msgid "Search Term:"
+msgstr "தேடல் கால"
+
+msgid "Results for:"
+msgstr "க்கான முடிவுகள்"
+
+msgid "Published Date From"
+msgstr "வெளியிடப்பட்ட தேதி"
+
+msgid "Published Date To"
+msgstr "வெளியிடப்பட்ட தேதி"
+
+msgid "Any"
+msgstr "ஏதேனும்"
+
+msgid "Empty"
+msgstr "காலி"
+
+msgid "Exclude Tags"
+msgstr "குறிச்சொற்களை விலக்கு"
+
+msgid "Exclude Series"
+msgstr "தொடரை விலக்கு"
+
+msgid "Exclude Shelves"
+msgstr "அலமாரிகளை விலக்கு"
+
+msgid "Exclude Languages"
+msgstr "மொழிகளை விலக்கு"
+
+msgid "Extensions"
+msgstr "நீட்டிப்புகள்"
+
+msgid "Exclude Extensions"
+msgstr "நீட்டிப்புகளை விலக்கு"
+
+msgid "Rating Above"
+msgstr "மதிப்பீடு மேலே"
+
+msgid "Rating Below"
+msgstr "மதிப்பீடு கீழே"
+
+msgid "From:"
+msgstr "இருந்து"
+
+msgid "To:"
+msgstr "செய்ய"
+
+msgid "Delete this Shelf"
+msgstr "இந்த அலமாரியை நீக்கு"
+
+msgid "Edit Shelf Properties"
+msgstr "ஷெல்ஃப் பண்புகளைத் திருத்தவும்"
+
+msgid "Arrange books manually"
+msgstr "புத்தகங்களை கைமுறையாக வரிசைப்படுத்துங்கள்"
+
+msgid "Disable Change order"
+msgstr "மாற்ற வரிசையை முடக்கு"
+
+msgid "Enable Change order"
+msgstr "வரிசையை மாற்றுவதை இயக்கு"
+
+msgid "Sort according to book added to shelf, newest first"
+msgstr "அலமாரியில் சேர்க்கப்பட்ட புத்தகத்தின்படி வரிசைப்படுத்தவும், புதியது முதலில்"
+
+msgid "Sort according to book added to shelf, oldest first"
+msgstr "அலமாரியில் சேர்க்கப்பட்ட புத்தகத்தின்படி வரிசைப்படுத்தவும், முதலில் பழையது"
+
+msgid "Share with Everyone"
+msgstr "அனைவருக்கும் பகிரவும்"
+
+msgid "Sync this shelf with Kobo device"
+msgstr "இந்த அலமாரியை கோபோ சாதனத்துடன் ஒத்திசைக்கவும்"
+
+msgid "Drag to Rearrange Order"
+msgstr "வரிசையை மறுசீரமைக்க இழுக்கவும்"
+
+msgid "Hidden Book"
+msgstr "மறைக்கப்பட்ட புத்தகம்"
+
+msgid "Library Statistics"
+msgstr "நூலக புள்ளிவிவரங்கள்"
+
+msgid "Books in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள புத்தகங்கள்"
+
+msgid "Authors in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள ஆசிரியர்கள்"
+
+msgid "Categories in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள வகைகள்"
+
+msgid "Series in this Library"
+msgstr "இந்த நூலகத்தில் உள்ள தொடர்"
+
+msgid "System Statistics"
+msgstr "கணினி புள்ளிவிவரங்கள்"
+
+msgid "Program"
+msgstr "நிரல்"

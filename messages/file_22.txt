@@ -1,0 +1,11 @@
+msgid "View"
+msgstr "காண்க"
+
+msgid "Edit Public Shelves"
+msgstr "பொது அலமாரிகளைத் திருத்தவும்"
+
+msgid "Sync selected Shelves with Kobo"
+msgstr "தேர்ந்தெடுக்கப்பட்ட அலமாரிகளை கோபோவுடன் ஒத்திசைக்கவும்"
+
+msgid "Show Read/Unread Section"
+msgstr "படித்த/படிக்காத பகுதியைக் காட்டு"

@@ -1,0 +1,119 @@
+msgid "Server External Port (for port forwarded API calls)"
+msgstr "சர்வர் வெளிப்புற போர்ட் (போர்ட் அனுப்பப்பட்ட API அழைப்புகளுக்கு)"
+
+msgid "Use Goodreads"
+msgstr "குட்ரீட்ஸைப் பயன்படுத்தவும்"
+
+msgid "Goodreads API Key"
+msgstr "குட்ரீட்ஸ் API விசை"
+
+msgid "Allow Reverse Proxy Authentication"
+msgstr "ரிவர்ஸ் பிராக்ஸி அங்கீகாரத்தை அனுமதிக்கவும்"
+
+msgid "Login type"
+msgstr "உள்நுழைவு வகை"
+
+msgid "Use Standard Authentication"
+msgstr "நிலையான அங்கீகாரத்தை பயன்படுத்தவும்"
+
+msgid "Use LDAP Authentication"
+msgstr "LDAP அங்கீகாரத்தை பயன்படுத்தவும்"
+
+msgid "Use OAuth"
+msgstr "OAuth ஐ பயன்படுத்தவும்"
+
+msgid "LDAP Server Host Name or IP Address"
+msgstr "LDAP சர்வர் ஹோஸ்ட் பெயர் அல்லது IP முகவரி"
+
+msgid "LDAP Server Port"
+msgstr "LDAP சர்வர் போர்ட்"
+
+msgid "LDAP Encryption"
+msgstr "LDAP குறியாக்கம்"
+
+msgid "TLS"
+msgstr "TLS"
+
+msgid "SSL"
+msgstr "SSL"
+
+msgid ""
+msgstr ""
+
+msgid "LDAP Certificate Path (Only needed for Client Certificate Authentication)"
+msgstr "LDAP சான்றிதழ் பாதை (வாடிக்கையாளர் சான்றிதழ் அங்கீகாரத்திற்கு மட்டும் தேவையானது)"
+
+msgid "LDAP Keyfile Path (Only needed for Client Certificate Authentication)"
+msgstr "LDAP விசைப்பதிவு கோப்பு பாதை (வாடிக்கையாளர் சான்றிதழ் அங்கீகாரத்திற்கு மட்டும் தேவையானது)"
+
+msgid "LDAP Authentication"
+msgstr "LDAP அங்கீகாரம்"
+
+msgid "Anonymous"
+msgstr "அடையாளமற்ற"
+
+msgid "Unauthenticated"
+msgstr "அங்கீகரிக்கப்படாத"
+
+msgid "Simple"
+msgstr "எளிமையான"
+
+msgid "LDAP Administrator Username"
+msgstr "LDAP நிர்வாகி பயனர் பெயர்"
+
+msgid "LDAP Administrator Password"
+msgstr "LDAP நிர்வாகி கடவுச்சொல்"
+
+msgid "LDAP Distinguished Name (DN)"
+msgstr "LDAP மாறுபட்ட பெயர் (DN)"
+
+msgid "LDAP User Object Filter"
+msgstr "LDAP பயனர் பொருள் வடிகட்டி"
+
+msgid "LDAP Server is OpenLDAP?"
+msgstr "LDAP சர்வர் OpenLDAP ஆக உள்ளதா?"
+
+msgid "Following Settings are Needed For User Import"
+msgstr "பயனர் இறக்குமதிக்கு பின்வரும் அமைப்புகள் தேவையானவை"
+
+msgid "LDAP Group Object Filter"
+msgstr "LDAP குழு பொருள் வடிகட்டி"
+
+msgid "LDAP Group Name"
+msgstr "LDAP குழு பெயர்"
+
+msgid "LDAP Group Members Field"
+msgstr "LDAP குழு உறுப்பினர்கள் புலம்"
+
+msgid "LDAP Member User Filter Detection"
+msgstr "LDAP உறுப்பினர் பயனர் வடிகட்டி கண்டறிதல்"
+
+msgid "Autodetect"
+msgstr "தானாக கண்டறி"
+
+msgid "Custom Filter"
+msgstr "தனிப்பயன் வடிகட்டி"
+
+msgid "LDAP Member User Filter"
+msgstr "LDAP உறுப்பினர் பயனர் வடிகட்டி"
+
+msgid "Obtain %(provider)s OAuth Credential"
+msgstr "%(provider)s OAuth சான்றுகளை பெறவும்"
+
+msgid "%(provider)s OAuth Client Id"
+msgstr "%(provider)s OAuth கிளையன்ட் ஐடி"
+
+msgid "%(provider)s OAuth Client Secret"
+msgstr "%(provider)s OAuth கிளையன்ட் ரகசியம்"
+
+msgid "External binaries"
+msgstr "வெளிப்புற பைனரிகள்"
+
+msgid "Path to Calibre Binaries"
+msgstr "காலிப்ர் பைனரிகளுக்கான பாதை"
+
+msgid "Calibre E-Book Converter Settings"
+msgstr "காலிப்ர் மின்னூல் மாற்றி அமைப்புகள்"
+
+msgid "Path to Kepubify E-Book Converter"
+msgstr "கேபபுஃபி மின்னூல் மாற்றிக்கு பாதை"

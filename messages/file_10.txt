@@ -1,0 +1,120 @@
+msgid "Delete"
+msgstr "நீக்கவும்"
+
+msgid "Public Shelf"
+msgstr "பொது அலமாரி"
+
+msgid "Import LDAP Users"
+msgstr "LDAP பயனர்களை இறக்குமதி செய்யவும்"
+
+msgid "Email Server Settings"
+msgstr  "மின்னஞ்சல் சேவையக அமைப்புகள்"
+
+msgid "SMTP Hostname"
+msgstr "SMTP ஹோஸ்ட்பெயர்"
+
+msgid "SMTP Port"
+msgstr "SMTP போர்ட்"
+
+msgid "Encryption"
+msgstr "குறியாக்கம்"
+
+msgid "SMTP Login"
+msgstr "SMTP உள்நுழைவு"
+
+msgid "From Email"
+msgstr "மின்னஞ்சலில் இருந்து"
+
+msgid "Email Service"
+msgstr "மின்னஞ்சலில் இருந்து"
+
+msgid "Gmail via Oauth2"
+msgstr "Oauth2 வழியாக Gmail"
+
+msgid "Configuration"
+msgstr "கட்டமைப்பு"
+
+msgid "Calibre Database Directory"
+msgstr "காலிபர் டேட்டாபேஸ் டைரக்டரி"
+
+msgid "Log Level"
+msgstr "பதிவு நிலை"
+
+msgid "Port"
+msgstr "துறைமுகம்"
+
+msgid "External Port"
+msgstr "வெளி துறைமுகம்"
+
+msgid "Books per Page"
+msgstr "ஒரு பக்கத்திற்கு புத்தகங்கள்"
+
+msgid "Uploads"
+msgstr "பதிவேற்றங்கள்"
+
+msgid "Anonymous Browsing"
+msgstr "அநாமதேய உலாவல்"
+
+msgid "Public Registration"
+msgstr "பொதுப் பதிவு"
+
+msgid "Magic Link Remote Login"
+msgstr "மேஜிக் லிங்க் ரிமோட் உள்நுழைவு "
+
+msgid "Reverse Proxy Login"
+msgstr "ரிவர்ஸ் ப்ராக்ஸி உள்நுழைவு"
+
+msgid "Reverse Proxy Header Name"
+msgstr "தலைகீழ் பதிலாள் தலைப்பு பெயர்"
+
+msgid "Edit Calibre Database Configuration"
+msgstr "காலிபர் தரவுத்தள உள்ளமைவைத் திருத்தவும்"
+
+msgid "Edit Basic Configuration"
+msgstr "அடிப்படை உள்ளமைவைத் திருத்தவும்"
+
+msgid "Edit UI Configuration"
+msgstr "UI உள்ளமைவைத் திருத்து"
+
+msgid "Scheduled Tasks"
+msgstr "திட்டமிடப்பட்ட பணிகள்"
+
+msgid "Start Time"
+msgstr "தொடக்க நேரம்"
+
+msgid "Maximum Duration"
+msgstr "அதிகபட்ச காலம்"
+
+msgid "Generate Thumbnails"
+msgstr "சிறுபடங்களை உருவாக்கவும்"
+
+msgid "Generate series cover thumbnails"
+msgstr "தொடர் அட்டை சிறுபடங்களை உருவாக்கவும்"
+
+msgid "Reconnect Calibre Database"
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கவும்"
+
+msgid "Generate Metadata Backup Files"
+msgstr மெட்டாடேட்டா காப்பு கோப்புகளை உருவாக்கவும்""
+
+msgid "Refresh Thumbnail Cache"
+msgstr "சிறுபடம் தற்காலிக சேமிப்பைப் புதுப்பிக்கவும்"
+
+msgid "Administration"
+msgstr "நிர்வாகம்"
+
+msgid "Download Debug Package"
+msgstr "பிழைத்திருத்த தொகுப்பைப் பதிவிறக்கவும்"
+
+msgid "View Logs"
+msgstr "பதிவுகளைப் பார்க்கவும்"
+
+msgid "Restart"
+msgstr "மறுதொடக்கம்"
+
+msgid "Shutdown"
+msgstr "பணிநிறுத்தம்"
+
+msgid "Version Information"
+msgstr "பதிப்பு தகவல்"
+

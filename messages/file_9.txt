@@ -1,0 +1,120 @@
+msgid "Please wait one minute before next login"
+msgstr "அடுத்த உள்நுழைவுக்கு முன் ஒரு நிமிடம் காத்திருக்கவும்""
+
+msgid "you are now logged in as: '%(nickname)s'"
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s'"
+
+msgid ""
+msgstr ""
+
+msgid "Could not login: %(message)s"
+msgstr "உள்நுழைய முடியவில்லை: %(message)s"
+
+msgid "Wrong Username or Password"
+msgstr "தவறான பயனர்பெயர் அல்லது கடவுச்சொல்"
+
+msgid "New Password was sent to your email address"
+msgstr "உங்கள் மின்னஞ்சல் முகவரிக்கு புதிய கடவுச்சொல் அனுப்பப்பட்டது"
+
+msgid "An unknown error occurred. Please try again later."
+msgstr "அறியப்படாத பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்."
+
+msgid "Please enter valid username to reset password"
+msgstr "கடவுச்சொல்லை மீட்டமைக்க சரியான பயனர்பெயரை உள்ளிடவும்"
+
+msgid "You are now logged in as: '%(nickname)s'"
+msgstr "நீங்கள் இப்போது இவ்வாறு உள்நுழைந்துள்ளீர்கள்: '%(புனைப்பெயர்)s'"
+
+msgid "%(name)s's Profile"
+msgstr "%(பெயர்) இன் சுயவிவரம்"
+
+msgid "Success! Profile Updated"
+msgstr "வெற்றி! சுயவிவரம் புதுப்பிக்கப்பட்டது"
+
+msgid "Oops! An account already exists for this Email."
+msgstr "அச்சச்சோ! இந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது."
+
+msgid "Found no valid gmail.json file with OAuth information"
+msgstr "OAuth தகவலுடன் சரியான gmail.json கோப்பு எதுவும் இல்லை"
+
+msgid "Delete temp folder contents"
+msgstr "தற்காலிக கோப்புறை உள்ளடக்கங்களை நீக்கவும்"
+
+msgid "%(book)s send to E-Reader"
+msgstr "%(புத்தகம்)கள் ஈ-ரீடருக்கு அனுப்பப்படும்"
+
+msgid "Calibre ebook-convert %(tool)s not found"
+msgstr "Caliber ebook-convert %(tool)s கிடைக்கவில்லை"
+
+msgid "%(format)s format not found on disk"
+msgstr "%(format)s வடிவம் வட்டில் இல்லை"
+
+msgid "Ebook converter failed with unknown error"
+msgstr "அறியப்படாத பிழையால் மின்புத்தக மாற்றி தோல்வியடைந்தது"
+
+msgid "Kepubify-converter failed: %(error)s"
+msgstr "Kepubify-converter தோல்வியடைந்தது: %(error)s"
+
+msgid "Converted file not found or more than one file in folder %(folder)s"
+msgstr "மாற்றப்பட்ட கோப்பு காணப்படவில்லை அல்லது %(கோப்புறை)s கோப்புறையில் ஒன்றுக்கும் மேற்பட்ட கோப்புகள்"
+
+msgid "Calibre failed with error: %(error)s"
+msgstr "பிழையுடன் காலிபர் தோல்வியடைந்தது: %(பிழை)கள்"
+
+msgid "Ebook-converter failed: %(error)s"
+msgstr "மின்புத்தக மாற்றி தோல்வியடைந்தது: %(பிழை)கள்"
+
+msgid "Convert"
+msgstr "மாற்றவும்"
+
+msgid "Reconnecting Calibre database"
+msgstr "காலிபர் தரவுத்தளத்தை மீண்டும் இணைக்கிறது"
+
+msgid "E-mail"
+msgstr "மின்னஞ்சல்"
+
+msgid "Backing up Metadata"
+msgstr "மெட்டாடேட்டாவை காப்புப் பிரதி எடுக்கிறது"
+
+msgid "Generated %(count)s cover thumbnails"
+msgstr "%(count)s கவர் சிறுபடங்களை உருவாக்கியது"
+
+msgid "Cover Thumbnails"
+msgstr "கவர் சிறுபடங்கள்"
+
+msgid "Generated {0} series thumbnails"
+msgstr "{0} தொடர் சிறுபடங்களை உருவாக்கியது"
+
+msgid "Clearing cover thumbnail cache"
+msgstr "அட்டை சிறுபட தேக்ககத்தை அழிக்கிறது"
+
+msgid "Upload"
+msgstr "பதிவேற்றவும்"
+
+msgid "Users"
+msgstr "பயனர்கள்"
+
+msgid "Username"
+msgstr "பயனர் பெயர்"
+
+msgid "Email"
+msgstr "மின்னஞ்சல்"
+
+msgid "Send to eReader Email"
+msgstr "eReader மின்னஞ்சலுக்கு அனுப்பவும்"
+
+msgid "Admin"
+msgstr "நிர்வாகி"
+
+msgid "Password"
+msgstr "கடவுச்சொல்"
+
+msgid "Download"
+msgstr "பதிவிறக்கவும்"
+
+msgid "View Books"
+msgstr "புத்தகங்களைப் பார்க்கவும்"
+
+msgid "Edit"
+msgstr "திருத்தவும்"
+
