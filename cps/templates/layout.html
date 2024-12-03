@@ -257,10 +257,10 @@
         var checkBox = document.getElementById("locale");
         var text = document.getElementById("text");
         if (checkBox.checked == true){
-          document.cookie = 'get_my_ebook_locale=ta';
+          document.cookie = 'get_my_ebook_locale=ta;path=/';
           window.location.reload();
         } else {
-          document.cookie = 'get_my_ebook_locale=en'
+          document.cookie = 'get_my_ebook_locale=en;path=/'
           window.location.reload();
         }
       }
